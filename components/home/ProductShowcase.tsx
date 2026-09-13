@@ -1,10 +1,8 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { TicketMock } from "@/components/system/TicketMock";
-import { DocumentMock } from "@/components/system/DocumentMock";
-import { SdkMock } from "@/components/system/SdkMock";
 import { Tag } from "@/components/ui/Tag";
+import { ScreenshotFrame } from "@/components/system/ScreenshotFrame";
 import { products } from "@/lib/content/products";
 
 export function ProductShowcase() {
@@ -43,30 +41,40 @@ export function ProductShowcase() {
 
             <div className="mt-auto flex items-center justify-between">
               <span className="text-sm text-muted-2">Built by {tresolv.builtBy}</span>
-              <Link
-                href={`/products/${tresolv.slug}`}
-                className="text-sm font-medium text-foreground transition-colors hover:text-teal"
-              >
-                View Product →
-              </Link>
+              {tresolv.links.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-medium text-foreground transition-colors hover:text-teal"
+                >
+                  {link.label} →
+                </a>
+              ))}
             </div>
           </div>
           <div className="p-4 sm:p-6">
-            <TicketMock />
+            <ScreenshotFrame
+              src={tresolv.screenshot}
+              alt="tResolv product screenshot"
+              label="tResolv storefront chat widget"
+            />
           </div>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-5">
+        <div className="grid gap-6 sm:grid-cols-2">
           <Link
             href={`/products/${cvPlatform.slug}`}
-            className="group flex flex-col gap-6 rounded-2xl border border-border p-7 transition-colors hover:border-teal/50 sm:col-span-2"
+            className="group flex flex-col gap-6 rounded-2xl border border-border p-7 transition-colors hover:border-teal/50"
           >
             <span className="font-display text-lg font-semibold text-foreground">
               {cvPlatform.name}
             </span>
-            <div className="h-40">
-              <DocumentMock />
-            </div>
+            <ScreenshotFrame
+              alt="AI CV & Job Application Platform screenshot"
+              label="AI CV & Job Application Platform"
+            />
             <div className="flex items-center justify-between">
               <span className="text-xs text-muted-2">Built by {cvPlatform.builtBy}</span>
               <span className="text-sm text-foreground/80 group-hover:text-teal">
@@ -75,17 +83,17 @@ export function ProductShowcase() {
             </div>
           </Link>
 
-          <div className="flex flex-col gap-6 rounded-2xl border border-border p-7 sm:col-span-3 sm:flex-row sm:items-center">
-            <div className="h-32 sm:h-full sm:w-52 sm:shrink-0">
-              <SdkMock />
-            </div>
-            <div className="flex flex-1 flex-col gap-4">
-              <span className="font-display text-lg font-semibold text-foreground">
-                {sdk.name}
-              </span>
-              <p className="text-sm leading-relaxed text-muted">Agent infrastructure for building AI agent systems.</p>
-              <span className="text-xs text-muted-2">Built by {sdk.builtBy}</span>
-            </div>
+          <div className="flex flex-col gap-4 rounded-2xl border border-border p-7">
+            <span className="font-display text-lg font-semibold text-foreground">{sdk.name}</span>
+            <p className="text-sm leading-relaxed text-muted">{sdk.description}</p>
+            {sdk.technology && (
+              <div className="flex flex-wrap gap-2">
+                {sdk.technology.map((tech) => (
+                  <Tag key={tech}>{tech}</Tag>
+                ))}
+              </div>
+            )}
+            <span className="mt-auto text-xs text-muted-2">Built by {sdk.builtBy}</span>
           </div>
         </div>
       </Container>

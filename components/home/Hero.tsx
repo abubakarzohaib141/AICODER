@@ -1,8 +1,11 @@
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { AgentShowcase } from "@/components/system/AgentShowcase";
+import { ScreenshotFrame } from "@/components/system/ScreenshotFrame";
+import { products } from "@/lib/content/products";
 
 export function Hero() {
+  const tresolv = products.find((p) => p.slug === "tresolv");
+
   return (
     <section className="pt-16 sm:pt-24">
       <Container className="grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-10">
@@ -25,7 +28,17 @@ export function Hero() {
           </div>
         </div>
 
-        <AgentShowcase />
+        {tresolv && (
+          <div className="flex flex-col gap-3">
+            <ScreenshotFrame
+              src={tresolv.screenshot}
+              alt="tResolv product screenshot"
+              label="tResolv — live at tresolv.online"
+              aspect="4/3"
+            />
+            <span className="text-xs text-muted-2">tResolv, built by Syeda Hafsa</span>
+          </div>
+        )}
       </Container>
     </section>
   );

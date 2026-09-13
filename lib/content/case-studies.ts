@@ -27,11 +27,11 @@ export const caseStudies: CaseStudy[] = [
     challenge:
       "A generic chatbot can answer FAQs, but customer support requires reading store data, order history and policy, then deciding when to resolve a conversation versus escalate it.",
     solution:
-      "We built tResolv, an AI support agent for Shopify stores that reads store and order context, resolves common conversations directly, and hands off to a human when a case falls outside its scope.",
-    workflow: ["Customer", "AI Agent", "Shopify / Order Data", "Resolution or Human Escalation"],
+      "We built tResolv, an AI support agent that lives in a Shopify store's own chat widget. It reads real order data, resolves common requests directly, and stages actions like cancellations for one-tap merchant approval instead of acting unsupervised.",
+    workflow: ["Customer", "AI Agent", "Shopify Order Data", "Merchant Approval or Resolution"],
     technology: ["Shopify", "AI Agents", "RAG", "APIs"],
     results:
-      "tResolv is live and in active use by Shopify brands. Detailed performance metrics will be published as more merchant data becomes available.",
+      "tResolv is live at tresolv.online. Detailed performance metrics will be published as more merchant data becomes available.",
     builtBy: "Syeda Hafsa",
     builtBySlug: "hafsa",
   },
@@ -61,17 +61,17 @@ export const caseStudies: CaseStudy[] = [
     category: "Business Automation",
     title: "CRM & Business Automation Systems",
     summary:
-      "Custom CRM and automation systems built for business clients, connecting sales, affiliate and HR workflows.",
+      "A custom CRM that unifies sales, customers, revenue and support into one system, plus an AI hiring agent that automates the recruiting funnel.",
     problem:
-      "Growing businesses often run sales, affiliate and HR processes across disconnected tools and manual spreadsheets, which slows the team down as volume grows.",
+      "Growing businesses often run sales, revenue, support and hiring across disconnected tools and manual spreadsheets, which slows the team down as volume grows.",
     challenge:
-      "Off-the-shelf CRM and automation tools rarely match a business's actual process, forcing teams to work around the software instead of with it.",
+      "Off-the-shelf CRM and hiring tools rarely match a business's actual process, forcing teams to work around the software instead of with it.",
     solution:
-      "We build custom CRM and automation systems designed around each client's actual sales, affiliate and HR workflows — including a CRM, sales and automation system currently in development for Sending AC.",
+      "We built a custom CRM that unifies sales, customers, revenue, payments, disputes and calls into one operational system with real-time dashboards and automated workflows — alongside an AI hiring agent that screens, scores and communicates with candidates through each stage of the funnel automatically.",
     workflow: ["Lead / Record Intake", "Automation Rules", "CRM", "Reporting & Handoff"],
     technology: ["CRM", "APIs", "Automation", "Database"],
     results:
-      "This work is ongoing. Specific client details and metrics are shared only with permission.",
+      "Both systems are built and in use internally. Client details are shared only with permission.",
     builtBy: "Muhammad Bin Zohaib",
     builtBySlug: "muhammad",
   },

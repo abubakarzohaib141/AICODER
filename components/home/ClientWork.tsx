@@ -1,6 +1,7 @@
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { ArchitectureMock } from "@/components/system/ArchitectureMock";
+import { ScreenshotFrame } from "@/components/system/ScreenshotFrame";
+import { clientWork } from "@/lib/content/client-work";
 
 export function ClientWork() {
   return (
@@ -11,26 +12,41 @@ export function ClientWork() {
           title="AI Systems Built for Real Businesses"
         />
 
-        <div className="flex flex-col gap-8 rounded-2xl border border-border bg-background-elevated-2/40 p-8 sm:p-10">
-          <div className="flex flex-col gap-4">
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="font-display text-xl font-bold text-foreground">
-                CRM + Business Automation
-              </span>
-              <span className="rounded-full bg-orange/10 px-2.5 py-1 font-mono-label text-[10px] uppercase tracking-wide text-orange">
-                In Development
-              </span>
+        <div className="grid gap-6 sm:grid-cols-2">
+          {clientWork.map((project) => (
+            <div
+              key={project.slug}
+              className="flex flex-col gap-5 rounded-2xl border border-border bg-background-elevated-2/40 p-7 sm:p-8"
+            >
+              <ScreenshotFrame
+                src={project.screenshot}
+                alt={`${project.name} screenshot`}
+                label={project.name}
+              />
+              <div className="flex flex-col gap-2">
+                <span className="font-mono-label text-[11px] uppercase tracking-wide text-teal">
+                  {project.category}
+                </span>
+                <span className="font-display text-xl font-bold text-foreground">
+                  {project.name}
+                </span>
+              </div>
+              <p className="text-sm leading-relaxed text-muted">{project.description}</p>
+              <span className="text-xs text-muted-2">Built by {project.builtBy}</span>
             </div>
-            <p className="text-sm text-muted-2">
-              Sales automation · Affiliate workflows · HR systems · CRM
-            </p>
-            <p className="max-w-xl text-base leading-relaxed text-muted">
-              Custom business systems built around real operational workflows — including a CRM,
-              sales and automation system currently in development for Sending AC.
-            </p>
-          </div>
+          ))}
 
-          <ArchitectureMock />
+          <a
+            href="/contact"
+            className="flex min-h-[220px] flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-border-strong p-7 text-center transition-colors hover:border-teal/50 sm:p-8"
+          >
+            <span className="font-mono-label text-[11px] uppercase tracking-wide text-muted-2">
+              More work
+            </span>
+            <span className="text-sm text-muted">
+              Additional client systems are on the way — get in touch to see current work.
+            </span>
+          </a>
         </div>
       </Container>
     </section>

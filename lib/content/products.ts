@@ -9,6 +9,8 @@ export type Product = {
   builtBySlug: string;
   links: { label: string; href: string }[];
   technology?: string[];
+  /** Path under /public to a real product screenshot. Omit to show an honest placeholder. */
+  screenshot?: string;
 };
 
 export const products: Product[] = [
@@ -19,10 +21,10 @@ export const products: Product[] = [
     name: "tResolv",
     title: "tResolv — AI Customer Support Agent for Shopify",
     description:
-      "An AI customer support agent designed for Shopify brands to automate repetitive customer conversations and support workflows.",
+      "tResolv answers Shopify customers directly in the storefront chat — looking up real order data and staging actions like cancellations for one-tap merchant approval.",
     builtBy: "Syeda Hafsa",
     builtBySlug: "hafsa",
-    links: [],
+    links: [{ label: "Visit tResolv", href: "http://tresolv.online/" }],
     technology: ["Shopify", "AI Agents", "RAG", "APIs"],
   },
   {
