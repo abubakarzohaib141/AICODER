@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+:root {
+  --background: #08090b;
+  --background-elevated: #0e1013;
+  --background-elevated-2: #14171b;
+  --foreground: #f3f2ef;
+  --muted: #a3a3a6;
+  --muted-2: #6f7075;
+  --border: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.16);
+
+  --accent-orange: #ff8800;
+  --accent-teal: #147d8a;
+  --accent-teal-bright: #22b6b0;
+  --accent-blue: #4f7ff7;
+  --accent-indigo: #2b1bba;
+  --accent-neutral: #ddd3d3;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-background-elevated: var(--background-elevated);
+  --color-background-elevated-2: var(--background-elevated-2);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-2: var(--muted-2);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+
+  --color-orange: var(--accent-orange);
+  --color-teal: var(--accent-teal);
+  --color-teal-bright: var(--accent-teal-bright);
+  --color-blue: var(--accent-blue);
+  --color-indigo: var(--accent-indigo);
+  --color-neutral: var(--accent-neutral);
+
+  --font-display: var(--font-space-grotesk);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--accent-blue);
+  color: #08090b;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.font-display {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+}
+
+.font-mono-label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+
+.text-gradient {
+  background: linear-gradient(120deg, var(--accent-teal-bright), var(--accent-blue) 55%, var(--accent-orange));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.grain-fade {
+  background: radial-gradient(
+    ellipse 80% 60% at 50% -10%,
+    rgba(79, 127, 247, 0.16),
+    transparent 60%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
