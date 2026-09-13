@@ -39,7 +39,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "cv-job-platform",
     index: "02",
     category: "AI Product Development",
-    title: "AI CV & Job Application Platform",
+    title: "Scope AI CV — AI CV & Job Application Platform",
     summary:
       "An AI-powered platform that helps job seekers generate CVs and manage job application workflows.",
     problem:

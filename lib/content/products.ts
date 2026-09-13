@@ -11,6 +11,8 @@ export type Product = {
   technology?: string[];
   /** Path under /public to a real product screenshot. Omit to show an honest placeholder. */
   screenshot?: string;
+  /** The flagship item gets the large showcase treatment; everything else sits in the grid below. */
+  featured?: boolean;
 };
 
 export const products: Product[] = [
@@ -26,23 +28,40 @@ export const products: Product[] = [
     builtBySlug: "hafsa",
     links: [{ label: "Visit tResolv", href: "http://tresolv.online/" }],
     technology: ["Shopify", "AI Agents", "RAG", "APIs"],
+    featured: true,
   },
   {
-    slug: "ai-cv-platform",
+    slug: "scope-ai-cv",
     index: "02",
     category: "AI Product Development",
-    name: "AI CV & Job Application Platform",
-    title: "AI CV & Job Application Platform",
+    name: "Scope AI CV",
+    title: "Scope AI CV — AI CV & Job Application Platform",
     description:
-      "An AI-powered platform for CV generation and job application workflows, developed for a client.",
+      "An AI-powered CV and job application platform built for a client, from concept through a working product.",
     builtBy: "Syeda Hafsa",
     builtBySlug: "hafsa",
-    links: [{ label: "View Case Study", href: "/case-studies/cv-job-platform" }],
+    links: [
+      { label: "Visit Scope AI CV", href: "https://scopeaicv.com/" },
+      { label: "View Case Study", href: "/case-studies/cv-job-platform" },
+    ],
     technology: ["AI Product Development", "Automation"],
   },
   {
-    slug: "abz-agent-sdk",
+    slug: "lenny-ai",
     index: "03",
+    category: "RAG / Business Intelligence",
+    name: "Lenny AI",
+    title: "Lenny AI — RAG Agent for Business Intelligence",
+    description:
+      "A specialized RAG (Retrieval-Augmented Generation) agent for business intelligence. Its vector embedding pipeline and prompt engineering framework give Lenny grounded, context-aware business responses.",
+    builtBy: "Syeda Hafsa",
+    builtBySlug: "hafsa",
+    links: [],
+    technology: ["RAG", "Vector Embeddings", "Prompt Engineering"],
+  },
+  {
+    slug: "abz-agent-sdk",
+    index: "04",
     category: "AI Developer Infrastructure",
     name: "ABZ Agent SDK",
     title: "ABZ Agent SDK",
@@ -51,5 +70,31 @@ export const products: Product[] = [
     builtBySlug: "abubakar",
     links: [],
     technology: ["Agent SDKs", "OpenAI Agent SDK", "Python"],
+  },
+  {
+    slug: "crm-suite",
+    index: "05",
+    category: "CRM · Sales · Payments · Automation",
+    name: "CRM & Business Automation Suite",
+    title: "CRM & Business Automation Suite",
+    description:
+      "A custom-built CRM that unifies sales, customers, revenue, payments, disputes, calls and automations into one operational system with real-time dashboards and automated workflows.",
+    builtBy: "Muhammad Bin Zohaib",
+    builtBySlug: "muhammad",
+    links: [],
+    technology: ["CRM", "Automation", "Dashboards"],
+  },
+  {
+    slug: "ai-hiring-agent",
+    index: "06",
+    category: "HR Automation",
+    name: "AI Hiring Agent",
+    title: "AI Hiring Agent",
+    description:
+      "AI-powered hiring automation that screens, scores, communicates with, and moves candidates through each stage of the funnel automatically.",
+    builtBy: "Muhammad Bin Zohaib",
+    builtBySlug: "muhammad",
+    links: [],
+    technology: ["AI Agents", "Automation", "HR Tech"],
   },
 ];
