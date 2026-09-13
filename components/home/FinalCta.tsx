@@ -12,18 +12,12 @@ export function FinalCta() {
           Tell us what you&apos;re trying to build or automate. We&apos;ll explore where AI
           agents, automation or custom AI engineering can create real value.
         </p>
-        <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+        <div className="pt-2">
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center rounded-full bg-dark-foreground px-6 py-3 text-sm font-medium text-dark-background transition-opacity hover:opacity-90"
+            className="inline-flex items-center justify-center rounded-full bg-dark-foreground px-7 py-3.5 text-sm font-medium text-dark-background transition-opacity hover:opacity-90"
           >
-            Start a Project
-          </Link>
-          <Link
-            href="/products"
-            className="inline-flex items-center justify-center rounded-full border border-dark-border px-6 py-3 text-sm font-medium text-dark-foreground transition-colors hover:border-dark-foreground/40"
-          >
-            View Our Work
+            Start an Engineering Project
           </Link>
         </div>
       </Container>
