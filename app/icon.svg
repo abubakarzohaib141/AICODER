@@ -1,0 +1,29 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="o" x1="50" y1="6" x2="50" y2="38" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFB020" />
+      <stop offset="1" stop-color="#FF8800" />
+    </linearGradient>
+    <linearGradient id="t" x1="16" y1="52" x2="40" y2="80" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#22B6B0" />
+      <stop offset="1" stop-color="#147D8A" />
+    </linearGradient>
+    <linearGradient id="b" x1="60" y1="52" x2="86" y2="80" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4F7FF7" />
+      <stop offset="1" stop-color="#2B1BBA" />
+    </linearGradient>
+    <linearGradient id="al" x1="46" y1="30" x2="30" y2="62" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FF8800" />
+      <stop offset="1" stop-color="#147D8A" />
+    </linearGradient>
+    <linearGradient id="ar" x1="54" y1="30" x2="70" y2="62" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FF8800" />
+      <stop offset="1" stop-color="#4F7FF7" />
+    </linearGradient>
+  </defs>
+  <path d="M45 28 L31 60" stroke="url(#al)" stroke-width="15" stroke-linecap="round" fill="none" />
+  <path d="M55 28 L69 60" stroke="url(#ar)" stroke-width="15" stroke-linecap="round" fill="none" />
+  <circle cx="50" cy="23" r="17" fill="url(#o)" />
+  <circle cx="26" cy="68" r="15" fill="url(#t)" />
+  <circle cx="74" cy="68" r="15" fill="url(#b)" />
+</svg>

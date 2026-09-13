@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+:root {
+  --background: #faf7f5;
+  --background-elevated: #ffffff;
+  --background-elevated-2: #f1ebe7;
+  --foreground: #201e1c;
+  --muted: #6b6560;
+  --muted-2: #928a84;
+  --border: rgba(32, 30, 28, 0.1);
+  --border-strong: rgba(32, 30, 28, 0.18);
+
+  --accent-orange: #ff8800;
+  --accent-teal: #147d8a;
+  --accent-teal-bright: #1c98a6;
+  --accent-blue: #4f7ff7;
+  --accent-indigo: #2b1bba;
+  --accent-neutral: #ddd3d3;
+
+  --dark-background: #14201f;
+  --dark-foreground: #f7f4f1;
+  --dark-muted: #b7c4c2;
+  --dark-border: rgba(247, 244, 241, 0.14);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-background-elevated: var(--background-elevated);
+  --color-background-elevated-2: var(--background-elevated-2);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-2: var(--muted-2);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+
+  --color-orange: var(--accent-orange);
+  --color-teal: var(--accent-teal);
+  --color-teal-bright: var(--accent-teal-bright);
+  --color-blue: var(--accent-blue);
+  --color-indigo: var(--accent-indigo);
+  --color-neutral: var(--accent-neutral);
+
+  --color-dark-background: var(--dark-background);
+  --color-dark-foreground: var(--dark-foreground);
+  --color-dark-muted: var(--dark-muted);
+  --color-dark-border: var(--dark-border);
+
+  --font-display: var(--font-manrope);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--accent-teal);
+  color: var(--dark-foreground);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.font-display {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+}
+
+.font-mono-label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+
+.highlight-teal {
+  color: var(--accent-teal);
+}
+
+.highlight-mark {
+  background-image: linear-gradient(transparent 62%, rgba(20, 125, 138, 0.18) 62%);
+  padding: 0 0.05em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
