@@ -14,41 +14,39 @@ export default function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          background: "#08090b",
-          color: "#f3f2ef",
+          background: "#faf7f5",
+          color: "#201e1c",
           fontFamily: "sans-serif",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 40 }}>
           <div
             style={{
-              width: 28,
-              height: 28,
+              width: 26,
+              height: 26,
               borderRadius: "50%",
-              background: "linear-gradient(135deg, #FF8800, #4F7FF7)",
+              background: "#147D8A",
             }}
           />
-          <div style={{ fontSize: 28, fontWeight: 700, letterSpacing: -0.5 }}>AI CODERS</div>
+          <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: -0.5 }}>AI CODERS</div>
         </div>
-        <div style={{ fontSize: 60, fontWeight: 700, letterSpacing: -1.5, lineHeight: 1.1, display: "flex" }}>
-          We Build AI Systems
+        <div style={{ fontSize: 58, fontWeight: 800, letterSpacing: -1.5, lineHeight: 1.15, display: "flex" }}>
+          We Build AI Systems That Do
         </div>
         <div
           style={{
-            fontSize: 60,
-            fontWeight: 700,
+            fontSize: 58,
+            fontWeight: 800,
             letterSpacing: -1.5,
-            lineHeight: 1.1,
+            lineHeight: 1.15,
             display: "flex",
-            background: "linear-gradient(120deg, #22B6B0, #4F7FF7 55%, #FF8800)",
-            backgroundClip: "text",
-            color: "transparent",
+            color: "#147D8A",
           }}
         >
-          That Do Real Work.
+          Real Work.
         </div>
-        <div style={{ marginTop: 32, fontSize: 24, color: "#a3a3a6", display: "flex" }}>
-          AI Engineering • Agentic AI • Automation
+        <div style={{ marginTop: 32, fontSize: 22, color: "#6b6560", display: "flex" }}>
+          AI Engineering · Agentic AI · Automation
         </div>
       </div>
     ),

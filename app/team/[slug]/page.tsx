@@ -7,6 +7,8 @@ import { team } from "@/lib/content/team";
 import { products } from "@/lib/content/products";
 import { caseStudies } from "@/lib/content/case-studies";
 
+const accents = ["var(--accent-teal)", "var(--accent-blue)", "var(--accent-indigo)"];
+
 export function generateStaticParams() {
   return team.map((member) => ({ slug: member.slug }));
 }
@@ -29,6 +31,7 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
 
   const relatedProducts = products.filter((p) => p.builtBySlug === member.slug);
   const relatedCaseStudies = caseStudies.filter((c) => c.builtBySlug === member.slug);
+  const featuredIndex = team.filter((m) => m.featured).findIndex((m) => m.slug === member.slug);
 
   return (
     <>
@@ -37,14 +40,13 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
           <Link href="/team" className="text-sm text-muted transition-colors hover:text-foreground">
             ← All team
           </Link>
-          <div className="flex items-center gap-5">
-            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-border-strong font-display text-xl font-semibold text-foreground">
-              {member.name
-                .split(" ")
-                .map((n) => n[0])
-                .slice(0, 2)
-                .join("")}
-            </div>
+          <div className="flex items-center gap-6">
+            <span
+              className="font-display text-6xl font-bold leading-none"
+              style={{ color: member.featured ? accents[featuredIndex % accents.length] : "var(--muted-2)" }}
+            >
+              {member.name[0]}
+            </span>
             <div>
               <h1 className="font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
                 {member.name}

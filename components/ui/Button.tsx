@@ -7,7 +7,7 @@ const base =
   "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-colors duration-150 whitespace-nowrap";
 
 const variants: Record<Variant, string> = {
-  primary: "bg-foreground text-background hover:bg-white",
+  primary: "bg-foreground text-background hover:opacity-85",
   secondary:
     "border border-border-strong text-foreground hover:border-blue hover:bg-background-elevated",
   ghost: "text-foreground/80 hover:text-foreground",

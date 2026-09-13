@@ -1,21 +1,26 @@
 @import "tailwindcss";
 
 :root {
-  --background: #08090b;
-  --background-elevated: #0e1013;
-  --background-elevated-2: #14171b;
-  --foreground: #f3f2ef;
-  --muted: #a3a3a6;
-  --muted-2: #6f7075;
-  --border: rgba(255, 255, 255, 0.09);
-  --border-strong: rgba(255, 255, 255, 0.16);
+  --background: #faf7f5;
+  --background-elevated: #ffffff;
+  --background-elevated-2: #f1ebe7;
+  --foreground: #201e1c;
+  --muted: #6b6560;
+  --muted-2: #928a84;
+  --border: rgba(32, 30, 28, 0.1);
+  --border-strong: rgba(32, 30, 28, 0.18);
 
   --accent-orange: #ff8800;
   --accent-teal: #147d8a;
-  --accent-teal-bright: #22b6b0;
+  --accent-teal-bright: #1c98a6;
   --accent-blue: #4f7ff7;
   --accent-indigo: #2b1bba;
   --accent-neutral: #ddd3d3;
+
+  --dark-background: #14201f;
+  --dark-foreground: #f7f4f1;
+  --dark-muted: #b7c4c2;
+  --dark-border: rgba(247, 244, 241, 0.14);
 }
 
 @theme inline {
@@ -35,7 +40,12 @@
   --color-indigo: var(--accent-indigo);
   --color-neutral: var(--accent-neutral);
 
-  --font-display: var(--font-space-grotesk);
+  --color-dark-background: var(--dark-background);
+  --color-dark-foreground: var(--dark-foreground);
+  --color-dark-muted: var(--dark-muted);
+  --color-dark-border: var(--dark-border);
+
+  --font-display: var(--font-manrope);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
 }
@@ -45,7 +55,7 @@
 }
 
 html {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
@@ -55,8 +65,8 @@ body {
 }
 
 ::selection {
-  background: var(--accent-blue);
-  color: #08090b;
+  background: var(--accent-teal);
+  color: var(--dark-foreground);
 }
 
 :focus-visible {
@@ -73,19 +83,13 @@ body {
   font-family: var(--font-mono), ui-monospace, monospace;
 }
 
-.text-gradient {
-  background: linear-gradient(120deg, var(--accent-teal-bright), var(--accent-blue) 55%, var(--accent-orange));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.highlight-teal {
+  color: var(--accent-teal);
 }
 
-.grain-fade {
-  background: radial-gradient(
-    ellipse 80% 60% at 50% -10%,
-    rgba(79, 127, 247, 0.16),
-    transparent 60%
-  );
+.highlight-mark {
+  background-image: linear-gradient(transparent 62%, rgba(20, 125, 138, 0.18) 62%);
+  padding: 0 0.05em;
 }
 
 @media (prefers-reduced-motion: reduce) {

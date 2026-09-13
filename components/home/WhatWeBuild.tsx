@@ -1,61 +1,46 @@
-"use client";
-
-import { useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { services } from "@/lib/content/services";
 
 export function WhatWeBuild() {
-  const [active, setActive] = useState(0);
-  const current = services[active];
+  const [primary, ...rest] = services;
 
   return (
     <section className="border-t border-border py-20 sm:py-28">
       <Container className="flex flex-col gap-12">
-        <SectionHeading
-          eyebrowNumber="01"
-          eyebrow="What we build"
-          title="From AI Ideas to Working Systems"
-        />
+        <SectionHeading eyebrow="What we build" title="From AI Ideas to Working Systems" />
 
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,340px)_1fr] lg:gap-16">
-          <div className="flex flex-col border-t border-border">
-            {services.map((service, i) => (
-              <button
-                key={service.slug}
-                onClick={() => setActive(i)}
-                onMouseEnter={() => setActive(i)}
-                className={`group flex items-center justify-between border-b border-border py-4 text-left transition-colors ${
-                  active === i ? "text-foreground" : "text-muted hover:text-foreground/80"
-                }`}
-              >
-                <span className="flex items-center gap-4">
-                  <span className="font-mono-label text-xs text-muted-2">{service.number}</span>
-                  <span className="font-display text-lg font-medium">{service.name}</span>
-                </span>
+        <div className="grid gap-4 lg:grid-cols-4 lg:grid-rows-2">
+          <div className="flex flex-col justify-between gap-8 rounded-2xl border border-teal/25 bg-teal/[0.05] p-8 lg:col-span-2 lg:row-span-2">
+            <div className="flex flex-col gap-4">
+              <span className="font-display text-2xl font-bold text-foreground sm:text-3xl">
+                {primary.name}
+              </span>
+              <p className="max-w-sm text-base leading-relaxed text-muted">{primary.description}</p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {primary.bullets.map((bullet) => (
                 <span
-                  className={`h-1.5 w-1.5 shrink-0 rounded-full transition-colors ${
-                    active === i ? "bg-orange" : "bg-transparent"
-                  }`}
-                />
-              </button>
-            ))}
+                  key={bullet}
+                  className="rounded-full border border-teal/30 bg-background-elevated px-3 py-1.5 text-xs text-foreground/80"
+                >
+                  {bullet}
+                </span>
+              ))}
+            </div>
           </div>
 
-          <div className="flex flex-col gap-6 rounded-2xl border border-border bg-background-elevated/50 p-8">
-            <span className="font-mono-label text-xs uppercase tracking-wide text-teal-bright">
-              {current.summary}
-            </span>
-            <p className="text-base leading-relaxed text-muted sm:text-lg">{current.description}</p>
-            <ul className="mt-2 flex flex-col gap-2.5">
-              {current.bullets.map((bullet) => (
-                <li key={bullet} className="flex items-center gap-3 text-sm text-foreground/90">
-                  <span className="h-1 w-1 shrink-0 rounded-full bg-blue" />
-                  {bullet}
-                </li>
-              ))}
-            </ul>
-          </div>
+          {rest.map((service) => (
+            <div
+              key={service.slug}
+              className="flex flex-col gap-3 rounded-2xl border border-border p-6"
+            >
+              <span className="font-display text-base font-semibold text-foreground">
+                {service.name}
+              </span>
+              <p className="text-sm leading-relaxed text-muted">{service.summary}</p>
+            </div>
+          ))}
         </div>
       </Container>
     </section>

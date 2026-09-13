@@ -1,47 +1,44 @@
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { demoPoints, productionPoints } from "@/lib/content/technologies";
 
 export function ProductionMindset() {
+  const demo = demoPoints.slice(0, 4);
+  const production = productionPoints.slice(0, 4);
+
   return (
-    <section className="border-t border-border py-20 sm:py-28">
-      <Container className="flex flex-col gap-12">
-        <SectionHeading
-          eyebrowNumber="04"
-          eyebrow="Production mindset"
-          title="AI Is Easy to Demo. Making It Work Is Harder."
-          align="center"
-        />
+    <section className="border-t border-border py-16 sm:py-20">
+      <Container className="flex flex-col items-center gap-8 text-center">
+        <h2 className="max-w-lg font-display text-2xl font-bold leading-snug text-foreground sm:text-3xl">
+          AI is easy to demo.
+          <br />
+          Making it work is harder.
+        </h2>
 
-        <div className="grid gap-5 sm:grid-cols-2">
-          <div className="flex flex-col gap-5 rounded-2xl border border-border p-8">
-            <span className="font-mono-label text-xs uppercase tracking-wide text-muted-2">Demo</span>
-            <ul className="flex flex-col gap-3">
-              {demoPoints.map((point) => (
-                <li key={point} className="flex items-center gap-3 text-sm text-muted">
-                  <span className="h-1 w-1 shrink-0 rounded-full bg-muted-2" />
-                  {point}
-                </li>
-              ))}
-            </ul>
+        <div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-5">
+          <div className="flex flex-wrap justify-center gap-2">
+            {demo.map((point) => (
+              <span
+                key={point}
+                className="rounded-full border border-border-strong px-3 py-1.5 text-xs text-muted"
+              >
+                {point}
+              </span>
+            ))}
           </div>
-
-          <div className="flex flex-col gap-5 rounded-2xl border border-blue/40 bg-background-elevated/50 p-8">
-            <span className="font-mono-label text-xs uppercase tracking-wide text-blue">
-              Production
-            </span>
-            <ul className="flex flex-col gap-3">
-              {productionPoints.map((point) => (
-                <li key={point} className="flex items-center gap-3 text-sm text-foreground/90">
-                  <span className="h-1 w-1 shrink-0 rounded-full bg-blue" />
-                  {point}
-                </li>
-              ))}
-            </ul>
+          <span className="text-muted-2">→</span>
+          <div className="flex flex-wrap justify-center gap-2">
+            {production.map((point) => (
+              <span
+                key={point}
+                className="rounded-full border border-teal/30 bg-teal/[0.06] px-3 py-1.5 text-xs text-teal"
+              >
+                {point}
+              </span>
+            ))}
           </div>
         </div>
 
-        <p className="text-center font-display text-xl font-semibold text-foreground sm:text-2xl">
+        <p className="font-display text-lg font-semibold text-foreground">
           We build for production, not just the demo.
         </p>
       </Container>

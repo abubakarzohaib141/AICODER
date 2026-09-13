@@ -24,7 +24,7 @@ export function SiteHeader() {
         <div className="hidden sm:block">
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-colors hover:bg-white"
+            className="inline-flex items-center justify-center rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-85"
           >
             Start a Project
           </Link>
