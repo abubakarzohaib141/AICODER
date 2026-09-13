@@ -7,7 +7,7 @@ import { products } from "@/lib/content/products";
 
 export function ProductShowcase() {
   const featured = products.find((p) => p.featured) ?? products[0];
-  const rest = products.filter((p) => p.slug !== featured.slug);
+  const rest = products.filter((p) => p.pinned && p.slug !== featured.slug);
 
   return (
     <section className="border-t border-border py-20 sm:py-28">
@@ -61,7 +61,7 @@ export function ProductShowcase() {
           </div>
           <div className="p-4 sm:p-6">
             <ScreenshotFrame
-              src={featured.screenshot}
+              src={featured.screenshots?.[0]}
               alt={`${featured.name} screenshot`}
               label={featured.name}
             />
@@ -75,7 +75,7 @@ export function ProductShowcase() {
               className="flex flex-col gap-4 rounded-2xl border border-border p-7"
             >
               <ScreenshotFrame
-                src={product.screenshot}
+                src={product.screenshots?.[0]}
                 alt={`${product.name} screenshot`}
                 label={product.name}
               />
@@ -111,17 +111,17 @@ export function ProductShowcase() {
             </div>
           ))}
 
-          <a
-            href="/contact"
+          <Link
+            href="/products"
             className="flex min-h-[220px] flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-border-strong p-7 text-center transition-colors hover:border-teal/50"
           >
             <span className="font-mono-label text-[11px] uppercase tracking-wide text-muted-2">
               More work
             </span>
             <span className="text-sm text-muted">
-              We&apos;ve only listed our main projects here — get in touch to see more.
+              This is a curated selection — see the full list of {products.length} projects.
             </span>
-          </a>
+          </Link>
         </div>
       </Container>
     </section>

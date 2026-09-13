@@ -62,12 +62,26 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
       <section className="py-14 sm:py-20">
         <Container className="flex flex-col gap-10">
-          <ScreenshotFrame
-            src={product.screenshot}
-            alt={`${product.name} screenshot`}
-            label={product.name}
-            aspect="16/9"
-          />
+          {product.screenshots && product.screenshots.length > 1 ? (
+            <div className="grid gap-6 sm:grid-cols-2">
+              {product.screenshots.map((src) => (
+                <ScreenshotFrame
+                  key={src}
+                  src={src}
+                  alt={`${product.name} screenshot`}
+                  label={product.name}
+                  aspect="16/10"
+                />
+              ))}
+            </div>
+          ) : (
+            <ScreenshotFrame
+              src={product.screenshots?.[0]}
+              alt={`${product.name} screenshot`}
+              label={product.name}
+              aspect="16/9"
+            />
+          )}
 
           {product.technology && (
             <div className="flex flex-col gap-6">

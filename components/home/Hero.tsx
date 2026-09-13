@@ -4,7 +4,7 @@ import { ScreenshotFrame } from "@/components/system/ScreenshotFrame";
 import { products } from "@/lib/content/products";
 
 export function Hero() {
-  const tresolv = products.find((p) => p.slug === "tresolv");
+  const featured = products.find((p) => p.slug === "scope-ai-cv");
 
   return (
     <section className="pt-16 sm:pt-24">
@@ -28,15 +28,17 @@ export function Hero() {
           </div>
         </div>
 
-        {tresolv && (
+        {featured && (
           <div className="flex flex-col gap-3">
             <ScreenshotFrame
-              src={tresolv.screenshot}
-              alt="tResolv product screenshot"
-              label="tResolv — live at tresolv.online"
+              src={featured.screenshots?.[0]}
+              alt={`${featured.name} screenshot`}
+              label={featured.name}
               aspect="4/3"
             />
-            <span className="text-xs text-muted-2">tResolv, built by Syeda Hafsa</span>
+            <span className="text-xs text-muted-2">
+              {featured.name}, built by {featured.builtBy}
+            </span>
           </div>
         )}
       </Container>
