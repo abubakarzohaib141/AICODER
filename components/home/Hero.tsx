@@ -67,6 +67,7 @@ export function Hero() {
                 alt="Custom CRM dashboard built by AI Coders"
                 width={1200}
                 height={750}
+                sizes="(min-width: 672px) 672px, 100vw"
                 className="block w-full"
                 priority
               />
