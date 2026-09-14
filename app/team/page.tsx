@@ -29,7 +29,7 @@ export default function TeamPage() {
               <Link
                 key={member.slug}
                 href={`/team/${member.slug}`}
-                className="group flex flex-col gap-6 rounded-2xl border border-border p-8 transition-colors hover:border-border-strong"
+                className="hover-lift group flex flex-col gap-6 rounded-2xl border border-border p-8 hover:border-border-strong hover:shadow-[0_20px_40px_-18px_rgba(32,30,28,0.18)]"
               >
                 <TeamPhotoFrame
                   photo={member.photo}

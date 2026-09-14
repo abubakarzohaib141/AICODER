@@ -2,6 +2,7 @@
 
 import { createContext, useCallback, useContext, useMemo, useState, ReactNode } from "react";
 import { BookingModal } from "./BookingModal";
+import { FloatingCta } from "./FloatingCta";
 
 type BookingContextValue = {
   isOpen: boolean;
@@ -23,6 +24,7 @@ export function BookingProvider({ children }: { children: ReactNode }) {
     <BookingContext.Provider value={value}>
       {children}
       <BookingModal isOpen={isOpen} onClose={close} />
+      {!isOpen && <FloatingCta />}
     </BookingContext.Provider>
   );
 }

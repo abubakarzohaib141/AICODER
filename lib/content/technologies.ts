@@ -73,25 +73,29 @@ export const process: ProcessStep[] = [
   },
 ];
 
-export type WhyPoint = { name: string; description: string };
+export type WhyPoint = { number: string; name: string; description: string };
 
 export const whyPoints: WhyPoint[] = [
   {
+    number: "01",
     name: "Product-Minded",
     description:
       "We build systems intended for real users and business operations, not just demonstrations.",
   },
   {
+    number: "02",
     name: "Engineering-Focused",
     description:
       "Our work combines AI agents, automation, APIs, software development and business logic.",
   },
   {
+    number: "03",
     name: "Custom-Built",
     description:
       "We design systems around the client's actual workflow rather than forcing the business into a generic solution.",
   },
   {
+    number: "04",
     name: "Human-in-the-Loop",
     description:
       "For sensitive or high-impact workflows, human review and approval can remain part of the system.",

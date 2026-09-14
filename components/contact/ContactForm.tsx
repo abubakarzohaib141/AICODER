@@ -115,7 +115,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="mt-2 inline-flex items-center justify-center rounded-full bg-foreground px-6 py-3.5 text-sm font-medium text-background transition-colors hover:bg-white disabled:opacity-60"
+        className="bg-gradient-brand mt-2 inline-flex items-center justify-center rounded-full px-6 py-3.5 text-sm font-medium text-white transition-transform hover:-translate-y-0.5 disabled:opacity-60"
       >
         {status === "submitting" ? "Sending…" : "Send Project Inquiry"}
       </button>

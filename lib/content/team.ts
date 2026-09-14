@@ -4,6 +4,8 @@ export type TeamMember = {
   slug: string;
   name: string;
   role: string;
+  /** Compact role shown in preview rows (team strip, cards). */
+  shortRole: string;
   focus: string[];
   selectedWork?: string[];
   currentWork?: { label: string; description: string };
@@ -21,6 +23,7 @@ export const team: TeamMember[] = [
     slug: "hafsa",
     name: "Syeda Hafsa",
     role: "Agentic AI Developer, Full-Stack Engineer & Founder of tResolv",
+    shortRole: "Agentic AI Developer & Founder, tResolv",
     focus: [
       "Agentic AI",
       "AI Agents",
@@ -41,6 +44,7 @@ export const team: TeamMember[] = [
     slug: "muhammad",
     name: "Muhammad Bin Zohaib",
     role: "AI Automation Engineer, Full-Stack Developer & Founder of AI Coders",
+    shortRole: "AI Automation Engineer & Founder",
     focus: [
       "AI Agents & Automation",
       "n8n & API Integrations",
@@ -72,6 +76,7 @@ export const team: TeamMember[] = [
     slug: "abubakar",
     name: "Abubakar Bin Zohaib",
     role: "AI Developer, AI Trainer & Founder of ABZ Agent SDK",
+    shortRole: "AI Developer & Founder, ABZ Agent SDK",
     focus: [
       "Agentic AI & Multi-Agent Systems",
       "AI Automation",
@@ -91,6 +96,7 @@ export const team: TeamMember[] = [
     slug: "bushra",
     name: "Bushra Zohaib",
     role: "Forward Deployed Engineer, AI Educator & GIAIC Faculty",
+    shortRole: "Forward Deployed Engineer",
     focus: [
       "Agentic AI & Digital FTEs",
       "Pharma & Healthcare AI",

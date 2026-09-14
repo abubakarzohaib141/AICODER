@@ -23,7 +23,7 @@ export default function ProductsPage() {
             <Link
               key={product.slug}
               href={`/products/${product.slug}`}
-              className="group flex flex-col justify-between gap-10 rounded-2xl border border-border bg-background-elevated/40 p-8 transition-colors hover:border-blue/60"
+              className="hover-lift group flex flex-col justify-between gap-10 rounded-2xl border border-border bg-background-elevated/40 p-8 hover:border-blue/60 hover:shadow-[0_20px_40px_-18px_rgba(79,127,247,0.35)]"
             >
               <div className="flex flex-col gap-4">
                 <div className="flex items-center justify-between">

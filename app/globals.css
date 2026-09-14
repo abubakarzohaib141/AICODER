@@ -21,6 +21,8 @@
   --dark-foreground: #f7f4f1;
   --dark-muted: #b7c4c2;
   --dark-border: rgba(247, 244, 241, 0.14);
+
+  --gradient-brand: linear-gradient(90deg, #ff8800, #1c98a6, #4f7ff7);
 }
 
 @theme inline {
@@ -90,6 +92,39 @@ body {
 .highlight-mark {
   background-image: linear-gradient(transparent 62%, rgba(20, 125, 138, 0.18) 62%);
   padding: 0 0.05em;
+}
+
+.text-gradient-brand {
+  background-image: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.bg-gradient-brand {
+  background-image: var(--gradient-brand);
+}
+
+.hover-lift {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.animate-pulse-dot {
+  animation: pulse-dot 2s infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

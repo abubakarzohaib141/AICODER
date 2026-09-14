@@ -42,29 +42,19 @@ export function BookingModal({ isOpen, onClose }: { isOpen: boolean; onClose: ()
 
       <div
         ref={panelRef}
-        className="relative flex max-h-[85vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-border bg-background-elevated shadow-2xl"
+        className="relative flex h-[min(720px,90vh)] w-[min(760px,100%)] flex-col overflow-hidden rounded-[20px] bg-background-elevated shadow-2xl"
       >
-        <div className="flex items-center justify-between border-b border-border px-6 py-5">
-          <div>
-            <p className="font-display text-lg font-semibold text-foreground">Book a Call</p>
-            <p className="mt-0.5 text-sm text-muted">
-              Tell us what you&apos;re building. 20 minutes, no pressure.
-            </p>
-          </div>
+        <div className="flex items-center justify-between border-b border-border px-5 py-4">
+          <p className="font-display text-sm font-bold text-foreground">
+            Book a call with AI Coders
+          </p>
           <button
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-muted transition-colors hover:bg-background-elevated-2 hover:text-foreground"
+            className="text-xl leading-none text-muted transition-colors hover:text-foreground"
           >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path
-                d="M2 2L14 14M14 2L2 14"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              />
-            </svg>
+            ×
           </button>
         </div>
 
@@ -74,7 +64,7 @@ export function BookingModal({ isOpen, onClose }: { isOpen: boolean; onClose: ()
               <div
                 className="calendly-inline-widget"
                 data-url={siteConfig.calendlyUrl}
-                style={{ minWidth: "320px", height: "630px" }}
+                style={{ minWidth: "320px", height: "100%" }}
               />
               <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="lazyOnload" />
             </>

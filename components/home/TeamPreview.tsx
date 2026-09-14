@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { TeamPhotoFrame } from "@/components/system/TeamPhotoFrame";
 import { team } from "@/lib/content/team";
 
@@ -13,29 +12,37 @@ const accents = [
 
 export function TeamPreview() {
   return (
-    <section className="border-t border-border py-20 sm:py-28">
-      <Container className="flex flex-col gap-12">
-        <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
-          <SectionHeading eyebrow="The team" title="The Team Behind AI Coders" />
+    <section className="border-t border-border py-16 sm:py-20">
+      <Container className="flex flex-col gap-7">
+        <div className="flex flex-wrap items-baseline justify-between gap-5">
+          <h2 className="font-display text-[22px] font-extrabold tracking-tight text-foreground sm:text-[28px]">
+            The People Behind It
+          </h2>
           <Link
             href="/team"
-            className="whitespace-nowrap text-sm text-muted transition-colors hover:text-foreground"
+            className="whitespace-nowrap text-sm font-semibold text-muted transition-colors hover:text-foreground"
           >
             Meet the team →
           </Link>
         </div>
 
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-[18px] sm:grid-cols-2 lg:grid-cols-4">
           {team.map((member, i) => (
             <Link
               key={member.slug}
               href={`/team/${member.slug}`}
-              className="group flex flex-col gap-5 rounded-2xl border border-border p-7 transition-colors hover:border-border-strong"
+              className="flex items-center gap-3.5 rounded-2xl border border-border p-4 transition-colors hover:border-border-strong"
             >
-              <TeamPhotoFrame photo={member.photo} name={member.name} accent={accents[i % accents.length]} />
-              <div>
-                <p className="font-display text-lg font-semibold text-foreground">{member.name}</p>
-                <p className="mt-1 text-sm text-muted">{member.role}</p>
+              <TeamPhotoFrame
+                photo={member.photo}
+                name={member.name}
+                accent={accents[i % accents.length]}
+                size="sm"
+                shape="circle"
+              />
+              <div className="flex min-w-0 flex-col gap-0.5">
+                <span className="truncate text-sm font-bold text-foreground">{member.name}</span>
+                <span className="truncate text-xs text-muted-2">{member.shortRole}</span>
               </div>
             </Link>
           ))}
