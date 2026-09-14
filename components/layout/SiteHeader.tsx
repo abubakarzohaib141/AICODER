@@ -30,7 +30,7 @@ export function SiteHeader() {
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-5 sm:px-8">
         <Logo />
 
-        <nav className="hidden items-center gap-8 sm:flex">
+        <nav className="hidden items-center gap-8 lg:flex">
           {siteConfig.nav.map((item) => (
             <MotionLink
               key={item.href}
@@ -49,7 +49,7 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="hidden sm:block">
+        <div className="hidden lg:block">
           <BookCallButton className="!px-5 !py-2.5">Book a Call</BookCallButton>
         </div>
 

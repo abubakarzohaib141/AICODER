@@ -32,10 +32,10 @@ export function TeamPreview() {
 
         <StaggerGroup className="grid gap-[18px] sm:grid-cols-2 lg:grid-cols-4">
           {team.map((member, i) => (
-            <StaggerItem key={member.slug} hover>
+            <StaggerItem key={member.slug} hover className="min-w-0">
               <Link
                 href={`/team/${member.slug}`}
-                className="flex items-center gap-3.5 rounded-2xl border border-border p-4 transition-colors hover:border-border-strong"
+                className="flex min-w-0 items-center gap-3.5 rounded-2xl border border-border p-4 transition-colors hover:border-border-strong"
               >
                 <motion.div whileHover={{ scale: 1.06 }} transition={{ duration: 0.2 }}>
                   <TeamPhotoFrame
