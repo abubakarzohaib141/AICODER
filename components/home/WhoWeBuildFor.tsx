@@ -23,6 +23,7 @@ export function WhoWeBuildFor() {
           {industries.map((industry, i) => (
             <StaggerItem
               key={industry.name}
+              hover
               className="flex flex-col gap-4 rounded-2xl border border-border p-7 transition-shadow hover:shadow-[0_20px_40px_-20px_rgba(32,30,28,0.18)]"
             >
               <div className="flex items-center gap-2.5">

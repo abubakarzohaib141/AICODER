@@ -106,14 +106,6 @@ body {
   background-image: var(--gradient-brand);
 }
 
-.hover-lift {
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-}
-
-.hover-lift:hover {
-  transform: translateY(-5px);
-}
-
 @keyframes pulse-dot {
   0%,
   100% {

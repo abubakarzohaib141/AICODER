@@ -3,6 +3,8 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import Script from "next/script";
+import { AnimatePresence, motion } from "framer-motion";
+import { easeOut } from "@/lib/motion";
 import { siteConfig } from "@/lib/content/site";
 
 export function BookingModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
@@ -26,24 +28,34 @@ export function BookingModal({ isOpen, onClose }: { isOpen: boolean; onClose: ()
     };
   }, [isOpen, onClose]);
 
-  if (!isOpen) return null;
-
   return (
-    <div
-      role="dialog"
-      aria-modal="true"
-      aria-label="Book a call with AI Coders"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
-      onMouseDown={(event) => {
-        if (event.target === event.currentTarget) onClose();
-      }}
-    >
-      <div className="absolute inset-0 bg-foreground/40 backdrop-blur-sm" />
+    <AnimatePresence>
+      {isOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Book a call with AI Coders"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) onClose();
+          }}
+        >
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2, ease: easeOut }}
+            className="absolute inset-0 bg-foreground/40 backdrop-blur-sm"
+          />
 
-      <div
-        ref={panelRef}
-        className="relative flex h-[min(720px,90vh)] w-[min(760px,100%)] flex-col overflow-hidden rounded-[20px] bg-background-elevated shadow-2xl"
-      >
+          <motion.div
+            ref={panelRef}
+            initial={{ opacity: 0, scale: 0.97, y: 8 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.97, y: 8 }}
+            transition={{ duration: 0.25, ease: easeOut }}
+            className="relative flex h-[min(720px,90vh)] w-[min(760px,100%)] flex-col overflow-hidden rounded-[20px] bg-background-elevated shadow-2xl"
+          >
         <div className="flex items-center justify-between border-b border-border px-5 py-4">
           <p className="font-display text-sm font-bold text-foreground">
             Book a call with AI Coders
@@ -87,7 +99,9 @@ export function BookingModal({ isOpen, onClose }: { isOpen: boolean; onClose: ()
             </div>
           )}
         </div>
-      </div>
-    </div>
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>
   );
 }

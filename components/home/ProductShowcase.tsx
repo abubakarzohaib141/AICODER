@@ -7,6 +7,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Tag } from "@/components/ui/Tag";
 import { ScreenshotFrame } from "@/components/system/ScreenshotFrame";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/Reveal";
+import { easeOut } from "@/lib/motion";
 import { products } from "@/lib/content/products";
 
 const highlightSlugs = ["abz-agent-sdk", "ai-hiring-agent", "lenny-ai"];
@@ -14,10 +15,18 @@ const highlightSlugs = ["abz-agent-sdk", "ai-hiring-agent", "lenny-ai"];
 function ProjectCard({ product }: { product: (typeof products)[number] }) {
   return (
     <motion.div
-      whileHover={{ y: -6 }}
+      initial="rest"
+      whileHover="hover"
+      whileTap={{ scale: 0.985 }}
+      variants={{ rest: { y: 0, scale: 1 }, hover: { y: -6, scale: 1.01 } }}
+      transition={{ duration: 0.25, ease: easeOut }}
       className="flex flex-col overflow-hidden rounded-[18px] border border-border hover:shadow-[0_20px_40px_-16px_rgba(32,30,28,0.18)]"
     >
-      <div className="overflow-hidden">
+      <motion.div
+        className="overflow-hidden"
+        variants={{ rest: { scale: 1 }, hover: { scale: 1.05 } }}
+        transition={{ duration: 0.35, ease: easeOut }}
+      >
         <ScreenshotFrame
           src={product.screenshots?.[0]}
           alt={`${product.name} screenshot`}
@@ -25,7 +34,7 @@ function ProjectCard({ product }: { product: (typeof products)[number] }) {
           aspect={product.screenshotAspect}
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
         />
-      </div>
+      </motion.div>
       <div className="flex flex-1 flex-col gap-2.5 p-[22px]">
         <span className="font-mono-label text-[10.5px] uppercase tracking-wide text-teal">
           {product.category}

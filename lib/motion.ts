@@ -17,6 +17,17 @@ export const stagger: Variants = {
   show: { transition: { staggerChildren: 0.08 } },
 };
 
+// Faster variants for the hero: it must feel immediate on load, not like a scroll reveal.
+export const fadeUpFast: Variants = {
+  hidden: { opacity: 0, y: 10 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.35, ease: easeOut } },
+};
+
+export const staggerFast: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.05 } },
+};
+
 export const viewport = { once: true, margin: "-80px" };
 
 export const tapScale = { scale: 0.97 };
