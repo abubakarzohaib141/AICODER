@@ -1,7 +1,9 @@
 "use client";
 
 import { ReactNode } from "react";
+import { motion } from "framer-motion";
 import { useBooking } from "./BookingProvider";
+import { tapScale } from "@/lib/motion";
 
 type Variant = "primary" | "secondary" | "ghost" | "inverse";
 
@@ -28,8 +30,14 @@ export function BookCallButton({
   const { open } = useBooking();
 
   return (
-    <button type="button" onClick={open} className={`${base} ${variants[variant]} ${className}`}>
+    <motion.button
+      type="button"
+      onClick={open}
+      className={`${base} ${variants[variant]} ${className}`}
+      whileHover={{ y: -2 }}
+      whileTap={tapScale}
+    >
       {children}
-    </button>
+    </motion.button>
   );
 }

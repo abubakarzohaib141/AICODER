@@ -1,6 +1,8 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { motion } from "framer-motion";
+import { tapScale } from "@/lib/motion";
 
 const STAGES = [
   "Exploring an idea",
@@ -112,13 +114,15 @@ export function ContactForm() {
 
       {error && <p className="text-sm text-orange">{error}</p>}
 
-      <button
+      <motion.button
         type="submit"
         disabled={status === "submitting"}
-        className="bg-gradient-brand mt-2 inline-flex items-center justify-center rounded-full px-6 py-3.5 text-sm font-medium text-white transition-transform hover:-translate-y-0.5 disabled:opacity-60"
+        whileHover={{ y: -2 }}
+        whileTap={tapScale}
+        className="bg-gradient-brand mt-2 inline-flex items-center justify-center rounded-full px-6 py-3.5 text-sm font-medium text-white disabled:opacity-60"
       >
         {status === "submitting" ? "Sending…" : "Send Project Inquiry"}
-      </button>
+      </motion.button>
     </form>
   );
 }

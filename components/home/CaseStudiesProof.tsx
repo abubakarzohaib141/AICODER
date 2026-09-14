@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Tag } from "@/components/ui/Tag";
+import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/Reveal";
 import { caseStudies } from "@/lib/content/case-studies";
 
 export function CaseStudiesProof() {
@@ -13,7 +14,7 @@ export function CaseStudiesProof() {
   return (
     <section className="border-t border-border py-20 sm:py-28">
       <Container className="flex flex-col gap-10">
-        <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
+        <Reveal className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <SectionHeading eyebrow="Proof" title="Systems in Production" />
           <Link
             href="/case-studies"
@@ -21,13 +22,13 @@ export function CaseStudiesProof() {
           >
             All case studies →
           </Link>
-        </div>
+        </Reveal>
 
-        <div className="flex flex-col divide-y divide-border border-t border-border">
+        <StaggerGroup className="flex flex-col divide-y divide-border border-t border-border">
           {caseStudies.map((study) => {
             const isOpen = openSlug === study.slug;
             return (
-              <div key={study.slug}>
+              <StaggerItem key={study.slug}>
                 <button
                   type="button"
                   onClick={() => setOpenSlug(isOpen ? null : study.slug)}
@@ -75,10 +76,10 @@ export function CaseStudiesProof() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </StaggerItem>
             );
           })}
-        </div>
+        </StaggerGroup>
       </Container>
     </section>
   );
