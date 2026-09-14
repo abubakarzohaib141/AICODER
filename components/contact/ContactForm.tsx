@@ -30,15 +30,27 @@ export function ContactForm() {
     const data = Object.fromEntries(new FormData(form).entries());
 
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY,
+          subject: `New project inquiry from ${data.name}`,
+          from_name: data.name,
+          name: data.name,
+          email: data.workEmail,
+          company: data.company || "Not provided",
+          "Looking to build": data.lookingToBuild,
+          "Workflow / problem": data.workflow || "Not provided",
+          "Project stage": data.stage || "Not provided",
+          botcheck: data.botcheck,
+        }),
       });
 
-      if (!res.ok) {
-        const body = await res.json().catch(() => ({}));
-        throw new Error(body.error ?? "Something went wrong. Please try again.");
+      const result = await res.json();
+
+      if (!res.ok || !result.success) {
+        throw new Error("Something went wrong. Please try again.");
       }
 
       setStatus("success");
