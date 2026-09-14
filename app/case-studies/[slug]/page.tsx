@@ -47,14 +47,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           <h1 className="max-w-2xl font-display text-4xl font-semibold leading-tight tracking-tight text-foreground sm:text-5xl">
             {study.title}
           </h1>
-          {study.builtBy && (
-            <Link
-              href={`/team/${study.builtBySlug}`}
-              className="w-fit text-sm text-muted transition-colors hover:text-foreground"
-            >
-              Built by {study.builtBy} →
-            </Link>
-          )}
+          <span className="w-fit text-sm text-muted">Engineered by AI Coders</span>
         </Container>
       </section>
 

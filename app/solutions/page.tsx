@@ -6,6 +6,7 @@ import { industries } from "@/lib/content/technologies";
 import { technologies } from "@/lib/content/technologies";
 import { Tag } from "@/components/ui/Tag";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/Reveal";
 
 export const metadata: Metadata = {
   title: "Solutions",
@@ -24,7 +25,11 @@ export default function SolutionsPage() {
       <section className="py-16 sm:py-24">
         <Container className="flex flex-col divide-y divide-border border-t border-border">
           {services.map((service) => (
-            <div key={service.slug} id={service.slug} className="grid gap-6 py-12 lg:grid-cols-[280px_1fr] lg:gap-16">
+            <Reveal
+              key={service.slug}
+              id={service.slug}
+              className="grid gap-6 py-12 lg:grid-cols-[280px_1fr] lg:gap-16"
+            >
               <div className="flex items-start gap-4">
                 <span className="font-mono-label text-xs text-orange">{service.number}</span>
                 <h2 className="font-display text-2xl font-semibold text-foreground">
@@ -41,17 +46,23 @@ export default function SolutionsPage() {
                   ))}
                 </div>
               </div>
-            </div>
+            </Reveal>
           ))}
         </Container>
       </section>
 
       <section className="border-t border-border py-16 sm:py-24">
         <Container className="flex flex-col gap-12">
-          <SectionHeading eyebrow="Industries" title="AI Across Business Operations" />
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <Reveal>
+            <SectionHeading eyebrow="Industries" title="AI Across Business Operations" />
+          </Reveal>
+          <StaggerGroup className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {industries.map((industry) => (
-              <div key={industry.name} className="flex flex-col gap-3 rounded-2xl border border-border p-6">
+              <StaggerItem
+                key={industry.name}
+                hover
+                className="flex flex-col gap-3 rounded-2xl border border-border p-6"
+              >
                 <p className="font-display text-base font-semibold text-foreground">{industry.name}</p>
                 <ul className="flex flex-col gap-2">
                   {industry.items.map((item) => (
@@ -60,18 +71,20 @@ export default function SolutionsPage() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGroup>
         </Container>
       </section>
 
       <section className="border-t border-border py-16 sm:py-24">
         <Container className="flex flex-col gap-12">
-          <SectionHeading eyebrow="Stack" title="Our AI Engineering Stack" />
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <Reveal>
+            <SectionHeading eyebrow="Stack" title="Our AI Engineering Stack" />
+          </Reveal>
+          <StaggerGroup className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {technologies.map((group) => (
-              <div key={group.name} className="flex flex-col gap-3">
+              <StaggerItem key={group.name} className="flex flex-col gap-3">
                 <span className="font-mono-label text-xs uppercase tracking-wide text-muted-2">
                   {group.name}
                 </span>
@@ -82,9 +95,9 @@ export default function SolutionsPage() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGroup>
         </Container>
       </section>
     </>

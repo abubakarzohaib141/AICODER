@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
+import { Reveal } from "@/components/motion/Reveal";
 import { caseStudies } from "@/lib/content/case-studies";
 
 export const metadata: Metadata = {
@@ -20,10 +21,10 @@ export default function CaseStudiesPage() {
       <section className="py-16 sm:py-24">
         <Container className="flex flex-col divide-y divide-border border-t border-border">
           {caseStudies.map((study) => (
+            <Reveal key={study.slug}>
             <Link
-              key={study.slug}
               href={`/case-studies/${study.slug}`}
-              className="group flex flex-col gap-4 py-10 transition-colors sm:flex-row sm:items-center sm:justify-between sm:gap-10"
+              className="group -mx-5 flex flex-col gap-4 px-5 py-10 transition-colors hover:bg-background-elevated-2/50 sm:flex-row sm:items-center sm:justify-between sm:gap-10"
             >
               <div className="flex flex-col gap-3">
                 <div className="flex items-center gap-4">
@@ -41,6 +42,7 @@ export default function CaseStudiesPage() {
                 Read case study →
               </span>
             </Link>
+            </Reveal>
           ))}
         </Container>
       </section>

@@ -20,8 +20,20 @@ function ProjectCard({ product }: { product: (typeof products)[number] }) {
       whileTap={{ scale: 0.985 }}
       variants={{ rest: { y: 0, scale: 1 }, hover: { y: -6, scale: 1.01 } }}
       transition={{ duration: 0.25, ease: easeOut }}
-      className="flex flex-col overflow-hidden rounded-[18px] border border-border hover:shadow-[0_20px_40px_-16px_rgba(32,30,28,0.18)]"
+      onMouseMove={(event) => {
+        const rect = event.currentTarget.getBoundingClientRect();
+        event.currentTarget.style.setProperty("--spot-x", `${event.clientX - rect.left}px`);
+        event.currentTarget.style.setProperty("--spot-y", `${event.clientY - rect.top}px`);
+      }}
+      className="group relative flex flex-col overflow-hidden rounded-[18px] border border-border hover:shadow-[0_20px_40px_-16px_rgba(32,30,28,0.18)]"
     >
+      <span
+        className="pointer-events-none absolute inset-0 z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        style={{
+          background:
+            "radial-gradient(220px circle at var(--spot-x, 50%) var(--spot-y, 50%), rgba(20,125,138,0.12), transparent 70%)",
+        }}
+      />
       <motion.div
         className="overflow-hidden"
         variants={{ rest: { scale: 1 }, hover: { scale: 1.05 } }}
@@ -42,7 +54,7 @@ function ProjectCard({ product }: { product: (typeof products)[number] }) {
         <span className="font-display text-[17px] font-bold text-foreground">{product.name}</span>
         <p className="text-[13.5px] leading-relaxed text-muted">{product.description}</p>
         <div className="mt-auto flex items-center justify-between gap-2.5 pt-1.5">
-          <span className="text-xs text-muted-2">Built by {product.builtBy}</span>
+          <span className="text-xs text-muted-2">Engineered by AI Coders</span>
           {product.links.length > 0 ? (
             <a
               href={product.links[0].href}
@@ -105,7 +117,7 @@ export function ProductShowcase() {
                 ))}
               </div>
             )}
-            <span className="text-[12.5px] text-muted-2">Built by {flagship.builtBy}</span>
+            <span className="text-[12.5px] text-muted-2">Engineered by AI Coders</span>
           </div>
           <div className="flex items-center bg-background-elevated p-5">
             <ScreenshotFrame

@@ -1,9 +1,13 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/Reveal";
+import { viewport } from "@/lib/motion";
 import { process } from "@/lib/content/technologies";
 
-const accents = ["var(--accent-teal)", "var(--accent-blue)", "var(--accent-indigo)"];
+const accents = ["#147d8a", "#4f7ff7", "#2b1bba"];
 
 export function HowWeWork() {
   return (
@@ -14,15 +18,25 @@ export function HowWeWork() {
         </Reveal>
 
         <StaggerGroup className="relative grid gap-10 sm:grid-cols-2 lg:grid-cols-6 lg:gap-6">
-          <div className="absolute left-0 right-0 top-6 hidden h-px bg-border lg:block" />
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={viewport}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            style={{ transformOrigin: "left" }}
+            className="absolute left-0 right-0 top-6 hidden h-px bg-border lg:block"
+          />
           {process.map((step, i) => (
             <StaggerItem key={step.number} className="relative flex flex-col gap-4">
-              <span
+              <motion.span
                 className="font-display text-4xl font-bold leading-none"
-                style={{ color: accents[i % accents.length] }}
+                initial={{ color: "#928a84" }}
+                whileInView={{ color: accents[i % accents.length] }}
+                viewport={viewport}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
               >
                 {step.number}
-              </span>
+              </motion.span>
               <p className="font-display text-base font-semibold text-foreground">{step.name}</p>
               <p className="text-sm leading-relaxed text-muted">{step.description}</p>
             </StaggerItem>

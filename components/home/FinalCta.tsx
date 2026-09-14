@@ -16,7 +16,7 @@ export function FinalCta() {
             agents, automation or custom engineering create real value.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-            <BookCallButton variant="inverse" className="!px-7 !py-3.5 text-sm">
+            <BookCallButton className="bg-gradient-brand !px-7 !py-3.5 text-sm !text-white shadow-[0_16px_44px_-8px_rgba(28,152,166,0.55)] hover:!opacity-100">
               Book a Call
             </BookCallButton>
             <Link

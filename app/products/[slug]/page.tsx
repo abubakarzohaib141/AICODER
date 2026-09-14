@@ -50,12 +50,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                 {link.label}
               </Button>
             ))}
-            <Link
-              href={`/team/${product.builtBySlug}`}
-              className="text-sm text-muted transition-colors hover:text-foreground"
-            >
-              Built by {product.builtBy} →
-            </Link>
+            <span className="text-sm text-muted">Engineered by AI Coders</span>
           </div>
         </Container>
       </section>

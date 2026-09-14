@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
+import { SpotlightLink } from "@/components/ui/SpotlightLink";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Reveal";
 import { products } from "@/lib/content/products";
 
@@ -23,9 +23,10 @@ export default function ProductsPage() {
         <StaggerGroup className="grid gap-6 sm:grid-cols-2">
           {products.map((product) => (
             <StaggerItem key={product.slug} hover>
-              <Link
+              <SpotlightLink
                 href={`/products/${product.slug}`}
-                className="group flex h-full flex-col justify-between gap-10 rounded-2xl border border-border bg-background-elevated/40 p-8 hover:border-blue/60 hover:shadow-[0_20px_40px_-18px_rgba(79,127,247,0.35)]"
+                spotlightColor="rgba(79,127,247,0.1)"
+                className="flex h-full flex-col justify-between gap-10 rounded-2xl border border-border bg-background-elevated/40 p-8 hover:border-blue/60 hover:shadow-[0_20px_40px_-18px_rgba(79,127,247,0.35)]"
               >
                 <div className="flex flex-col gap-4">
                   <div className="flex items-center justify-between">
@@ -40,12 +41,12 @@ export default function ProductsPage() {
                   <p className="text-sm leading-relaxed text-muted">{product.description}</p>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-muted-2">Built by {product.builtBy}</span>
+                  <span className="text-xs text-muted-2">Engineered by AI Coders</span>
                   <span className="text-sm text-foreground/80 transition-transform group-hover:translate-x-0.5">
                     →
                   </span>
                 </div>
-              </Link>
+              </SpotlightLink>
             </StaggerItem>
           ))}
         </StaggerGroup>

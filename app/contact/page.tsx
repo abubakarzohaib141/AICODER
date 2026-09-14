@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
 import { ContactForm } from "@/components/contact/ContactForm";
+import { CopyEmailChip } from "@/components/ui/CopyEmailChip";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -18,6 +19,10 @@ export default function ContactPage() {
       />
       <section className="py-16 sm:py-24">
         <Container className="max-w-2xl">
+          <div className="mb-8 flex flex-wrap items-center gap-3 text-sm text-muted">
+            <span>Prefer email?</span>
+            <CopyEmailChip />
+          </div>
           <ContactForm />
         </Container>
       </section>

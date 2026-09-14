@@ -34,8 +34,9 @@ export function BookCallButton({
       type="button"
       onClick={open}
       className={`${base} ${variants[variant]} ${className}`}
-      whileHover={{ y: -2 }}
+      whileHover={{ y: -2, scale: 1.02 }}
       whileTap={tapScale}
+      transition={{ type: "spring", stiffness: 400, damping: 20 }}
     >
       {children}
     </motion.button>

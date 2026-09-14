@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { LogoMark } from "@/components/ui/LogoMark";
 import { BookCallButton } from "@/components/booking/BookCallButton";
+import { CopyEmailChip } from "@/components/ui/CopyEmailChip";
 import { siteConfig } from "@/lib/content/site";
 
 export function SiteFooter() {
@@ -19,9 +20,12 @@ export function SiteFooter() {
               </span>
             </div>
             <p className="text-sm leading-relaxed text-muted">{siteConfig.description}</p>
-            <BookCallButton variant="secondary" className="w-fit !px-5 !py-2.5 text-sm">
-              Book a Call
-            </BookCallButton>
+            <div className="flex flex-wrap items-center gap-3">
+              <BookCallButton variant="secondary" className="w-fit !px-5 !py-2.5 text-sm">
+                Book a Call
+              </BookCallButton>
+              <CopyEmailChip />
+            </div>
           </div>
 
           <div className="grid grid-cols-2 gap-x-12 gap-y-8 sm:flex sm:gap-16">

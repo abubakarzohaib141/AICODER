@@ -89,9 +89,20 @@ export function WhatWeBuild() {
               <StaggerItem key={service.slug} className="group relative">
               <motion.div
                 whileHover={{ y: -5 }}
+                onMouseMove={(event) => {
+                  const rect = event.currentTarget.getBoundingClientRect();
+                  event.currentTarget.style.setProperty("--spot-x", `${event.clientX - rect.left}px`);
+                  event.currentTarget.style.setProperty("--spot-y", `${event.clientY - rect.top}px`);
+                }}
                 className="relative flex h-full flex-col gap-4 overflow-hidden rounded-[20px] border border-border bg-background-elevated p-6.5 hover:shadow-[0_20px_40px_-18px_var(--tw-shadow-color)]"
                 style={{ "--tw-shadow-color": `${color}55` } as React.CSSProperties}
               >
+                <span
+                  className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                  style={{
+                    background: `radial-gradient(240px circle at var(--spot-x, 50%) var(--spot-y, 50%), ${color}1f, transparent 70%)`,
+                  }}
+                />
                 <span
                   className="absolute -right-[30px] -top-[30px] h-[100px] w-[100px] rounded-full opacity-[0.08]"
                   style={{ backgroundColor: color }}

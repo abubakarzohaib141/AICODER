@@ -3,6 +3,7 @@ import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Accordion } from "@/components/ui/Accordion";
+import { Reveal } from "@/components/motion/Reveal";
 import { faqs } from "@/lib/content/faqs";
 
 export const metadata: Metadata = {
@@ -16,6 +17,7 @@ export default function AboutPage() {
       <PageHero eyebrow="About" title="Building Practical AI for the Real World" />
 
       <section className="py-16 sm:py-24">
+        <Reveal as="div">
         <Container className="grid gap-14 lg:grid-cols-[1fr_320px] lg:gap-16">
           <div className="flex flex-col gap-6">
             <p className="max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
@@ -63,14 +65,17 @@ export default function AboutPage() {
             </p>
           </aside>
         </Container>
+        </Reveal>
       </section>
 
       <section id="faq" className="scroll-mt-20 border-t border-border py-16 sm:py-24">
         <Container className="flex flex-col gap-10">
-          <SectionHeading eyebrow="FAQ" title="Frequently Asked Questions" />
-          <div className="max-w-3xl">
+          <Reveal>
+            <SectionHeading eyebrow="FAQ" title="Frequently Asked Questions" />
+          </Reveal>
+          <Reveal className="max-w-3xl">
             <Accordion items={faqs} />
-          </div>
+          </Reveal>
         </Container>
       </section>
     </>

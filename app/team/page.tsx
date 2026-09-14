@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
 import { Tag } from "@/components/ui/Tag";
 import { TeamPhotoFrame } from "@/components/system/TeamPhotoFrame";
+import { SpotlightLink } from "@/components/ui/SpotlightLink";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Reveal";
 import { team } from "@/lib/content/team";
 
@@ -28,9 +28,10 @@ export default function TeamPage() {
           <StaggerGroup className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {team.map((member, i) => (
               <StaggerItem key={member.slug} hover>
-                <Link
+                <SpotlightLink
                   href={`/team/${member.slug}`}
-                  className="group flex h-full flex-col gap-6 rounded-2xl border border-border p-8 hover:border-border-strong hover:shadow-[0_20px_40px_-18px_rgba(32,30,28,0.18)]"
+                  spotlightColor={`color-mix(in srgb, ${accents[i % accents.length]} 12%, transparent)`}
+                  className="flex h-full flex-col gap-6 rounded-2xl border border-border p-8 hover:border-border-strong hover:shadow-[0_20px_40px_-18px_rgba(32,30,28,0.18)]"
                 >
                   <TeamPhotoFrame
                     photo={member.photo}
@@ -49,7 +50,7 @@ export default function TeamPage() {
                       <Tag key={f}>{f}</Tag>
                     ))}
                   </div>
-                </Link>
+                </SpotlightLink>
               </StaggerItem>
             ))}
           </StaggerGroup>

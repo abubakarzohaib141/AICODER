@@ -8,14 +8,17 @@ export function Reveal({
   children,
   className,
   as = "div",
+  id,
 }: {
   children: ReactNode;
   className?: string;
   as?: "div" | "section";
+  id?: string;
 }) {
   const Comp = motion[as];
   return (
     <Comp
+      id={id}
       className={className}
       initial="hidden"
       whileInView="show"
