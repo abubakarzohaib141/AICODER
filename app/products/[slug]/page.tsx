@@ -70,7 +70,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                   src={src}
                   alt={`${product.name} screenshot`}
                   label={product.name}
-                  aspect="16/10"
+                  aspect={product.screenshotAspect ?? "16/10"}
                   sizes="(min-width: 640px) 50vw, 100vw"
                 />
               ))}
@@ -80,7 +80,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               src={product.screenshots?.[0]}
               alt={`${product.name} screenshot`}
               label={product.name}
-              aspect="16/9"
+              aspect={product.screenshotAspect ?? "16/9"}
             />
           )}
 

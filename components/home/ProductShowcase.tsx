@@ -13,6 +13,7 @@ function ProjectCard({ product }: { product: (typeof products)[number] }) {
         src={product.screenshots?.[0]}
         alt={`${product.name} screenshot`}
         label={product.name}
+        aspect={product.screenshotAspect}
         sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
       />
       <div className="flex flex-col gap-1.5">
@@ -107,6 +108,7 @@ export function ProductShowcase() {
                 src={featured.screenshots?.[0]}
                 alt={`${featured.name} screenshot`}
                 label={featured.name}
+                aspect={featured.screenshotAspect}
                 sizes="(min-width: 1024px) 50vw, 100vw"
               />
             </div>
@@ -138,7 +140,7 @@ export function ProductShowcase() {
                 src={wide.screenshots?.[0]}
                 alt={`${wide.name} screenshot`}
                 label={wide.name}
-                aspect="4/3"
+                aspect={wide.screenshotAspect ?? "4/3"}
                 sizes="(min-width: 640px) 45vw, 100vw"
               />
             </div>

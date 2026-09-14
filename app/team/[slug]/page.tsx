@@ -136,6 +136,7 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
                       src={p.screenshots?.[0]}
                       alt={`${p.name} screenshot`}
                       label={p.name}
+                      aspect={p.screenshotAspect}
                       sizes="(min-width: 640px) 50vw, 100vw"
                     />
                     <div>

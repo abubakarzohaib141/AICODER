@@ -42,6 +42,7 @@ export const team: TeamMember[] = [
       "She previously built the technology behind Scope AI CV, an end to end AI powered CV optimization platform, and developed Lenny AI, a RAG based business intelligence agent using vector embeddings and prompt engineering. She also teaches Agentic AI as faculty and a teaching assistant at the Governor Sindh Initiative for GenAI, Web3 and Metaverse, holds Agentic AI Level 1 and Level 2 Developer certificates from PIAIC, and was featured on television as one of Pakistan's youngest Agentic AI developers.",
     links: [],
     featured: true,
+    photo: "/team/hafsa.png",
   },
   {
     slug: "muhammad",
@@ -65,6 +66,7 @@ export const team: TeamMember[] = [
       "He is the founder of AI Coders, where he builds AI powered web solutions and custom GPT applications for businesses. His earlier work includes voice AI, customer support automation, real estate workflows and autonomous AI systems for teams across international markets, backed by training from Anthropic, n8n, IBM, Google Cloud, DeepLearning.AI, LangChain, CrewAI and freeCodeCamp.",
     links: [],
     featured: true,
+    photo: "/team/muhammad.png",
   },
   {
     slug: "abubakar",
@@ -83,6 +85,7 @@ export const team: TeamMember[] = [
       "He works as an AI Trainer at Saylani Mass IT Training (SMIT), teaching practical AI and technology skills, and built an AI Content Factory, a multi agent system that automates content creation from research and generation through validation and publishing. At tResolv, he contributes to business development and customer acquisition as the startup grows.",
     links: [],
     featured: true,
+    photo: "/team/abubakar.png",
   },
   {
     slug: "bushra",
@@ -100,5 +103,6 @@ export const team: TeamMember[] = [
       "With a background in pharmacy and experience across pharmaceutical production, marketing and product management, she brings domain knowledge alongside technical skill. She is an AI Educator and GIAIC faculty member with the Governor Sindh Initiative for GenAI, Web3 and Metaverse, studied AI and Cloud Engineering through PIAIC, and founded The AI Family, a family learning environment for exploring technology, AI, programming and entrepreneurship.",
     links: [],
     featured: true,
+    photo: "/team/bushra.jpg",
   },
 ];

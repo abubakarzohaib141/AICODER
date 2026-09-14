@@ -11,6 +11,8 @@ export type Product = {
   technology?: string[];
   /** Paths under /public to real screenshots. Omit to show an honest placeholder. */
   screenshots?: string[];
+  /** Overrides the default crop aspect ratio when the screenshot's own shape needs it (e.g. a wide browser capture). */
+  screenshotAspect?: string;
   /** The flagship item gets the large showcase treatment on the homepage. */
   featured?: boolean;
   /** Shown in the curated homepage grid. Everything else still appears on /products. */
@@ -30,6 +32,8 @@ export const products: Product[] = [
     builtBySlug: "hafsa",
     links: [{ label: "Visit tResolv", href: "http://tresolv.online/" }],
     technology: ["Shopify", "AI Agents", "RAG", "APIs"],
+    screenshots: ["/projects/tresolv.png"],
+    screenshotAspect: "2/1",
     featured: true,
   },
   {
@@ -47,7 +51,8 @@ export const products: Product[] = [
       { label: "View Case Study", href: "/case-studies/cv-job-platform" },
     ],
     technology: ["AI Product Development", "Automation"],
-    screenshots: ["/projects/scope-ai-cv.jpg"],
+    screenshots: ["/projects/scope-ai-cv.png"],
+    screenshotAspect: "2/1",
     pinned: true,
   },
   {
@@ -74,8 +79,10 @@ export const products: Product[] = [
     description: "An agent-development SDK created by Abubakar for building AI agent systems.",
     builtBy: "Abubakar Bin Zohaib",
     builtBySlug: "abubakar",
-    links: [],
+    links: [{ label: "Visit ABZ Agent SDK", href: "https://www.abzagent.online/" }],
     technology: ["Agent SDKs", "OpenAI Agent SDK", "Python"],
+    screenshots: ["/projects/abz-agent-sdk.png"],
+    screenshotAspect: "2/1",
     pinned: true,
   },
   {

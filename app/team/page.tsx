@@ -35,6 +35,7 @@ export default function TeamPage() {
                   photo={member.photo}
                   name={member.name}
                   accent={accents[i % accents.length]}
+                  size="lg"
                 />
                 <div>
                   <p className="font-display text-xl font-semibold text-foreground">
