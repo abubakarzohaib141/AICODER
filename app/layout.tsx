@@ -25,13 +25,17 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["400", "500"],
 });
 
+const homeTitle = "AI Coders | AI Automation Agency & AI Agent Development";
+const homeDescription =
+  "AI Coders builds AI agents, business automations and custom AI systems that solve real operational problems.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name}: AI Engineering, Agentic AI & Automation`,
+    default: homeTitle,
     template: `%s | ${siteConfig.name}`,
   },
-  description: siteConfig.description,
+  description: homeDescription,
   keywords: [
     "AI engineering",
     "AI agents",
@@ -40,19 +44,40 @@ export const metadata: Metadata = {
     "AI product development",
     "custom AI systems",
   ],
+  alternates: {
+    canonical: siteConfig.url,
+  },
+  verification: {
+    google: "niHnupnkx86mue3lJjgsJ_9G1wStowFCsJVZ_vUUdVc",
+  },
   openGraph: {
     type: "website",
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: `${siteConfig.name}: AI Engineering, Agentic AI & Automation`,
-    description: siteConfig.description,
+    title: homeTitle,
+    description: homeDescription,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name}: AI Engineering, Agentic AI & Automation`,
-    description: siteConfig.description,
+    title: homeTitle,
+    description: homeDescription,
   },
   robots: { index: true, follow: true },
+};
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: siteConfig.name,
+  url: siteConfig.url,
+  logo: `${siteConfig.url}/brand/logo.jpeg`,
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: siteConfig.name,
+  url: siteConfig.url,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -62,6 +87,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${manrope.variable} ${inter.variable} ${jetbrainsMono.variable} h-full`}
     >
       <body className="flex min-h-full flex-col antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
         <MotionRoot>
           <BookingProvider>
             <SiteHeader />

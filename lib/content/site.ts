@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "AI Coders",
   domain: "aicoders.dev",
-  url: "https://aicoders.dev",
+  url: "https://www.aicoders.dev",
   tagline: "AI Engineering • Agentic AI • Automation",
   description:
     "AI Coders builds AI agents, agentic systems, business automation and AI-powered products for companies looking to automate workflows, improve operations and build intelligent digital products.",
