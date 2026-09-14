@@ -29,14 +29,7 @@ export const team: TeamMember[] = [
       "Next.js & TypeScript",
       "OpenAI Agents SDK",
     ],
-    selectedWork: [
-      "tResolv",
-      "Scope AI CV",
-      "Lenny AI",
-      "LeadGen AI Platform",
-      "AI Legal Case Intake System",
-      "ReActivate",
-    ],
+    selectedWork: ["tResolv", "Scope AI CV", "Lenny AI"],
     bio: "Hafsa is an Agentic AI Developer, Full-Stack Engineer and the founder of tResolv, an AI support employee for Shopify brands. She builds agentic AI systems end to end: agent design, RAG and knowledge bases, automation workflows and the product around them, using Python, FastAPI, Supabase, Next.js and TypeScript alongside the OpenAI Agents SDK, CrewAI, LangChain and LangGraph.",
     extra:
       "She previously built the technology behind Scope AI CV, an end to end AI powered CV optimization platform, and developed Lenny AI, a RAG based business intelligence agent using vector embeddings and prompt engineering. She also teaches Agentic AI as faculty and a teaching assistant at the Governor Sindh Initiative for GenAI, Web3 and Metaverse, holds Agentic AI Level 1 and Level 2 Developer certificates from PIAIC, and was featured on television as one of Pakistan's youngest Agentic AI developers.",
@@ -55,7 +48,14 @@ export const team: TeamMember[] = [
       "Voice AI",
       "Full-Stack Development",
     ],
-    selectedWork: ["CRM & Business Automation Suite", "AI Hiring Agent"],
+    selectedWork: [
+      "CRM & Business Automation Suite",
+      "AI Hiring Agent",
+      "LeadGen AI Platform",
+      "AI Legal Case Intake System",
+      "ReActivate",
+      "AI WhatsApp Command Center",
+    ],
     currentWork: {
       label: "sending.ac",
       description:
