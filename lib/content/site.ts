@@ -19,5 +19,5 @@ export const siteConfig = {
   ],
   socials: [] as { label: string; href: string }[],
   /** Calendly scheduling link (e.g. "https://calendly.com/your-name/30min"). Empty until provided. */
-  calendlyUrl: "",
+  calendlyUrl: "https://calendly.com/aicoders123/30min",
 };
