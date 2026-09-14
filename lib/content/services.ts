@@ -15,7 +15,7 @@ export const services: Service[] = [
     summary:
       "Intelligent agents designed to perform specific business tasks, interact with tools, access information and execute workflows.",
     description:
-      "We design and build AI agents that go beyond conversation — agents that can look things up, call APIs, take actions and hand off to a human when a decision needs one.",
+      "We design and build AI agents that go beyond conversation: agents that can look things up, call APIs, take actions and hand off to a human when a decision needs one.",
     bullets: [
       "Customer support agents",
       "Sales agents",
@@ -31,7 +31,7 @@ export const services: Service[] = [
     summary:
       "Multi-step AI systems combining agents, APIs, tools, databases and business logic.",
     description:
-      "Beyond a single agent, we build coordinated systems — multiple agents, tools and data sources working together against a real workflow, with guardrails at every step.",
+      "Beyond a single agent, we build coordinated systems: multiple agents, tools and data sources working together against a real workflow, with guardrails at every step.",
     bullets: [
       "Multi-agent orchestration",
       "Tool and API integration",
@@ -62,7 +62,7 @@ export const services: Service[] = [
     name: "AI Product Development",
     summary: "Turn an AI idea into a working product.",
     description:
-      "From a rough idea to a shipped product — we handle the full path: prototyping the core AI behavior, building the product around it, and getting it into production.",
+      "From a rough idea to a shipped product, we handle the full path: prototyping the core AI behavior, building the product around it, and getting it into production.",
     bullets: ["Idea", "Prototype", "Product", "Deployment"],
   },
   {

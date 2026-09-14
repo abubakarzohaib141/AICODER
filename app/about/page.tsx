@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Accordion } from "@/components/ui/Accordion";
 import { faqs } from "@/lib/content/faqs";
 
 export const metadata: Metadata = {
@@ -57,25 +58,18 @@ export default function AboutPage() {
             </span>
             <p className="text-sm leading-relaxed text-muted">
               AI Coders came together as a small team of siblings who each brought a different
-              engineering discipline — agentic AI, automation and CRM systems — into one studio
+              engineering discipline (agentic AI, automation and CRM systems) into one studio
               focused on shipping working AI systems for real businesses.
             </p>
           </aside>
         </Container>
       </section>
 
-      <section className="border-t border-border py-16 sm:py-24">
+      <section id="faq" className="scroll-mt-20 border-t border-border py-16 sm:py-24">
         <Container className="flex flex-col gap-10">
           <SectionHeading eyebrow="FAQ" title="Frequently Asked Questions" />
-          <div className="flex flex-col divide-y divide-border border-t border-border">
-            {faqs.map((faq) => (
-              <div key={faq.question} className="flex flex-col gap-2 py-6 sm:flex-row sm:gap-10">
-                <p className="w-full max-w-xs shrink-0 font-display text-base font-semibold text-foreground">
-                  {faq.question}
-                </p>
-                <p className="text-sm leading-relaxed text-muted">{faq.answer}</p>
-              </div>
-            ))}
+          <div className="max-w-3xl">
+            <Accordion items={faqs} />
           </div>
         </Container>
       </section>

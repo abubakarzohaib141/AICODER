@@ -19,15 +19,15 @@ export const caseStudies: CaseStudy[] = [
     slug: "tresolv",
     index: "01",
     category: "AI Customer Support / Shopify",
-    title: "tResolv — AI Customer Support for Shopify Brands",
+    title: "tResolv: AI Support Employee for Shopify Brands",
     summary:
-      "An AI agent that handles repetitive Shopify customer support conversations so human agents can focus on the cases that need judgment.",
+      "An AI support employee that handles repetitive Shopify customer support conversations so human agents can focus on the cases that need judgment.",
     problem:
-      "Shopify brands field a high volume of repetitive support questions — order status, returns, shipping policy — that consume support-team time without needing a human decision.",
+      "Shopify brands field a high volume of repetitive support questions (order status, returns, shipping policy) that consume support team time without needing a human decision.",
     challenge:
       "A generic chatbot can answer FAQs, but customer support requires reading store data, order history and policy, then deciding when to resolve a conversation versus escalate it.",
     solution:
-      "We built tResolv, an AI support agent that lives in a Shopify store's own chat widget. It reads real order data, resolves common requests directly, and stages actions like cancellations for one-tap merchant approval instead of acting unsupervised.",
+      "We built tResolv, an AI support employee that lives in a Shopify store's own chat widget. It checks live order and product data, resolves routine requests directly, and keeps sensitive actions human approved instead of acting unsupervised.",
     workflow: ["Customer", "AI Agent", "Shopify Order Data", "Merchant Approval or Resolution"],
     technology: ["Shopify", "AI Agents", "RAG", "APIs"],
     results:
@@ -39,7 +39,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "cv-job-platform",
     index: "02",
     category: "AI Product Development",
-    title: "Scope AI CV — AI CV & Job Application Platform",
+    title: "Scope AI CV: AI CV & Job Application Platform",
     summary:
       "An AI-powered platform that helps job seekers generate CVs and manage job application workflows.",
     problem:
@@ -67,7 +67,7 @@ export const caseStudies: CaseStudy[] = [
     challenge:
       "Off-the-shelf CRM and hiring tools rarely match a business's actual process, forcing teams to work around the software instead of with it.",
     solution:
-      "We built a custom CRM that unifies sales, customers, revenue, payments, disputes and calls into one operational system with real-time dashboards and automated workflows — alongside an AI hiring agent that screens, scores and communicates with candidates through each stage of the funnel automatically.",
+      "We built a custom CRM that unifies sales, customers, revenue, payments, disputes and calls into one operational system with real-time dashboards and automated workflows, alongside an AI hiring agent that screens, scores and communicates with candidates through each stage of the funnel automatically.",
     workflow: ["Lead / Record Intake", "Automation Rules", "CRM", "Reporting & Handoff"],
     technology: ["CRM", "APIs", "Automation", "Database"],
     results:

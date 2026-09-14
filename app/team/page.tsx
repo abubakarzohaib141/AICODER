@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
 import { Tag } from "@/components/ui/Tag";
+import { TeamPhotoFrame } from "@/components/system/TeamPhotoFrame";
 import { team } from "@/lib/content/team";
 
 export const metadata: Metadata = {
@@ -10,30 +11,32 @@ export const metadata: Metadata = {
   description: "The engineers behind AI Coders.",
 };
 
-const accents = ["var(--accent-teal)", "var(--accent-blue)", "var(--accent-indigo)"];
+const accents = [
+  "var(--accent-teal)",
+  "var(--accent-blue)",
+  "var(--accent-indigo)",
+  "var(--accent-orange)",
+];
 
 export default function TeamPage() {
-  const featured = team.filter((m) => m.featured);
-  const secondary = team.filter((m) => !m.featured);
-
   return (
     <>
       <PageHero eyebrow="Team" title="The Team Behind AI Coders" />
       <section className="py-16 sm:py-24">
-        <Container className="flex flex-col gap-12">
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {featured.map((member, i) => (
+        <Container>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {team.map((member, i) => (
               <Link
                 key={member.slug}
                 href={`/team/${member.slug}`}
-                className="group flex flex-col gap-6 rounded-2xl border border-border p-8 transition-colors hover:border-border-strong"
+                className="hover-lift group flex flex-col gap-6 rounded-2xl border border-border p-8 hover:border-border-strong hover:shadow-[0_20px_40px_-18px_rgba(32,30,28,0.18)]"
               >
-                <span
-                  className="font-display text-5xl font-bold leading-none"
-                  style={{ color: accents[i % accents.length] }}
-                >
-                  {member.name[0]}
-                </span>
+                <TeamPhotoFrame
+                  photo={member.photo}
+                  name={member.name}
+                  accent={accents[i % accents.length]}
+                  size="lg"
+                />
                 <div>
                   <p className="font-display text-xl font-semibold text-foreground">
                     {member.name}
@@ -48,25 +51,6 @@ export default function TeamPage() {
               </Link>
             ))}
           </div>
-
-          {secondary.length > 0 && (
-            <div className="flex flex-col gap-6 border-t border-border pt-8 sm:flex-row">
-              {secondary.map((member) => (
-                <Link
-                  key={member.slug}
-                  href={`/team/${member.slug}`}
-                  className="flex flex-1 items-center gap-4 rounded-2xl border border-border p-6 transition-colors hover:border-border-strong"
-                >
-                  <div>
-                    <p className="font-display text-lg font-semibold text-foreground">
-                      {member.name}
-                    </p>
-                    <p className="mt-1 text-sm text-muted">{member.role}</p>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          )}
         </Container>
       </section>
     </>

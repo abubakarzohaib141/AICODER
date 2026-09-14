@@ -18,7 +18,7 @@ export default function SolutionsPage() {
       <PageHero
         eyebrow="Solutions"
         title="From AI Ideas to Working Systems"
-        description="Five ways we help businesses put AI to work — from a single agent to a full production system."
+        description="Five ways we help businesses put AI to work, from a single agent to a full production system."
       />
 
       <section className="py-16 sm:py-24">

@@ -5,123 +5,106 @@ import { Tag } from "@/components/ui/Tag";
 import { ScreenshotFrame } from "@/components/system/ScreenshotFrame";
 import { products } from "@/lib/content/products";
 
+const highlightSlugs = ["abz-agent-sdk", "ai-hiring-agent", "lenny-ai"];
+
+function ProjectCard({ product }: { product: (typeof products)[number] }) {
+  return (
+    <div className="hover-lift flex flex-col overflow-hidden rounded-[18px] border border-border hover:shadow-[0_20px_40px_-16px_rgba(32,30,28,0.18)]">
+      <div className="overflow-hidden">
+        <ScreenshotFrame
+          src={product.screenshots?.[0]}
+          alt={`${product.name} screenshot`}
+          label={product.name}
+          aspect={product.screenshotAspect}
+          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+        />
+      </div>
+      <div className="flex flex-1 flex-col gap-2.5 p-[22px]">
+        <span className="font-mono-label text-[10.5px] uppercase tracking-wide text-teal">
+          {product.category}
+        </span>
+        <span className="font-display text-[17px] font-bold text-foreground">{product.name}</span>
+        <p className="text-[13.5px] leading-relaxed text-muted">{product.description}</p>
+        <div className="mt-auto flex items-center justify-between gap-2.5 pt-1.5">
+          <span className="text-xs text-muted-2">Built by {product.builtBy}</span>
+          {product.links.length > 0 ? (
+            <a
+              href={product.links[0].href}
+              target={product.links[0].href.startsWith("/") ? undefined : "_blank"}
+              rel={product.links[0].href.startsWith("/") ? undefined : "noopener noreferrer"}
+              className="text-[12.5px] font-semibold text-foreground transition-colors hover:text-teal"
+            >
+              Visit →
+            </a>
+          ) : (
+            <Link
+              href={`/products/${product.slug}`}
+              className="text-[12.5px] font-semibold text-foreground transition-colors hover:text-teal"
+            >
+              Visit →
+            </Link>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function ProductShowcase() {
-  const featured = products.find((p) => p.featured) ?? products[0];
-  const rest = products.filter((p) => p.pinned && p.slug !== featured.slug);
+  const flagship = products.find((p) => p.slug === "crm-suite") ?? products[0];
+  const highlights = highlightSlugs
+    .map((slug) => products.find((p) => p.slug === slug))
+    .filter((p): p is (typeof products)[number] => Boolean(p));
 
   return (
-    <section className="border-t border-border py-20 sm:py-28">
-      <Container className="flex flex-col gap-12">
-        <SectionHeading
-          eyebrow="Our work"
-          title="What We've Built"
-          description="Real AI systems and products built by the AI Coders team."
-        />
+    <section id="work" className="scroll-mt-20 border-t border-border py-20 sm:py-28">
+      <Container className="flex flex-col gap-9">
+        <div className="flex flex-wrap items-end justify-between gap-5">
+          <SectionHeading eyebrow="Selected work" title="What We've Built" />
+          <Link
+            href="/products"
+            className="whitespace-nowrap text-sm font-semibold text-muted transition-colors hover:text-foreground"
+          >
+            See all work →
+          </Link>
+        </div>
 
-        <div className="grid gap-6 overflow-hidden rounded-3xl border border-border bg-background-elevated-2/40 p-2 lg:grid-cols-2 lg:p-3">
-          <div className="flex flex-col gap-8 p-6 sm:p-8">
-            <div className="flex flex-col gap-4">
-              <div className="flex flex-col gap-1.5 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
-                <span className="font-display text-2xl font-bold text-foreground">
-                  {featured.name}
-                </span>
-                <span className="font-mono-label text-[11px] uppercase tracking-wide text-muted-2">
-                  {featured.category}
-                </span>
-              </div>
-              <p className="max-w-sm text-base leading-relaxed text-muted">
-                {featured.description}
+        <div className="grid overflow-hidden rounded-[22px] border border-border sm:grid-cols-2">
+          <div className="flex flex-col justify-between gap-[22px] bg-background-elevated-2 p-9">
+            <div className="flex flex-col gap-3">
+              <span className="font-mono-label text-[11px] uppercase tracking-wide text-teal">
+                {flagship.category} · Flagship
+              </span>
+              <span className="font-display text-[26px] font-extrabold text-foreground">
+                {flagship.name}
+              </span>
+              <p className="max-w-[380px] text-[14.5px] leading-relaxed text-muted">
+                {flagship.description}
               </p>
             </div>
-
-            {featured.technology && (
+            {flagship.technology && (
               <div className="flex flex-wrap gap-2">
-                {featured.technology.map((tech) => (
+                {flagship.technology.map((tech) => (
                   <Tag key={tech}>{tech}</Tag>
                 ))}
               </div>
             )}
-
-            <div className="mt-auto flex flex-wrap items-center justify-between gap-3">
-              <span className="text-sm text-muted-2">Built by {featured.builtBy}</span>
-              <div className="flex flex-wrap gap-4">
-                {featured.links.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    target={link.href.startsWith("/") ? undefined : "_blank"}
-                    rel={link.href.startsWith("/") ? undefined : "noopener noreferrer"}
-                    className="text-sm font-medium text-foreground transition-colors hover:text-teal"
-                  >
-                    {link.label} →
-                  </a>
-                ))}
-              </div>
-            </div>
+            <span className="text-[12.5px] text-muted-2">Built by {flagship.builtBy}</span>
           </div>
-          <div className="p-4 sm:p-6">
+          <div className="flex items-center bg-background-elevated p-5">
             <ScreenshotFrame
-              src={featured.screenshots?.[0]}
-              alt={`${featured.name} screenshot`}
-              label={featured.name}
+              src={flagship.screenshots?.[0]}
+              alt={`${flagship.name} screenshot`}
+              label={flagship.name}
+              aspect={flagship.screenshotAspect}
             />
           </div>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {rest.map((product) => (
-            <div
-              key={product.slug}
-              className="flex flex-col gap-4 rounded-2xl border border-border p-7"
-            >
-              <ScreenshotFrame
-                src={product.screenshots?.[0]}
-                alt={`${product.name} screenshot`}
-                label={product.name}
-              />
-              <div className="flex flex-col gap-1.5">
-                <span className="font-mono-label text-[11px] uppercase tracking-wide text-teal">
-                  {product.category}
-                </span>
-                <span className="font-display text-lg font-semibold text-foreground">
-                  {product.name}
-                </span>
-              </div>
-              <p className="text-sm leading-relaxed text-muted">{product.description}</p>
-              <div className="mt-auto flex flex-wrap items-center justify-between gap-2 pt-2">
-                <span className="text-xs text-muted-2">Built by {product.builtBy}</span>
-                {product.links.length > 0 ? (
-                  <a
-                    href={product.links[0].href}
-                    target={product.links[0].href.startsWith("/") ? undefined : "_blank"}
-                    rel={product.links[0].href.startsWith("/") ? undefined : "noopener noreferrer"}
-                    className="text-sm text-foreground/80 transition-colors hover:text-teal"
-                  >
-                    {product.links[0].label} →
-                  </a>
-                ) : (
-                  <Link
-                    href={`/products/${product.slug}`}
-                    className="text-sm text-foreground/80 transition-colors hover:text-teal"
-                  >
-                    Learn more →
-                  </Link>
-                )}
-              </div>
-            </div>
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {highlights.map((product) => (
+            <ProjectCard key={product.slug} product={product} />
           ))}
-
-          <Link
-            href="/products"
-            className="flex min-h-[220px] flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-border-strong p-7 text-center transition-colors hover:border-teal/50"
-          >
-            <span className="font-mono-label text-[11px] uppercase tracking-wide text-muted-2">
-              More work
-            </span>
-            <span className="text-sm text-muted">
-              This is a curated selection — see the full list of {products.length} projects.
-            </span>
-          </Link>
         </div>
       </Container>
     </section>
