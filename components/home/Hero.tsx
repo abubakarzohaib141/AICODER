@@ -1,5 +1,6 @@
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
+import { BookCallButton } from "@/components/booking/BookCallButton";
+import { AgentFlowCard } from "@/components/system/AgentFlowCard";
 
 export function Hero() {
   return (
@@ -7,8 +8,8 @@ export function Hero() {
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-border" />
       <div className="pointer-events-none absolute left-1/2 top-24 hidden h-64 w-px -translate-x-1/2 bg-gradient-to-b from-border to-transparent sm:block" />
 
-      <Container className="relative flex flex-col items-center gap-8 pb-20 text-center sm:pb-28">
-        <h1 className="max-w-3xl font-display text-4xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-6xl">
+      <Container className="relative flex flex-col items-center gap-8 pb-16 text-center sm:pb-20">
+        <h1 className="max-w-4xl font-display text-5xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-7xl">
           We Build AI Systems That Do{" "}
           <span className="highlight-mark highlight-teal">Real Work.</span>
         </h1>
@@ -18,15 +19,19 @@ export function Hero() {
           business problems.
         </p>
 
-        <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-          <Button href="/contact">Book a Call</Button>
+        <div className="flex flex-wrap items-center justify-center gap-5 pt-2">
+          <BookCallButton className="!px-7 !py-3.5 !text-base">Book a Call</BookCallButton>
           <a
             href="#work"
-            className="inline-flex items-center justify-center gap-2 rounded-full border border-border-strong px-6 py-3 text-sm font-medium text-foreground transition-colors hover:border-blue hover:bg-background-elevated"
+            className="text-sm font-medium text-muted transition-colors hover:text-foreground"
           >
             See Our Work ↓
           </a>
         </div>
+      </Container>
+
+      <Container className="relative pb-20 sm:pb-28">
+        <AgentFlowCard className="mx-auto max-w-4xl" />
       </Container>
     </section>
   );

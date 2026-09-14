@@ -12,16 +12,21 @@ export const technologies: TechGroup[] = [
 
 export type Industry = {
   name: string;
+  problem: string;
   items: string[];
+  example?: { label: string; href: string };
 };
 
 export const industries: Industry[] = [
   {
     name: "E-commerce",
+    problem: "Support teams field the same order, shipping and return questions all day.",
     items: ["Shopify support", "Customer service agents", "Sales automation", "Order workflows"],
+    example: { label: "See tResolv", href: "/products/tresolv" },
   },
   {
     name: "Healthcare & Pharma",
+    problem: "Clinical and admin staff lose hours to scheduling, documentation and repetitive intake.",
     items: [
       "AI assistants",
       "Documentation",
@@ -29,14 +34,19 @@ export const industries: Industry[] = [
       "Workflow automation",
       "Human-in-the-loop systems",
     ],
+    example: { label: "See AI Dental Receptionist", href: "/products/dental-receptionist" },
   },
   {
     name: "Business Operations",
+    problem: "Sales, CRM, hiring and reporting run across disconnected tools and manual spreadsheets.",
     items: ["CRM", "Sales", "HR", "Lead management", "Internal automation"],
+    example: { label: "See CRM & Business Automation Suite", href: "/products/crm-suite" },
   },
   {
     name: "Education",
+    problem: "Admissions, evaluation and research work is manual, repetitive and slow to scale.",
     items: ["AI knowledge systems", "Research assistants", "Educational automation"],
+    example: { label: "See AI University Admissions Evaluator", href: "/products/university-admissions" },
   },
 ];
 

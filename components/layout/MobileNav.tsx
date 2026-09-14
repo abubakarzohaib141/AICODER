@@ -4,6 +4,7 @@ import { useState, useEffect, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import { siteConfig } from "@/lib/content/site";
+import { useBooking } from "@/components/booking/BookingProvider";
 
 const emptySubscribe = () => () => {};
 
@@ -18,6 +19,7 @@ function useMounted() {
 export function MobileNav() {
   const [open, setOpen] = useState(false);
   const mounted = useMounted();
+  const { open: openBooking } = useBooking();
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -69,13 +71,16 @@ export function MobileNav() {
               ))}
             </nav>
             <div className="mt-auto px-6 pb-10">
-              <Link
-                href="/contact"
-                onClick={() => setOpen(false)}
+              <button
+                type="button"
+                onClick={() => {
+                  setOpen(false);
+                  openBooking();
+                }}
                 className="flex w-full items-center justify-center rounded-full bg-foreground px-6 py-3.5 text-sm font-medium text-background"
               >
                 Book a Call
-              </Link>
+              </button>
             </div>
           </div>,
           document.body

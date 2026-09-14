@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import { BookCallButton } from "@/components/booking/BookCallButton";
 
 export function FinalCta() {
   return (
@@ -12,12 +13,15 @@ export function FinalCta() {
           Tell us what you&apos;re trying to build or automate. We&apos;ll explore where AI
           agents, automation or custom AI engineering can create real value.
         </p>
-        <div className="pt-2">
+        <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+          <BookCallButton variant="inverse" className="!px-7 !py-3.5 text-sm">
+            Book a Call
+          </BookCallButton>
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center rounded-full bg-dark-foreground px-7 py-3.5 text-sm font-medium text-dark-background transition-opacity hover:opacity-90"
+            className="text-sm font-medium text-dark-muted transition-colors hover:text-dark-foreground"
           >
-            Book a Call
+            Or send a message
           </Link>
         </div>
       </Container>

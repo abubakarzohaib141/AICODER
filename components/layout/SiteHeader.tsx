@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
 import { MobileNav } from "@/components/layout/MobileNav";
+import { BookCallButton } from "@/components/booking/BookCallButton";
 import { siteConfig } from "@/lib/content/site";
 
 export function SiteHeader() {
@@ -22,12 +23,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden sm:block">
-          <Link
-            href="/contact"
-            className="inline-flex items-center justify-center rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-85"
-          >
-            Book a Call
-          </Link>
+          <BookCallButton className="!px-5 !py-2.5">Book a Call</BookCallButton>
         </div>
 
         <MobileNav />

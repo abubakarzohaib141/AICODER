@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { LogoMark } from "@/components/ui/LogoMark";
+import { BookCallButton } from "@/components/booking/BookCallButton";
 import { siteConfig } from "@/lib/content/site";
 
 export function SiteFooter() {
@@ -10,14 +11,17 @@ export function SiteFooter() {
     <footer className="border-t border-border">
       <Container className="flex flex-col gap-10 py-14 sm:py-16">
         <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
-          <div className="flex max-w-xs flex-col gap-3">
+          <div className="flex max-w-sm flex-col gap-4">
             <div className="flex items-center gap-2.5">
-              <LogoMark className="h-6 w-6" />
-              <span className="font-display text-sm font-semibold tracking-tight">AI CODERS</span>
+              <LogoMark className="h-7 w-7" />
+              <span className="font-display text-base font-semibold tracking-tight">
+                AI CODERS
+              </span>
             </div>
-            <p className="font-mono-label text-xs uppercase tracking-[0.14em] text-muted">
-              {siteConfig.tagline}
-            </p>
+            <p className="text-sm leading-relaxed text-muted">{siteConfig.description}</p>
+            <BookCallButton variant="secondary" className="w-fit !px-5 !py-2.5 text-sm">
+              Book a Call
+            </BookCallButton>
           </div>
 
           <div className="grid grid-cols-2 gap-x-12 gap-y-8 sm:flex sm:gap-16">
