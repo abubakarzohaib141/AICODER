@@ -53,7 +53,7 @@ export function ContactForm() {
           Inquiry sent
         </span>
         <p className="font-display text-xl font-semibold text-foreground">
-          Thanks — we&apos;ll be in touch shortly.
+          Thanks. We&apos;ll be in touch shortly.
         </p>
         <p className="text-sm text-muted">
           We review every project inquiry and typically respond within a few business days.

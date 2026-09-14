@@ -74,7 +74,7 @@ export function MobileNav() {
                 onClick={() => setOpen(false)}
                 className="flex w-full items-center justify-center rounded-full bg-foreground px-6 py-3.5 text-sm font-medium text-background"
               >
-                Start a Project
+                Book a Call
               </Link>
             </div>
           </div>,

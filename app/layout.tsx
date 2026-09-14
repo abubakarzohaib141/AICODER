@@ -26,8 +26,8 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} — AI Engineering, Agentic AI & Automation`,
-    template: `%s — ${siteConfig.name}`,
+    default: `${siteConfig.name}: AI Engineering, Agentic AI & Automation`,
+    template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
   keywords: [
@@ -42,12 +42,12 @@ export const metadata: Metadata = {
     type: "website",
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: `${siteConfig.name} — AI Engineering, Agentic AI & Automation`,
+    title: `${siteConfig.name}: AI Engineering, Agentic AI & Automation`,
     description: siteConfig.description,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} — AI Engineering, Agentic AI & Automation`,
+    title: `${siteConfig.name}: AI Engineering, Agentic AI & Automation`,
     description: siteConfig.description,
   },
   robots: { index: true, follow: true },

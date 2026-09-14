@@ -23,9 +23,9 @@ export const products: Product[] = [
     index: "01",
     category: "AI Customer Support / Shopify",
     name: "tResolv",
-    title: "tResolv — AI Customer Support Agent for Shopify",
+    title: "tResolv: AI Support Employee for Shopify Brands",
     description:
-      "tResolv answers Shopify customers directly in the storefront chat — looking up real order data and staging actions like cancellations for one-tap merchant approval.",
+      "tResolv is an AI support employee built for Shopify brands. It handles customer questions, checks live order and product data, and resolves routine support requests. Sensitive actions stay human-approved, so brands can automate support without losing control.",
     builtBy: "Syeda Hafsa",
     builtBySlug: "hafsa",
     links: [{ label: "Visit tResolv", href: "http://tresolv.online/" }],
@@ -37,9 +37,9 @@ export const products: Product[] = [
     index: "02",
     category: "AI Product Development",
     name: "Scope AI CV",
-    title: "Scope AI CV — AI CV & Job Application Platform",
+    title: "Scope AI CV: AI CV & Job Application Platform",
     description:
-      "An AI-powered CV and job application platform built for a client — one CV upload, and the AI parses it, matches jobs and submits applications automatically.",
+      "An AI-powered CV and job application platform built for a client. Upload one CV, and the AI parses it, matches jobs and submits applications automatically.",
     builtBy: "Syeda Hafsa",
     builtBySlug: "hafsa",
     links: [
@@ -55,7 +55,7 @@ export const products: Product[] = [
     index: "03",
     category: "RAG / Business Intelligence",
     name: "Lenny AI",
-    title: "Lenny AI — RAG Agent for Business Intelligence",
+    title: "Lenny AI: RAG Agent for Business Intelligence",
     description:
       "A specialized RAG (Retrieval-Augmented Generation) agent for business intelligence. Its vector embedding pipeline and prompt engineering framework give Lenny grounded, context-aware business responses.",
     builtBy: "Syeda Hafsa",
@@ -115,7 +115,7 @@ export const products: Product[] = [
     name: "LeadGen AI Platform",
     title: "LeadGen AI Platform",
     description:
-      "An AI-powered sales engine that finds leads from sources like Google Maps and LinkedIn, researches and scores them for fit, and writes personalized outreach — automating most of the manual prospecting work.",
+      "An AI-powered sales engine that finds leads from sources like Google Maps and LinkedIn, researches and scores them for fit, and writes personalized outreach, automating most of the manual prospecting work.",
     builtBy: "Syeda Hafsa",
     builtBySlug: "hafsa",
     links: [{ label: "Visit LeadGen AI", href: "https://lead-system.lovable.app/" }],
@@ -155,7 +155,7 @@ export const products: Product[] = [
     index: "10",
     category: "Sales Automation / Email",
     name: "ReActivate",
-    title: "ReActivate — AI Email Reactivation System",
+    title: "ReActivate: AI Email Reactivation System",
     description:
       "An AI-driven email reactivation system for recruitment agencies that runs a four-email follow-up sequence, personalizes each message with Mistral AI, and stops automatically the moment a contact replies.",
     builtBy: "Syeda Hafsa",
@@ -199,7 +199,7 @@ export const products: Product[] = [
     name: "AI Insurance Claims Assistant",
     title: "AI Insurance Claims Assistant (WhatsApp)",
     description:
-      "A WhatsApp claims concierge that walks users through submitting an insurance claim step by step, verifying each uploaded document — license, ID, vehicle ownership, police report — as it comes in.",
+      "A WhatsApp claims concierge that walks users through submitting an insurance claim step by step, verifying each uploaded document (license, ID, vehicle ownership, police report) as it comes in.",
     builtBy: "Syeda Hafsa",
     builtBySlug: "hafsa",
     links: [],
@@ -227,7 +227,7 @@ export const products: Product[] = [
     name: "AI Operations Manager",
     title: "AI Operations Manager (Home Cleaning Services)",
     description:
-      "A WhatsApp-based operations assistant for a cleaning company that reads staff status updates from a group chat, confirms them instantly, and keeps the master job list in sync — in the client's own language.",
+      "A WhatsApp-based operations assistant for a cleaning company that reads staff status updates from a group chat, confirms them instantly, and keeps the master job list in sync, in the client's own language.",
     builtBy: "Syeda Hafsa",
     builtBySlug: "hafsa",
     links: [],
@@ -255,7 +255,7 @@ export const products: Product[] = [
     name: "AI Content Engine & Agency Management",
     title: "AI Content Engine & Agency Management System",
     description:
-      "An n8n-powered content engine that coordinates a marketing agency's video production pipeline — from creator handoff through client approval — without manual chasing between tools.",
+      "An n8n-powered content engine that coordinates a marketing agency's video production pipeline, from creator handoff through client approval, without manual chasing between tools.",
     builtBy: "Syeda Hafsa",
     builtBySlug: "hafsa",
     links: [],
@@ -281,7 +281,7 @@ export const products: Product[] = [
     name: "Autonomous Graphic Design Agent",
     title: "Autonomous Graphic Design Agent",
     description:
-      "A chat-based design agent that turns a short brief into a finished graphic — extracting brand details through conversation and generating on-brand visuals in under a minute.",
+      "A chat-based design agent that turns a short brief into a finished graphic, extracting brand details through conversation and generating on-brand visuals in under a minute.",
     builtBy: "Syeda Hafsa",
     builtBySlug: "hafsa",
     links: [],

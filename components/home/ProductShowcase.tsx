@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -147,21 +148,69 @@ export function ProductShowcase() {
             {grid.map((product) => (
               <ProjectCard key={product.slug} product={product} />
             ))}
-
-            <Link
-              href="/products"
-              className="flex min-h-[220px] flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-border-strong p-7 text-center transition-colors hover:border-teal/50"
-            >
-              <span className="font-mono-label text-[11px] uppercase tracking-wide text-muted-2">
-                More work
-              </span>
-              <span className="text-sm text-muted">
-                This is a curated selection — see the full list of {products.length} projects.
-              </span>
-            </Link>
           </div>
+
+          <MoreWork excludeSlugs={[featured.slug, ...rest.map((p) => p.slug)]} />
         </div>
       </Container>
     </section>
+  );
+}
+
+function MoreWork({ excludeSlugs }: { excludeSlugs: string[] }) {
+  const more = products.filter((p) => !excludeSlugs.includes(p.slug)).slice(0, 6);
+  if (more.length === 0) return null;
+
+  return (
+    <div className="flex flex-col gap-1 rounded-2xl border border-border pt-2">
+      <div className="flex items-baseline justify-between px-6 pb-4 pt-4">
+        <span className="font-mono-label text-[11px] uppercase tracking-wide text-muted-2">
+          More work
+        </span>
+        <Link
+          href="/products"
+          className="text-sm text-foreground/80 transition-colors hover:text-teal"
+        >
+          View all {products.length} projects →
+        </Link>
+      </div>
+      <div className="flex flex-col divide-y divide-border border-t border-border">
+        {more.map((product) => (
+          <Link
+            key={product.slug}
+            href={`/products/${product.slug}`}
+            className="group flex items-center gap-4 px-6 py-4 transition-colors hover:bg-background-elevated-2/40"
+          >
+            <div className="relative hidden h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-border bg-background-elevated-2 sm:flex">
+              {product.screenshots?.[0] ? (
+                <Image
+                  src={product.screenshots[0]}
+                  alt=""
+                  fill
+                  sizes="56px"
+                  className="object-cover object-top"
+                />
+              ) : (
+                <span className="font-mono-label text-[10px] uppercase text-muted-2">
+                  {product.category.split(" ")[0]}
+                </span>
+              )}
+            </div>
+            <div className="flex min-w-0 flex-1 flex-col gap-0.5">
+              <span className="truncate font-display text-sm font-semibold text-foreground group-hover:text-teal">
+                {product.name}
+              </span>
+              <span className="truncate text-xs text-muted-2">{product.category}</span>
+            </div>
+            <span className="hidden shrink-0 text-xs text-muted-2 sm:block">
+              Built by {product.builtBy}
+            </span>
+            <span className="shrink-0 text-sm text-foreground/70 transition-transform group-hover:translate-x-0.5">
+              →
+            </span>
+          </Link>
+        ))}
+      </div>
+    </div>
   );
 }

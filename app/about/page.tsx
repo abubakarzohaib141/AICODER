@@ -57,7 +57,7 @@ export default function AboutPage() {
             </span>
             <p className="text-sm leading-relaxed text-muted">
               AI Coders came together as a small team of siblings who each brought a different
-              engineering discipline — agentic AI, automation and CRM systems — into one studio
+              engineering discipline (agentic AI, automation and CRM systems) into one studio
               focused on shipping working AI systems for real businesses.
             </p>
           </aside>

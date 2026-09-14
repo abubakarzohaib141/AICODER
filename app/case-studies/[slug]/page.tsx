@@ -97,7 +97,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 
           <aside className="flex h-fit flex-col gap-4 rounded-2xl border border-border bg-background-elevated/40 p-7 lg:sticky lg:top-24">
             <span className="font-mono-label text-xs uppercase tracking-wide text-muted-2">
-              05 — Technology
+              05. Technology
             </span>
             <div className="flex flex-wrap gap-2">
               {study.technology.map((tech) => (

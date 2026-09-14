@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 const sections = [
   {
     title: "Information We Collect",
-    body: "When you submit a project inquiry through our contact form, we collect the information you provide — your name, company, work email, and details about your project.",
+    body: "When you submit a project inquiry through our contact form, we collect the information you provide: your name, company, work email, and details about your project.",
   },
   {
     title: "How We Use Information",

@@ -26,7 +26,7 @@ export function SiteHeader() {
             href="/contact"
             className="inline-flex items-center justify-center rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-85"
           >
-            Start a Project
+            Book a Call
           </Link>
         </div>
 

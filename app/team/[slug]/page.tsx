@@ -3,11 +3,18 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Tag } from "@/components/ui/Tag";
+import { TeamPhotoFrame } from "@/components/system/TeamPhotoFrame";
+import { ScreenshotFrame } from "@/components/system/ScreenshotFrame";
 import { team } from "@/lib/content/team";
 import { products } from "@/lib/content/products";
 import { caseStudies } from "@/lib/content/case-studies";
 
-const accents = ["var(--accent-teal)", "var(--accent-blue)", "var(--accent-indigo)"];
+const accents = [
+  "var(--accent-teal)",
+  "var(--accent-blue)",
+  "var(--accent-indigo)",
+  "var(--accent-orange)",
+];
 
 export function generateStaticParams() {
   return team.map((member) => ({ slug: member.slug }));
@@ -29,9 +36,10 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
   const member = team.find((m) => m.slug === slug);
   if (!member) notFound();
 
+  const memberIndex = team.findIndex((m) => m.slug === member.slug);
+  const accent = accents[memberIndex % accents.length];
   const relatedProducts = products.filter((p) => p.builtBySlug === member.slug);
   const relatedCaseStudies = caseStudies.filter((c) => c.builtBySlug === member.slug);
-  const featuredIndex = team.filter((m) => m.featured).findIndex((m) => m.slug === member.slug);
 
   return (
     <>
@@ -41,12 +49,7 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
             ← All team
           </Link>
           <div className="flex items-center gap-6">
-            <span
-              className="font-display text-6xl font-bold leading-none"
-              style={{ color: member.featured ? accents[featuredIndex % accents.length] : "var(--muted-2)" }}
-            >
-              {member.name[0]}
-            </span>
+            <TeamPhotoFrame photo={member.photo} name={member.name} accent={accent} size="lg" />
             <div>
               <h1 className="font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
                 {member.name}
@@ -55,6 +58,9 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
             </div>
           </div>
           <p className="max-w-xl text-base leading-relaxed text-muted">{member.bio}</p>
+          {member.extra && (
+            <p className="max-w-xl text-base leading-relaxed text-muted">{member.extra}</p>
+          )}
 
           {member.links.length > 0 && (
             <div className="flex flex-wrap gap-3 pt-1">
@@ -90,7 +96,7 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
           {member.currentWork && (
             <div className="flex flex-col gap-3 rounded-2xl border border-orange/30 bg-background-elevated/40 p-8">
               <span className="font-mono-label text-xs uppercase tracking-wide text-orange">
-                Current Work — {member.currentWork.label}
+                Current Work: {member.currentWork.label}
               </span>
               <p className="text-base leading-relaxed text-muted">
                 {member.currentWork.description}
@@ -115,31 +121,48 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
           )}
 
           {(relatedProducts.length > 0 || relatedCaseStudies.length > 0) && (
-            <div className="grid gap-4 sm:grid-cols-2">
-              {relatedProducts.map((p) => (
-                <Link
-                  key={p.slug}
-                  href={`/products/${p.slug}`}
-                  className="rounded-2xl border border-border p-6 transition-colors hover:border-blue/60"
-                >
-                  <span className="font-mono-label text-[11px] uppercase tracking-wide text-teal-bright">
-                    Product
-                  </span>
-                  <p className="mt-2 font-display text-lg font-semibold text-foreground">{p.name}</p>
-                </Link>
-              ))}
-              {relatedCaseStudies.map((c) => (
-                <Link
-                  key={c.slug}
-                  href={`/case-studies/${c.slug}`}
-                  className="rounded-2xl border border-border p-6 transition-colors hover:border-blue/60"
-                >
-                  <span className="font-mono-label text-[11px] uppercase tracking-wide text-teal-bright">
-                    Case Study
-                  </span>
-                  <p className="mt-2 font-display text-lg font-semibold text-foreground">{c.title}</p>
-                </Link>
-              ))}
+            <div className="flex flex-col gap-5">
+              <span className="font-mono-label text-xs uppercase tracking-wide text-muted-2">
+                Real Work
+              </span>
+              <div className="grid gap-6 sm:grid-cols-2">
+                {relatedProducts.map((p) => (
+                  <Link
+                    key={p.slug}
+                    href={`/products/${p.slug}`}
+                    className="group flex flex-col gap-4 rounded-2xl border border-border p-6 transition-colors hover:border-blue/60"
+                  >
+                    <ScreenshotFrame
+                      src={p.screenshots?.[0]}
+                      alt={`${p.name} screenshot`}
+                      label={p.name}
+                      sizes="(min-width: 640px) 50vw, 100vw"
+                    />
+                    <div>
+                      <span className="font-mono-label text-[11px] uppercase tracking-wide text-teal-bright">
+                        Product
+                      </span>
+                      <p className="mt-2 font-display text-lg font-semibold text-foreground group-hover:text-teal">
+                        {p.name}
+                      </p>
+                    </div>
+                  </Link>
+                ))}
+                {relatedCaseStudies.map((c) => (
+                  <Link
+                    key={c.slug}
+                    href={`/case-studies/${c.slug}`}
+                    className="rounded-2xl border border-border p-6 transition-colors hover:border-blue/60"
+                  >
+                    <span className="font-mono-label text-[11px] uppercase tracking-wide text-teal-bright">
+                      Case Study
+                    </span>
+                    <p className="mt-2 font-display text-lg font-semibold text-foreground">
+                      {c.title}
+                    </p>
+                  </Link>
+                ))}
+              </div>
             </div>
           )}
         </Container>

@@ -17,7 +17,7 @@ export function FinalCta() {
             href="/contact"
             className="inline-flex items-center justify-center rounded-full bg-dark-foreground px-7 py-3.5 text-sm font-medium text-dark-background transition-opacity hover:opacity-90"
           >
-            Start an Engineering Project
+            Book a Call
           </Link>
         </div>
       </Container>
