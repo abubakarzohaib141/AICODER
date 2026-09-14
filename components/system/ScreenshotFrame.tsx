@@ -5,11 +5,13 @@ export function ScreenshotFrame({
   alt,
   label,
   aspect = "16/10",
+  sizes = "100vw",
 }: {
   src?: string;
   alt: string;
   label: string;
   aspect?: string;
+  sizes?: string;
 }) {
   if (src) {
     return (
@@ -17,7 +19,7 @@ export function ScreenshotFrame({
         className="relative w-full overflow-hidden rounded-xl border border-border bg-background-elevated-2"
         style={{ aspectRatio: aspect }}
       >
-        <Image src={src} alt={alt} fill className="object-cover object-top" />
+        <Image src={src} alt={alt} fill sizes={sizes} className="object-cover object-top" />
       </div>
     );
   }

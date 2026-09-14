@@ -71,6 +71,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                   alt={`${product.name} screenshot`}
                   label={product.name}
                   aspect="16/10"
+                  sizes="(min-width: 640px) 50vw, 100vw"
                 />
               ))}
             </div>
