@@ -33,7 +33,7 @@ export const products: Product[] = [
     links: [{ label: "Visit tResolv", href: "http://tresolv.online/" }],
     technology: ["Shopify", "AI Agents", "RAG", "APIs"],
     screenshots: ["/projects/tresolv.png"],
-    screenshotAspect: "2/1",
+    screenshotAspect: "12/5",
     featured: true,
   },
   {
@@ -52,7 +52,7 @@ export const products: Product[] = [
     ],
     technology: ["AI Product Development", "Automation"],
     screenshots: ["/projects/scope-ai-cv.png"],
-    screenshotAspect: "2/1",
+    screenshotAspect: "12/5",
     pinned: true,
   },
   {
@@ -82,7 +82,7 @@ export const products: Product[] = [
     links: [{ label: "Visit ABZ Agent SDK", href: "https://www.abzagent.online/" }],
     technology: ["Agent SDKs", "OpenAI Agent SDK", "Python"],
     screenshots: ["/projects/abz-agent-sdk.png"],
-    screenshotAspect: "2/1",
+    screenshotAspect: "12/5",
     pinned: true,
   },
   {

@@ -16,10 +16,12 @@ export function ScreenshotFrame({
   if (src) {
     return (
       <div
-        className="relative w-full overflow-hidden rounded-xl border border-border bg-background-elevated-2"
+        className="relative w-full overflow-hidden rounded-xl border border-border bg-background-elevated-2 p-2 sm:p-3"
         style={{ aspectRatio: aspect }}
       >
-        <Image src={src} alt={alt} fill sizes={sizes} className="object-cover object-top" />
+        <div className="relative h-full w-full overflow-hidden rounded-lg shadow-[0_1px_3px_rgba(0,0,0,0.08)]">
+          <Image src={src} alt={alt} fill sizes={sizes} className="object-contain" />
+        </div>
       </div>
     );
   }
