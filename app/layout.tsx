@@ -4,6 +4,7 @@ import "./globals.css";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { BookingProvider } from "@/components/booking/BookingProvider";
+import { MotionRoot } from "@/components/motion/MotionRoot";
 import { siteConfig } from "@/lib/content/site";
 
 const manrope = Manrope({
@@ -61,11 +62,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${manrope.variable} ${inter.variable} ${jetbrainsMono.variable} h-full`}
     >
       <body className="flex min-h-full flex-col antialiased">
-        <BookingProvider>
-          <SiteHeader />
-          <main className="flex-1">{children}</main>
-          <SiteFooter />
-        </BookingProvider>
+        <MotionRoot>
+          <BookingProvider>
+            <SiteHeader />
+            <main className="flex-1">{children}</main>
+            <SiteFooter />
+          </BookingProvider>
+        </MotionRoot>
       </body>
     </html>
   );

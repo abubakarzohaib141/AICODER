@@ -1,5 +1,9 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/Reveal";
 import { services } from "@/lib/content/services";
 
 const iconColors: Record<string, string> = {
@@ -39,17 +43,19 @@ export function WhatWeBuild() {
   return (
     <section className="border-t border-border py-20 sm:py-28">
       <Container className="flex flex-col gap-12">
-        <SectionHeading
-          eyebrow="What we build"
-          title={
-            <>
-              From AI Ideas to <span className="text-orange">Working Systems</span>
-            </>
-          }
-        />
+        <Reveal>
+          <SectionHeading
+            eyebrow="What we build"
+            title={
+              <>
+                From AI Ideas to <span className="text-orange">Working Systems</span>
+              </>
+            }
+          />
+        </Reveal>
 
-        <div className="grid gap-[18px] sm:grid-cols-2 lg:grid-cols-4">
-          <div className="relative flex flex-col justify-between gap-7 overflow-hidden rounded-[20px] bg-[radial-gradient(120%_140%_at_100%_0%,rgba(79,127,247,0.35),transparent_60%),linear-gradient(160deg,#0f1b2e,#141b26_60%)] p-8 sm:col-span-2 sm:row-span-2">
+        <StaggerGroup className="grid gap-[18px] sm:grid-cols-2 lg:grid-cols-4">
+          <StaggerItem className="relative flex flex-col justify-between gap-7 overflow-hidden rounded-[20px] bg-[radial-gradient(120%_140%_at_100%_0%,rgba(79,127,247,0.35),transparent_60%),linear-gradient(160deg,#0f1b2e,#141b26_60%)] p-8 sm:col-span-2 sm:row-span-2">
             <span className="absolute right-[22px] top-[22px] flex h-[34px] w-[34px] items-center justify-center rounded-full border border-white/25 text-[15px] text-dark-foreground">
               →
             </span>
@@ -75,14 +81,15 @@ export function WhatWeBuild() {
                 </span>
               ))}
             </div>
-          </div>
+          </StaggerItem>
 
           {rest.map((service) => {
             const color = iconColors[service.slug] ?? "#147d8a";
             return (
-              <div
-                key={service.slug}
-                className="hover-lift group relative flex flex-col gap-4 overflow-hidden rounded-[20px] border border-border bg-background-elevated p-6.5 hover:shadow-[0_20px_40px_-18px_var(--tw-shadow-color)]"
+              <StaggerItem key={service.slug} className="group relative">
+              <motion.div
+                whileHover={{ y: -5 }}
+                className="relative flex h-full flex-col gap-4 overflow-hidden rounded-[20px] border border-border bg-background-elevated p-6.5 hover:shadow-[0_20px_40px_-18px_var(--tw-shadow-color)]"
                 style={{ "--tw-shadow-color": `${color}55` } as React.CSSProperties}
               >
                 <span
@@ -104,10 +111,11 @@ export function WhatWeBuild() {
                   {service.name}
                 </span>
                 <p className="text-sm leading-relaxed text-muted">{service.summary}</p>
-              </div>
+              </motion.div>
+              </StaggerItem>
             );
           })}
-        </div>
+        </StaggerGroup>
       </Container>
     </section>
   );

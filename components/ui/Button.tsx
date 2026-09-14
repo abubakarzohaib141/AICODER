@@ -1,5 +1,9 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { ReactNode } from "react";
+import { tapScale } from "@/lib/motion";
 
 type Variant = "primary" | "secondary" | "ghost" | "gradient";
 
@@ -11,8 +15,10 @@ const variants: Record<Variant, string> = {
   secondary:
     "border border-border-strong text-foreground hover:border-blue hover:bg-background-elevated",
   ghost: "text-foreground/80 hover:text-foreground",
-  gradient: "bg-gradient-brand text-white transition-transform hover:-translate-y-0.5",
+  gradient: "bg-gradient-brand text-white",
 };
+
+const MotionLink = motion.create(Link);
 
 export function Button({
   href,
@@ -28,16 +34,23 @@ export function Button({
   external?: boolean;
 }) {
   const classes = `${base} ${variants[variant]} ${className}`;
+  const hoverProps = { whileHover: { y: -2 }, whileTap: tapScale };
   if (external) {
     return (
-      <a href={href} target="_blank" rel="noopener noreferrer" className={classes}>
+      <motion.a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={classes}
+        {...hoverProps}
+      >
         {children}
-      </a>
+      </motion.a>
     );
   }
   return (
-    <Link href={href} className={classes}>
+    <MotionLink href={href} className={classes} {...hoverProps}>
       {children}
-    </Link>
+    </MotionLink>
   );
 }

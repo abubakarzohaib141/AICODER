@@ -2,6 +2,9 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
+
+const MotionLink = motion.create(Link);
 import { Logo } from "@/components/ui/Logo";
 import { MobileNav } from "@/components/layout/MobileNav";
 import { BookCallButton } from "@/components/booking/BookCallButton";
@@ -29,13 +32,20 @@ export function SiteHeader() {
 
         <nav className="hidden items-center gap-8 sm:flex">
           {siteConfig.nav.map((item) => (
-            <Link
+            <MotionLink
               key={item.href}
               href={item.href}
-              className="text-sm text-muted transition-colors hover:text-foreground"
+              className="relative text-sm text-muted transition-colors hover:text-foreground"
+              initial="rest"
+              whileHover="hover"
             >
               {item.label}
-            </Link>
+              <motion.span
+                className="absolute -bottom-1 left-0 h-px w-full origin-left bg-foreground"
+                variants={{ rest: { scaleX: 0 }, hover: { scaleX: 1 } }}
+                transition={{ duration: 0.2 }}
+              />
+            </MotionLink>
           ))}
         </nav>
 

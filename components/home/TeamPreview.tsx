@@ -1,6 +1,10 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { TeamPhotoFrame } from "@/components/system/TeamPhotoFrame";
+import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/Reveal";
 import { team } from "@/lib/content/team";
 
 const accents = [
@@ -14,7 +18,7 @@ export function TeamPreview() {
   return (
     <section className="border-t border-border py-16 sm:py-20">
       <Container className="flex flex-col gap-7">
-        <div className="flex flex-wrap items-baseline justify-between gap-5">
+        <Reveal className="flex flex-wrap items-baseline justify-between gap-5">
           <h2 className="font-display text-[22px] font-extrabold tracking-tight text-foreground sm:text-[28px]">
             The People Behind It
           </h2>
@@ -24,29 +28,34 @@ export function TeamPreview() {
           >
             Meet the team →
           </Link>
-        </div>
+        </Reveal>
 
-        <div className="grid gap-[18px] sm:grid-cols-2 lg:grid-cols-4">
+        <StaggerGroup className="grid gap-[18px] sm:grid-cols-2 lg:grid-cols-4">
           {team.map((member, i) => (
-            <Link
-              key={member.slug}
-              href={`/team/${member.slug}`}
-              className="flex items-center gap-3.5 rounded-2xl border border-border p-4 transition-colors hover:border-border-strong"
-            >
-              <TeamPhotoFrame
-                photo={member.photo}
-                name={member.name}
-                accent={accents[i % accents.length]}
-                size="sm"
-                shape="circle"
-              />
-              <div className="flex min-w-0 flex-col gap-0.5">
-                <span className="truncate text-sm font-bold text-foreground">{member.name}</span>
-                <span className="truncate text-xs text-muted-2">{member.shortRole}</span>
-              </div>
-            </Link>
+            <StaggerItem key={member.slug}>
+              <Link
+                href={`/team/${member.slug}`}
+                className="flex items-center gap-3.5 rounded-2xl border border-border p-4 transition-colors hover:border-border-strong"
+              >
+                <motion.div whileHover={{ scale: 1.08 }} transition={{ duration: 0.2 }}>
+                  <TeamPhotoFrame
+                    photo={member.photo}
+                    name={member.name}
+                    accent={accents[i % accents.length]}
+                    size="sm"
+                    shape="circle"
+                  />
+                </motion.div>
+                <div className="flex min-w-0 flex-col gap-0.5">
+                  <span className="truncate text-sm font-bold text-foreground">
+                    {member.name}
+                  </span>
+                  <span className="truncate text-xs text-muted-2">{member.shortRole}</span>
+                </div>
+              </Link>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
       </Container>
     </section>
   );
