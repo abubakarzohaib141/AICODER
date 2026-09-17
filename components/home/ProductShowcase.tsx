@@ -31,7 +31,7 @@ function ProjectCard({ product }: { product: (typeof products)[number] }) {
         className="pointer-events-none absolute inset-0 z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
         style={{
           background:
-            "radial-gradient(220px circle at var(--spot-x, 50%) var(--spot-y, 50%), rgba(20,125,138,0.12), transparent 70%)",
+            "radial-gradient(220px circle at var(--spot-x, 50%) var(--spot-y, 50%), rgba(120,120,128,0.12), transparent 70%)",
         }}
       />
       <motion.div
@@ -53,6 +53,13 @@ function ProjectCard({ product }: { product: (typeof products)[number] }) {
         </span>
         <span className="font-display text-[17px] font-bold text-foreground">{product.name}</span>
         <p className="text-[13.5px] leading-relaxed text-muted">{product.description}</p>
+        {product.technology && (
+          <div className="flex flex-wrap gap-1.5 pt-0.5">
+            {product.technology.map((tech) => (
+              <Tag key={tech}>{tech}</Tag>
+            ))}
+          </div>
+        )}
         <div className="mt-auto flex items-center justify-between gap-2.5 pt-1.5">
           <span className="text-xs text-muted-2">Engineered by AI Coders</span>
           {product.links.length > 0 ? (

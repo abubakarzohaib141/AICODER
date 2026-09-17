@@ -23,6 +23,9 @@
   --dark-border: rgba(247, 244, 241, 0.14);
 
   --gradient-brand: linear-gradient(90deg, #ff8800, #1c98a6, #4f7ff7);
+
+  --selection-bg: rgba(32, 30, 28, 0.12);
+  --selection-fg: var(--foreground);
 }
 
 @theme inline {
@@ -68,8 +71,8 @@ body {
 }
 
 ::selection {
-  background: var(--accent-teal);
-  color: var(--dark-foreground);
+  background: var(--selection-bg);
+  color: var(--selection-fg);
 }
 
 :focus-visible {
@@ -119,6 +122,8 @@ body {
   --muted-2: #7c8590;
   --border: rgba(247, 244, 241, 0.1);
   --border-strong: rgba(247, 244, 241, 0.18);
+  --selection-bg: rgba(247, 244, 241, 0.25);
+  --selection-fg: #07080c;
   display: grid;
   background: var(--background);
 }
