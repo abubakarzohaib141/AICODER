@@ -11,8 +11,13 @@ const accents = ["#147d8a", "#4f7ff7", "#2b1bba"];
 
 export function HowWeWork() {
   return (
-    <section className="border-t border-border py-20 sm:py-28">
-      <Container className="flex flex-col gap-16">
+    <section className="relative overflow-hidden border-t border-border py-20 sm:py-28">
+      <div className="section-atmosphere-grid" aria-hidden="true" />
+      <div className="section-atmosphere" aria-hidden="true">
+        <span />
+        <span />
+      </div>
+      <Container className="relative flex flex-col gap-16">
         <Reveal>
           <SectionHeading eyebrow="How we work" title="From Problem to Production" />
         </Reveal>

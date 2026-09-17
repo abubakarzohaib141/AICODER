@@ -12,6 +12,7 @@ export type CaseStudy = {
   results: string;
   builtBy?: string;
   builtBySlug?: string;
+  screenshot?: string;
 };
 
 export const caseStudies: CaseStudy[] = [
@@ -34,6 +35,7 @@ export const caseStudies: CaseStudy[] = [
       "tResolv is live at tresolv.online. Detailed performance metrics will be published as more merchant data becomes available.",
     builtBy: "Syeda Hafsa",
     builtBySlug: "hafsa",
+    screenshot: "/projects/tresolv.png",
   },
   {
     slug: "cv-job-platform",
@@ -54,6 +56,7 @@ export const caseStudies: CaseStudy[] = [
       "The platform was delivered as a working product for the client. Usage metrics are the client's to share.",
     builtBy: "Syeda Hafsa",
     builtBySlug: "hafsa",
+    screenshot: "/projects/scope-ai-cv.png",
   },
   {
     slug: "crm-automation",
@@ -74,5 +77,6 @@ export const caseStudies: CaseStudy[] = [
       "Both systems are built and in use internally. Client details are shared only with permission.",
     builtBy: "Muhammad Bin Zohaib",
     builtBySlug: "muhammad",
+    screenshot: "/projects/crm-suite.jpg",
   },
 ];

@@ -178,6 +178,49 @@ body {
   position: relative;
 }
 
+/* Self-contained atmosphere for a single section, sized to that section's own
+   bounds rather than the whole page — stays correct regardless of how tall
+   other sections (like the scroll-story) are. */
+.section-atmosphere {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.section-atmosphere span {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(110px);
+  mix-blend-mode: screen;
+  opacity: 0.5;
+}
+
+.section-atmosphere span:nth-child(1) {
+  top: -10%;
+  left: -6%;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(79, 127, 247, 0.16), transparent 70%);
+}
+
+.section-atmosphere span:nth-child(2) {
+  bottom: -14%;
+  right: -8%;
+  width: 460px;
+  height: 460px;
+  background: radial-gradient(circle, rgba(20, 125, 138, 0.14), transparent 70%);
+}
+
+.section-atmosphere-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  background-image: radial-gradient(currentColor 1px, transparent 1px);
+  background-size: 26px 26px;
+  color: var(--foreground);
+}
+
 @keyframes pulse-dot {
   0%,
   100% {
