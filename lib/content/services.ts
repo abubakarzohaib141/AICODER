@@ -25,18 +25,18 @@ export const services: Service[] = [
     ],
   },
   {
-    slug: "agentic-ai",
+    slug: "ai-automation",
     number: "02",
-    name: "Agentic AI Systems",
+    name: "AI Automation",
     summary:
-      "Multi-step AI systems combining agents, APIs, tools, databases and business logic.",
+      "AI-driven workflows that combine agents, tools and business logic to run a process end-to-end.",
     description:
-      "Beyond a single agent, we build coordinated systems: multiple agents, tools and data sources working together against a real workflow, with guardrails at every step.",
+      "Beyond a single agent, we build AI-driven automations that chain reasoning, tool calls and data together, so a whole workflow runs on its own with guardrails at every step.",
     bullets: [
-      "Multi-agent orchestration",
+      "Multi-step AI workflows",
       "Tool and API integration",
       "Retrieval-augmented reasoning",
-      "State, memory and handoff logic",
+      "Human handoff logic",
     ],
   },
   {
@@ -57,26 +57,26 @@ export const services: Service[] = [
     ],
   },
   {
-    slug: "ai-product-development",
+    slug: "agent-ticketing",
     number: "04",
+    name: "Agent Ticketing Systems",
+    summary: "AI agents that triage, route and resolve support and internal tickets.",
+    description:
+      "We build agent-based ticketing systems that read incoming requests, categorize and prioritize them, resolve the routine ones directly, and hand anything sensitive to the right person.",
+    bullets: [
+      "Ticket triage and categorization",
+      "Automated first response",
+      "Priority and SLA routing",
+      "Human escalation",
+    ],
+  },
+  {
+    slug: "ai-product-development",
+    number: "05",
     name: "AI Product Development",
     summary: "Turn an AI idea into a working product.",
     description:
       "From a rough idea to a shipped product, we handle the full path: prototyping the core AI behavior, building the product around it, and getting it into production.",
     bullets: ["Idea", "Prototype", "Product", "Deployment"],
-  },
-  {
-    slug: "custom-ai-engineering",
-    number: "05",
-    name: "Custom AI Engineering",
-    summary:
-      "Build custom AI systems around the client's existing workflow, infrastructure and requirements.",
-    description:
-      "Every business runs differently. We design systems around your actual stack, data and process instead of forcing you into a generic template.",
-    bullets: [
-      "Works with your existing infrastructure",
-      "Designed around your workflow",
-      "Integrates with the tools you already use",
-    ],
   },
 ];
