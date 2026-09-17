@@ -106,6 +106,73 @@ body {
   background-image: var(--gradient-brand);
 }
 
+/* Homepage-only dark gradient theme. Overrides the shared color tokens
+   inside this scope so every existing component (bg-background,
+   text-foreground, text-muted, border-border, ...) repaints for dark
+   without any component changes. */
+.homepage-noir {
+  --background: #07080c;
+  --background-elevated: #10131a;
+  --background-elevated-2: #161a23;
+  --foreground: #f7f4f1;
+  --muted: #aab3bd;
+  --muted-2: #7c8590;
+  --border: rgba(247, 244, 241, 0.1);
+  --border-strong: rgba(247, 244, 241, 0.18);
+  display: grid;
+  background: var(--background);
+}
+
+.homepage-noir > * {
+  grid-area: 1 / 1;
+}
+
+.homepage-noir-glow {
+  position: relative;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.homepage-noir-glow span {
+  position: absolute;
+  width: 720px;
+  height: 720px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  filter: blur(130px);
+  mix-blend-mode: screen;
+}
+
+.homepage-noir-glow span:nth-child(1) {
+  top: 4%;
+  left: 12%;
+  background: radial-gradient(circle, rgba(255, 170, 0, 0.22), transparent 70%);
+}
+
+.homepage-noir-glow span:nth-child(2) {
+  top: 30%;
+  left: 58%;
+  width: 820px;
+  height: 820px;
+  background: radial-gradient(circle, rgba(79, 127, 247, 0.2), transparent 70%);
+}
+
+.homepage-noir-glow span:nth-child(3) {
+  top: 60%;
+  left: 10%;
+  background: radial-gradient(circle, rgba(20, 125, 138, 0.22), transparent 70%);
+}
+
+.homepage-noir-glow span:nth-child(4) {
+  top: 88%;
+  left: 68%;
+  background: radial-gradient(circle, rgba(79, 127, 247, 0.14), transparent 70%);
+}
+
+.homepage-noir-content {
+  position: relative;
+}
+
 @keyframes pulse-dot {
   0%,
   100% {
