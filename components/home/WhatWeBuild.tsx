@@ -1,16 +1,19 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import {
   motion,
+  AnimatePresence,
   useScroll,
+  useSpring,
   useTransform,
   useReducedMotion,
-  MotionValue,
+  useMotionValueEvent,
 } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/Reveal";
+import { easeOut, stagger, fadeUp } from "@/lib/motion";
 import { services, type Service } from "@/lib/content/services";
 
 const cardColors: Record<string, string> = {
@@ -52,32 +55,39 @@ function ServiceIcon({ slug }: { slug: string }) {
   );
 }
 
-function BigCard({ service, color }: { service: Service; color: string }) {
+function BigCard({ service, color, animated = true }: { service: Service; color: string; animated?: boolean }) {
   return (
-    <div
+    <motion.div
+      initial={animated ? "hidden" : undefined}
+      animate={animated ? "show" : undefined}
+      variants={animated ? stagger : undefined}
       className="relative flex w-full max-w-3xl flex-col gap-6 overflow-hidden rounded-[24px] p-8 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.35)] sm:p-12"
       style={{
         background: `radial-gradient(120% 140% at 100% 0%, ${color}33, transparent 60%), linear-gradient(160deg, #0f1b2e, #141b26 60%)`,
       }}
     >
-      <span className="font-mono-label text-xs uppercase tracking-[0.18em] text-dark-muted">
+      <motion.span
+        variants={animated ? fadeUp : undefined}
+        className="font-mono-label text-xs uppercase tracking-[0.18em] text-dark-muted"
+      >
         {service.number}
-      </span>
-      <span
+      </motion.span>
+      <motion.span
+        variants={animated ? fadeUp : undefined}
         className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl"
         style={{ backgroundColor: color }}
       >
         <ServiceIcon slug={service.slug} />
-      </span>
-      <div className="flex flex-col gap-3">
+      </motion.span>
+      <motion.div variants={animated ? fadeUp : undefined} className="flex flex-col gap-3">
         <span className="font-display text-2xl font-extrabold text-dark-foreground sm:text-[32px]">
           {service.name}
         </span>
         <p className="max-w-lg text-[15px] leading-relaxed text-dark-muted sm:text-base">
           {service.description}
         </p>
-      </div>
-      <div className="flex flex-wrap gap-2">
+      </motion.div>
+      <motion.div variants={animated ? fadeUp : undefined} className="flex flex-wrap gap-2">
         {service.bullets.map((bullet) => (
           <span
             key={bullet}
@@ -86,51 +96,77 @@ function BigCard({ service, color }: { service: Service; color: string }) {
             {bullet}
           </span>
         ))}
+      </motion.div>
+    </motion.div>
+  );
+}
+
+function ScrollStory() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const total = services.length;
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+  // Spring-smoothed progress gives the transition weight and momentum instead
+  // of snapping 1:1 with every wheel/trackpad tick.
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 110,
+    damping: 26,
+    mass: 0.5,
+  });
+
+  // A normal wheel/trackpad scroll changes progress gradually, so the spring
+  // gives it weight. But an instant jump (End key, scrollbar drag) would
+  // otherwise leave the spring chasing a stale value for ~1s — snap it
+  // straight there instead so the content never looks out of sync.
+  useMotionValueEvent(scrollYProgress, "change", (v) => {
+    if (Math.abs(v - smoothProgress.get()) > 0.15) {
+      smoothProgress.jump(v);
+    }
+  });
+
+  useMotionValueEvent(smoothProgress, "change", (v) => {
+    const idx = Math.min(total - 1, Math.max(0, Math.floor(v * total)));
+    setActiveIndex((prev) => (prev === idx ? prev : idx));
+  });
+
+  // A few pixels of continuous drift tied to raw scroll, layered underneath
+  // the discrete crossfade so the section still feels alive between swaps.
+  const drift = useTransform(smoothProgress, (v) => {
+    const seg = 1 / total;
+    const local = ((v % seg) + seg) % seg;
+    return (local / seg - 0.5) * 10;
+  });
+
+  const active = services[activeIndex];
+  const color = cardColors[active.slug] ?? "#147d8a";
+
+  return (
+    <div ref={containerRef} style={{ height: `${total * 80}vh` }}>
+      <div className="sticky top-20 flex h-[75vh] items-center justify-center px-5">
+        <motion.div style={{ y: drift }} className="w-full max-w-3xl">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={active.slug}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5, ease: easeOut }}
+            >
+              <BigCard service={active} color={color} />
+            </motion.div>
+          </AnimatePresence>
+        </motion.div>
       </div>
     </div>
   );
 }
 
-function ScrollCard({
-  service,
-  color,
-  index,
-  total,
-  progress,
-}: {
-  service: Service;
-  color: string;
-  index: number;
-  total: number;
-  progress: MotionValue<number>;
-}) {
-  const segment = 1 / total;
-  const start = index * segment;
-  const end = start + segment;
-  const fadeInStart = index === 0 ? start : Math.max(0, start - segment * 0.35);
-  const fadeOutEnd = index === total - 1 ? end : Math.min(1, end + segment * 0.35);
-
-  const opacity = useTransform(progress, [fadeInStart, start, end, fadeOutEnd], [0, 1, 1, 0]);
-  const scale = useTransform(progress, [fadeInStart, start, end, fadeOutEnd], [0.92, 1, 1, 0.94]);
-  const y = useTransform(progress, [fadeInStart, start, end, fadeOutEnd], [48, 0, 0, -32]);
-
-  return (
-    <motion.div
-      style={{ opacity, scale, y }}
-      className="absolute inset-0 flex items-center justify-center px-5"
-    >
-      <BigCard service={service} color={color} />
-    </motion.div>
-  );
-}
-
 export function WhatWeBuild() {
-  const containerRef = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
 
   return (
     <section className="border-t border-border py-20 sm:py-28">
@@ -150,28 +186,12 @@ export function WhatWeBuild() {
           <StaggerGroup className="flex flex-col gap-6">
             {services.map((service) => (
               <StaggerItem key={service.slug} className="flex justify-center">
-                <BigCard
-                  service={service}
-                  color={cardColors[service.slug] ?? "#147d8a"}
-                />
+                <BigCard service={service} color={cardColors[service.slug] ?? "#147d8a"} animated={false} />
               </StaggerItem>
             ))}
           </StaggerGroup>
         ) : (
-          <div ref={containerRef} style={{ height: `${services.length * 90}vh` }}>
-            <div className="sticky top-16 h-[80vh] overflow-hidden">
-              {services.map((service, i) => (
-                <ScrollCard
-                  key={service.slug}
-                  service={service}
-                  color={cardColors[service.slug] ?? "#147d8a"}
-                  index={i}
-                  total={services.length}
-                  progress={scrollYProgress}
-                />
-              ))}
-            </div>
-          </div>
+          <ScrollStory />
         )}
       </Container>
     </section>

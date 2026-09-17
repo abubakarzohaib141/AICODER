@@ -38,18 +38,18 @@ export function MobileNav() {
         className="relative z-50 flex h-9 w-9 flex-col items-center justify-center gap-[5px]"
       >
         <span
-          className={`h-px w-5 bg-foreground transition-transform duration-200 ${
-            open ? "translate-y-[3px] rotate-45" : ""
+          className={`h-px w-5 transition-transform duration-200 ${
+            open ? "translate-y-[3px] rotate-45 bg-foreground" : "bg-white"
           }`}
         />
         <span
-          className={`h-px w-5 bg-foreground transition-opacity duration-200 ${
-            open ? "opacity-0" : "opacity-100"
+          className={`h-px w-5 transition-opacity duration-200 ${
+            open ? "bg-foreground opacity-0" : "bg-white opacity-100"
           }`}
         />
         <span
-          className={`h-px w-5 bg-foreground transition-transform duration-200 ${
-            open ? "-translate-y-[3px] -rotate-45" : ""
+          className={`h-px w-5 transition-transform duration-200 ${
+            open ? "-translate-y-[3px] -rotate-45 bg-foreground" : "bg-white"
           }`}
         />
       </button>
