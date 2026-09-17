@@ -3,25 +3,25 @@
 import { useRef, useState } from "react";
 import {
   motion,
-  AnimatePresence,
   useScroll,
   useSpring,
   useTransform,
   useReducedMotion,
   useMotionValueEvent,
+  type MotionValue,
 } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/Reveal";
-import { easeOut, stagger, fadeUp } from "@/lib/motion";
+import { stagger, fadeUp } from "@/lib/motion";
 import { services, type Service } from "@/lib/content/services";
 
 const cardColors: Record<string, string> = {
   "ai-agents": "#1c98a6",
-  "agentic-ai": "#2b1bba",
+  "ai-automation": "#2b1bba",
   automation: "#4f7ff7",
+  "agent-ticketing": "#147d8a",
   "ai-product-development": "#ff8800",
-  "custom-ai-engineering": "#147d8a",
 };
 
 function ServiceIcon({ slug }: { slug: string }) {
@@ -32,7 +32,7 @@ function ServiceIcon({ slug }: { slug: string }) {
       </span>
     );
   }
-  if (slug === "agentic-ai") {
+  if (slug === "ai-automation") {
     return (
       <span className="relative block h-4 w-5">
         <span className="absolute left-[7px] top-0 h-1.5 w-1.5 rounded-full bg-white" />
@@ -101,6 +101,41 @@ function BigCard({ service, color, animated = true }: { service: Service; color:
   );
 }
 
+// Renders one system inside the shared stack. Every card occupies the exact
+// same central cell; only opacity/scale/blur/y (driven off scroll distance
+// from this card's "turn") separate the active one from its neighbors, so
+// the focal point never shifts left or right as the story progresses.
+function StoryCard({
+  progress,
+  index,
+  total,
+  service,
+  color,
+}: {
+  progress: MotionValue<number>;
+  index: number;
+  total: number;
+  service: Service;
+  color: string;
+}) {
+  const distance = useTransform(progress, (v) => v * total - (index + 0.5));
+  const opacity = useTransform(distance, [-1, -0.5, 0, 0.5, 1], [0, 1, 1, 1, 0]);
+  const scale = useTransform(distance, [-1, 0, 1], [0.92, 1, 0.92]);
+  const y = useTransform(distance, [-1, 0, 1], [-64, 0, 64]);
+  const blurPx = useTransform(distance, [-1, 0, 1], [7, 0, 7]);
+  const filter = useTransform(blurPx, (b) => `blur(${b}px)`);
+  const zIndex = useTransform(distance, (d) => Math.round(50 - Math.abs(d) * 10));
+
+  return (
+    <motion.div
+      style={{ gridArea: "1 / 1", opacity, scale, y, filter, zIndex }}
+      className="w-full justify-self-center self-center"
+    >
+      <BigCard service={service} color={color} animated={false} />
+    </motion.div>
+  );
+}
+
 function ScrollStory() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -133,39 +168,40 @@ function ScrollStory() {
     setActiveIndex((prev) => (prev === idx ? prev : idx));
   });
 
-  // A few pixels of continuous drift tied to raw scroll, layered underneath
-  // the discrete crossfade so the section still feels alive between swaps.
-  const drift = useTransform(smoothProgress, (v) => {
-    const seg = 1 / total;
-    const local = ((v % seg) + seg) % seg;
-    return (local / seg - 0.5) * 10;
-  });
-
-  const active = services[activeIndex];
-  const color = cardColors[active.slug] ?? "#147d8a";
+  const activeColor = cardColors[services[activeIndex].slug] ?? "#147d8a";
 
   return (
     <div ref={containerRef} style={{ height: `${total * 80}vh` }}>
-      <div className="sticky top-20 flex h-[75vh] items-center justify-center px-5 py-8">
-        <div className="relative flex w-full max-w-3xl items-center justify-center">
+      <div className="sticky top-20 flex h-[75vh] flex-col items-center justify-center gap-8 px-5 py-8">
+        <div className="relative grid w-full max-w-3xl place-items-center">
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-8 -z-10 rounded-full blur-[90px] transition-colors duration-700"
-            style={{ backgroundColor: color, opacity: 0.14 }}
+            style={{ backgroundColor: activeColor, opacity: 0.14 }}
           />
-          <motion.div style={{ y: drift }} className="w-full">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={active.slug}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5, ease: easeOut }}
-              >
-                <BigCard service={active} color={color} />
-              </motion.div>
-            </AnimatePresence>
-          </motion.div>
+          {services.map((service, i) => (
+            <StoryCard
+              key={service.slug}
+              progress={smoothProgress}
+              index={i}
+              total={total}
+              service={service}
+              color={cardColors[service.slug] ?? "#147d8a"}
+            />
+          ))}
+        </div>
+
+        <div className="flex items-center gap-2.5" aria-hidden="true">
+          {services.map((service, i) => (
+            <span
+              key={service.slug}
+              className="h-1.5 rounded-full transition-all duration-300"
+              style={{
+                width: i === activeIndex ? "22px" : "6px",
+                backgroundColor: i === activeIndex ? activeColor : "var(--dark-border)",
+              }}
+            />
+          ))}
         </div>
       </div>
     </div>

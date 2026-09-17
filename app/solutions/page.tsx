@@ -10,7 +10,7 @@ import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/Reveal";
 
 export const metadata: Metadata = {
   title: "Solutions",
-  description: "AI agents, agentic AI systems, business automation, AI product development and custom AI engineering.",
+  description: "AI agents, AI automation, business automation, agent ticketing systems and AI product development.",
 };
 
 export default function SolutionsPage() {
