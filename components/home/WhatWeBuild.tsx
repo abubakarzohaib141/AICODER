@@ -1,12 +1,20 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useReducedMotion,
+  MotionValue,
+} from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/Reveal";
-import { services } from "@/lib/content/services";
+import { services, type Service } from "@/lib/content/services";
 
-const iconColors: Record<string, string> = {
+const cardColors: Record<string, string> = {
+  "ai-agents": "#1c98a6",
   "agentic-ai": "#2b1bba",
   automation: "#4f7ff7",
   "ai-product-development": "#ff8800",
@@ -14,6 +22,13 @@ const iconColors: Record<string, string> = {
 };
 
 function ServiceIcon({ slug }: { slug: string }) {
+  if (slug === "ai-agents") {
+    return (
+      <span className="relative block h-[18px] w-[18px] rounded-full border-2 border-white">
+        <span className="absolute inset-[4px] rounded-full bg-white" />
+      </span>
+    );
+  }
   if (slug === "agentic-ai") {
     return (
       <span className="relative block h-4 w-5">
@@ -37,8 +52,85 @@ function ServiceIcon({ slug }: { slug: string }) {
   );
 }
 
+function BigCard({ service, color }: { service: Service; color: string }) {
+  return (
+    <div
+      className="relative flex w-full max-w-3xl flex-col gap-6 overflow-hidden rounded-[24px] p-8 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.35)] sm:p-12"
+      style={{
+        background: `radial-gradient(120% 140% at 100% 0%, ${color}33, transparent 60%), linear-gradient(160deg, #0f1b2e, #141b26 60%)`,
+      }}
+    >
+      <span className="font-mono-label text-xs uppercase tracking-[0.18em] text-dark-muted">
+        {service.number}
+      </span>
+      <span
+        className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl"
+        style={{ backgroundColor: color }}
+      >
+        <ServiceIcon slug={service.slug} />
+      </span>
+      <div className="flex flex-col gap-3">
+        <span className="font-display text-2xl font-extrabold text-dark-foreground sm:text-[32px]">
+          {service.name}
+        </span>
+        <p className="max-w-lg text-[15px] leading-relaxed text-dark-muted sm:text-base">
+          {service.description}
+        </p>
+      </div>
+      <div className="flex flex-wrap gap-2">
+        {service.bullets.map((bullet) => (
+          <span
+            key={bullet}
+            className="rounded-full border border-white/[0.18] bg-white/[0.06] px-3 py-1.5 text-[12.5px] text-dark-foreground"
+          >
+            {bullet}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ScrollCard({
+  service,
+  color,
+  index,
+  total,
+  progress,
+}: {
+  service: Service;
+  color: string;
+  index: number;
+  total: number;
+  progress: MotionValue<number>;
+}) {
+  const segment = 1 / total;
+  const start = index * segment;
+  const end = start + segment;
+  const fadeInStart = index === 0 ? start : Math.max(0, start - segment * 0.35);
+  const fadeOutEnd = index === total - 1 ? end : Math.min(1, end + segment * 0.35);
+
+  const opacity = useTransform(progress, [fadeInStart, start, end, fadeOutEnd], [0, 1, 1, 0]);
+  const scale = useTransform(progress, [fadeInStart, start, end, fadeOutEnd], [0.92, 1, 1, 0.94]);
+  const y = useTransform(progress, [fadeInStart, start, end, fadeOutEnd], [48, 0, 0, -32]);
+
+  return (
+    <motion.div
+      style={{ opacity, scale, y }}
+      className="absolute inset-0 flex items-center justify-center px-5"
+    >
+      <BigCard service={service} color={color} />
+    </motion.div>
+  );
+}
+
 export function WhatWeBuild() {
-  const [primary, ...rest] = services;
+  const containerRef = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
 
   return (
     <section className="border-t border-border py-20 sm:py-28">
@@ -54,79 +146,33 @@ export function WhatWeBuild() {
           />
         </Reveal>
 
-        <StaggerGroup className="grid gap-[18px] sm:grid-cols-2 lg:grid-cols-4">
-          <StaggerItem className="relative flex flex-col justify-between gap-7 overflow-hidden rounded-[20px] bg-[radial-gradient(120%_140%_at_100%_0%,rgba(79,127,247,0.35),transparent_60%),linear-gradient(160deg,#0f1b2e,#141b26_60%)] p-8 sm:col-span-2 sm:row-span-2">
-            <span className="absolute right-[22px] top-[22px] flex h-[34px] w-[34px] items-center justify-center rounded-full border border-white/25 text-[15px] text-dark-foreground">
-              →
-            </span>
-            <div className="flex flex-col gap-3.5">
-              <span className="flex h-[46px] w-[46px] shrink-0 items-center justify-center gap-1 rounded-[13px] bg-gradient-to-br from-teal-bright to-blue">
-                <span className="h-1.5 w-1.5 rounded-full bg-white" />
-                <span className="h-1.5 w-1.5 rounded-full bg-white" />
-              </span>
-              <span className="font-display text-[27px] font-extrabold text-dark-foreground">
-                {primary.name}
-              </span>
-              <p className="max-w-sm text-[15px] leading-relaxed text-dark-muted">
-                {primary.description}
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {primary.bullets.map((bullet) => (
-                <span
-                  key={bullet}
-                  className="rounded-full border border-white/[0.18] bg-white/[0.06] px-3 py-1.5 text-[12.5px] text-dark-foreground"
-                >
-                  {bullet}
-                </span>
+        {reduceMotion ? (
+          <StaggerGroup className="flex flex-col gap-6">
+            {services.map((service) => (
+              <StaggerItem key={service.slug} className="flex justify-center">
+                <BigCard
+                  service={service}
+                  color={cardColors[service.slug] ?? "#147d8a"}
+                />
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+        ) : (
+          <div ref={containerRef} style={{ height: `${services.length * 90}vh` }}>
+            <div className="sticky top-16 h-[80vh] overflow-hidden">
+              {services.map((service, i) => (
+                <ScrollCard
+                  key={service.slug}
+                  service={service}
+                  color={cardColors[service.slug] ?? "#147d8a"}
+                  index={i}
+                  total={services.length}
+                  progress={scrollYProgress}
+                />
               ))}
             </div>
-          </StaggerItem>
-
-          {rest.map((service) => {
-            const color = iconColors[service.slug] ?? "#147d8a";
-            return (
-              <StaggerItem key={service.slug} className="group relative">
-              <motion.div
-                whileHover={{ y: -5 }}
-                onMouseMove={(event) => {
-                  const rect = event.currentTarget.getBoundingClientRect();
-                  event.currentTarget.style.setProperty("--spot-x", `${event.clientX - rect.left}px`);
-                  event.currentTarget.style.setProperty("--spot-y", `${event.clientY - rect.top}px`);
-                }}
-                className="relative flex h-full flex-col gap-4 overflow-hidden rounded-[20px] border border-border bg-background-elevated p-6.5 hover:shadow-[0_20px_40px_-18px_var(--tw-shadow-color)]"
-                style={{ "--tw-shadow-color": `${color}55` } as React.CSSProperties}
-              >
-                <span
-                  className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                  style={{
-                    background: `radial-gradient(240px circle at var(--spot-x, 50%) var(--spot-y, 50%), ${color}1f, transparent 70%)`,
-                  }}
-                />
-                <span
-                  className="absolute -right-[30px] -top-[30px] h-[100px] w-[100px] rounded-full opacity-[0.08]"
-                  style={{ backgroundColor: color }}
-                />
-                <div className="flex items-center justify-between">
-                  <span
-                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl"
-                    style={{ backgroundColor: color }}
-                  >
-                    <ServiceIcon slug={service.slug} />
-                  </span>
-                  <span className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-border text-[13px] text-muted-2 transition-colors group-hover:border-transparent group-hover:bg-foreground group-hover:text-background">
-                    →
-                  </span>
-                </div>
-                <span className="font-display text-[17px] font-bold text-foreground">
-                  {service.name}
-                </span>
-                <p className="text-sm leading-relaxed text-muted">{service.summary}</p>
-              </motion.div>
-              </StaggerItem>
-            );
-          })}
-        </StaggerGroup>
+          </div>
+        )}
       </Container>
     </section>
   );

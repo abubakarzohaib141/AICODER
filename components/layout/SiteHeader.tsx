@@ -23,8 +23,10 @@ export function SiteHeader() {
 
   return (
     <header
-      className={`sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur-md transition-shadow duration-200 ${
-        scrolled ? "shadow-[0_8px_24px_rgba(32,30,28,0.06)]" : ""
+      className={`sticky top-0 z-30 transition-all duration-300 ${
+        scrolled
+          ? "border-b border-border bg-background/70 shadow-[0_8px_24px_rgba(32,30,28,0.06)] backdrop-blur-md"
+          : "border-b border-transparent bg-transparent"
       }`}
     >
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-5 sm:px-8">

@@ -28,7 +28,7 @@ export function Hero() {
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 hover:opacity-100"
         style={{
           background:
-            "radial-gradient(420px circle at var(--mouse-x, 50%) var(--mouse-y, 0%), rgba(20,125,138,0.08), transparent 70%)",
+            "radial-gradient(420px circle at var(--mouse-x, 50%) var(--mouse-y, 0%), rgba(247,244,241,0.08), transparent 70%)",
         }}
       />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-border" />
@@ -45,10 +45,9 @@ export function Hero() {
 
           <motion.h1
             variants={fadeUpFast}
-            className="max-w-4xl font-display text-5xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-7xl"
+            className="max-w-4xl font-display text-5xl font-bold leading-[1.05] tracking-tight text-[#F5F7FA] sm:text-7xl"
           >
-            We Build AI Systems That Do{" "}
-            <span className="text-gradient-brand">Real Work.</span>
+            We Build AI Systems That Do Real Work.
           </motion.h1>
 
           <motion.p
