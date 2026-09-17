@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Tag } from "@/components/ui/Tag";
@@ -33,18 +35,35 @@ export function CaseStudiesProof() {
                   type="button"
                   onClick={() => setOpenSlug(isOpen ? null : study.slug)}
                   aria-expanded={isOpen}
-                  className="flex w-full flex-col gap-2 py-6 text-left sm:flex-row sm:items-center sm:justify-between"
+                  className="flex w-full flex-col gap-4 py-6 text-left sm:flex-row sm:items-center sm:justify-between"
                 >
-                  <div className="flex flex-col gap-1">
-                    <span className="font-mono-label text-[11px] uppercase tracking-wide text-teal">
-                      {study.category}
-                    </span>
-                    <span className="font-display text-lg font-semibold text-foreground">
-                      {study.title}
-                    </span>
+                  <div className="flex items-center gap-4 sm:gap-5">
+                    {study.screenshot && (
+                      <motion.div
+                        whileHover={{ scale: 1.04 }}
+                        transition={{ duration: 0.25 }}
+                        className="relative h-16 w-24 shrink-0 overflow-hidden rounded-lg border border-border bg-background-elevated-2 sm:h-20 sm:w-32"
+                      >
+                        <Image
+                          src={study.screenshot}
+                          alt={`${study.title} screenshot`}
+                          fill
+                          sizes="128px"
+                          className="object-cover"
+                        />
+                      </motion.div>
+                    )}
+                    <div className="flex flex-col gap-1">
+                      <span className="font-mono-label text-[11px] uppercase tracking-wide text-teal">
+                        {study.category}
+                      </span>
+                      <span className="font-display text-lg font-semibold text-foreground">
+                        {study.title}
+                      </span>
+                    </div>
                   </div>
                   <span
-                    className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-border-strong text-foreground transition-transform duration-200 ${
+                    className={`flex h-7 w-7 shrink-0 items-center justify-center self-end rounded-full border border-border-strong text-foreground transition-transform duration-200 sm:self-auto ${
                       isOpen ? "rotate-45" : ""
                     }`}
                     aria-hidden="true"

@@ -61,9 +61,9 @@ function BigCard({ service, color, animated = true }: { service: Service; color:
       initial={animated ? "hidden" : undefined}
       animate={animated ? "show" : undefined}
       variants={animated ? stagger : undefined}
-      className="relative flex w-full max-w-3xl flex-col gap-6 overflow-hidden rounded-[24px] p-8 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.35)] sm:p-12"
+      className="relative flex w-full max-w-3xl flex-col gap-6 overflow-hidden rounded-[24px] border border-border p-8 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.5)] sm:p-12"
       style={{
-        background: `radial-gradient(120% 140% at 100% 0%, ${color}33, transparent 60%), linear-gradient(160deg, #0f1b2e, #141b26 60%)`,
+        background: `radial-gradient(120% 140% at 100% 0%, ${color}22, transparent 60%), linear-gradient(160deg, var(--background-elevated), var(--background-elevated-2) 65%)`,
       }}
     >
       <motion.span
@@ -146,20 +146,27 @@ function ScrollStory() {
 
   return (
     <div ref={containerRef} style={{ height: `${total * 80}vh` }}>
-      <div className="sticky top-20 flex h-[75vh] items-center justify-center px-5">
-        <motion.div style={{ y: drift }} className="w-full max-w-3xl">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={active.slug}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5, ease: easeOut }}
-            >
-              <BigCard service={active} color={color} />
-            </motion.div>
-          </AnimatePresence>
-        </motion.div>
+      <div className="sticky top-20 flex h-[75vh] items-center justify-center px-5 py-8">
+        <div className="relative flex w-full max-w-3xl items-center justify-center">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-8 -z-10 rounded-full blur-[90px] transition-colors duration-700"
+            style={{ backgroundColor: color, opacity: 0.14 }}
+          />
+          <motion.div style={{ y: drift }} className="w-full">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={active.slug}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5, ease: easeOut }}
+              >
+                <BigCard service={active} color={color} />
+              </motion.div>
+            </AnimatePresence>
+          </motion.div>
+        </div>
       </div>
     </div>
   );
