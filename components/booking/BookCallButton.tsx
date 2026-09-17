@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { useBooking } from "./BookingProvider";
 import { tapScale } from "@/lib/motion";
 
-type Variant = "primary" | "secondary" | "ghost" | "inverse";
+type Variant = "primary" | "secondary" | "ghost" | "inverse" | "accent";
 
 const base =
   "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-colors duration-150 whitespace-nowrap cursor-pointer";
@@ -16,6 +16,7 @@ const variants: Record<Variant, string> = {
     "border border-border-strong text-foreground hover:border-blue hover:bg-background-elevated",
   ghost: "text-foreground/80 hover:text-foreground",
   inverse: "bg-dark-foreground text-dark-background hover:opacity-90",
+  accent: "bg-teal-bright text-white hover:bg-teal",
 };
 
 export function BookCallButton({

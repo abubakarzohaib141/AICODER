@@ -62,7 +62,7 @@ export function Hero() {
             variants={fadeUpFast}
             className="flex flex-wrap items-center justify-center gap-4 pt-2"
           >
-            <BookCallButton className="bg-gradient-brand !px-7 !py-3.5 !text-base !text-white shadow-[0_16px_40px_-10px_rgba(255,136,0,0.45)] hover:!opacity-100">
+            <BookCallButton variant="accent" className="!px-7 !py-3.5 !text-base">
               Book a Call
             </BookCallButton>
             <a
@@ -82,11 +82,11 @@ export function Hero() {
               }}
             />
             <div className="absolute -left-1.5 -top-4 z-10 flex items-center gap-2 rounded-xl border border-border bg-background-elevated px-3.5 py-2 text-xs font-semibold shadow-[0_20px_44px_-10px_rgba(32,30,28,0.2)]">
-              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-gradient-brand animate-pulse-dot" />
+              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-teal-bright animate-pulse-dot" />
               AI Agents
             </div>
             <div className="absolute -bottom-4 right-0 z-10 flex items-center gap-2 rounded-xl border border-border bg-background-elevated px-3.5 py-2 text-xs font-semibold shadow-[0_20px_44px_-10px_rgba(32,30,28,0.2)]">
-              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-gradient-brand" />
+              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-indigo" />
               Business Systems
             </div>
             <div className="absolute -right-3 top-8 z-10 hidden items-center gap-2 rounded-xl border border-border bg-background-elevated/70 px-3.5 py-2 text-xs font-semibold shadow-[0_20px_44px_-10px_rgba(32,30,28,0.2)] backdrop-blur-sm sm:flex">

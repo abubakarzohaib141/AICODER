@@ -37,7 +37,7 @@ export function FloatingCta() {
           <button
             type="button"
             onClick={open}
-            className="bg-gradient-brand shrink-0 whitespace-nowrap rounded-full px-4 py-2.5 text-[12.5px] font-bold text-white"
+            className="shrink-0 whitespace-nowrap rounded-full bg-teal-bright px-4 py-2.5 text-[12.5px] font-bold text-white transition-colors hover:bg-teal"
           >
             Book a call →
           </button>
