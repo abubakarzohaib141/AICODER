@@ -13,19 +13,27 @@ import { FinalCta } from "@/components/home/FinalCta";
 
 export default function Home() {
   return (
-    <>
-      <Hero />
-      <WhatWeBuild />
-      <WhyAiCoders />
-      <WhoWeBuildFor />
-      <ProductShowcase />
-      <Testimonials />
-      <HowWeWork />
-      <ProductionMindset />
-      <CaseStudiesProof />
-      <TeamPreview />
-      <FaqSection />
-      <FinalCta />
-    </>
+    <div className="homepage-noir">
+      <div className="homepage-noir-glow" aria-hidden="true">
+        <span />
+        <span />
+        <span />
+        <span />
+      </div>
+      <div className="homepage-noir-content">
+        <Hero />
+        <WhatWeBuild />
+        <WhyAiCoders />
+        <WhoWeBuildFor />
+        <ProductShowcase />
+        <Testimonials />
+        <HowWeWork />
+        <ProductionMindset />
+        <CaseStudiesProof />
+        <TeamPreview />
+        <FaqSection />
+        <FinalCta />
+      </div>
+    </div>
   );
 }
