@@ -1,95 +1,104 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Tag } from "@/components/ui/Tag";
-import { ScreenshotFrame } from "@/components/system/ScreenshotFrame";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/Reveal";
-import { easeOut } from "@/lib/motion";
-import { products } from "@/lib/content/products";
+import { easeOut, viewport } from "@/lib/motion";
+import { products, type Product } from "@/lib/content/products";
 
-const highlightSlugs = ["abz-agent-sdk", "ai-hiring-agent", "lenny-ai"];
+// The homepage's curated proof-of-work gallery. Pulls only real, already-shot
+// products (each with a genuine screenshot) rather than the full catalog.
+const gallerySlugs = ["tresolv", "scope-ai-cv", "lenny-ai", "abz-agent-sdk", "crm-suite", "ai-hiring-agent"];
 
-function ProjectCard({ product }: { product: (typeof products)[number] }) {
+function GalleryTile({ product }: { product: Product }) {
+  const primaryLink = product.links[0];
+  const isExternal = Boolean(primaryLink) && !primaryLink.href.startsWith("/");
+  const href = primaryLink ? primaryLink.href : `/products/${product.slug}`;
+
   return (
-    <motion.div
-      initial="rest"
-      whileHover="hover"
-      whileTap={{ scale: 0.985 }}
-      variants={{ rest: { y: 0, scale: 1 }, hover: { y: -6, scale: 1.01 } }}
-      transition={{ duration: 0.25, ease: easeOut }}
-      onMouseMove={(event) => {
-        const rect = event.currentTarget.getBoundingClientRect();
-        event.currentTarget.style.setProperty("--spot-x", `${event.clientX - rect.left}px`);
-        event.currentTarget.style.setProperty("--spot-y", `${event.clientY - rect.top}px`);
-      }}
-      className="group relative flex flex-col overflow-hidden rounded-[18px] border border-border hover:shadow-[0_20px_40px_-16px_rgba(32,30,28,0.18)]"
-    >
-      <span
-        className="pointer-events-none absolute inset-0 z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-        style={{
-          background:
-            "radial-gradient(220px circle at var(--spot-x, 50%) var(--spot-y, 50%), rgba(120,120,128,0.12), transparent 70%)",
-        }}
-      />
-      <motion.div
-        className="overflow-hidden"
-        variants={{ rest: { scale: 1 }, hover: { scale: 1.05 } }}
-        transition={{ duration: 0.35, ease: easeOut }}
-      >
-        <ScreenshotFrame
-          src={product.screenshots?.[0]}
-          alt={`${product.name} screenshot`}
-          label={product.name}
-          aspect={product.screenshotAspect}
-          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-        />
-      </motion.div>
-      <div className="flex flex-1 flex-col gap-2.5 p-[22px]">
-        <span className="font-mono-label text-[10.5px] uppercase tracking-wide text-teal">
-          {product.category}
-        </span>
-        <span className="font-display text-[17px] font-bold text-foreground">{product.name}</span>
-        <p className="text-[13.5px] leading-relaxed text-muted">{product.description}</p>
-        {product.technology && (
-          <div className="flex flex-wrap gap-1.5 pt-0.5">
-            {product.technology.map((tech) => (
-              <Tag key={tech}>{tech}</Tag>
-            ))}
-          </div>
-        )}
-        <div className="mt-auto flex items-center justify-between gap-2.5 pt-1.5">
-          <span className="text-xs text-muted-2">Engineered by AI Coders</span>
-          {product.links.length > 0 ? (
-            <a
-              href={product.links[0].href}
-              target={product.links[0].href.startsWith("/") ? undefined : "_blank"}
-              rel={product.links[0].href.startsWith("/") ? undefined : "noopener noreferrer"}
-              className="text-[12.5px] font-semibold text-foreground transition-colors hover:text-teal"
+    <StaggerItem hover className="h-full">
+      <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-background-elevated transition-colors duration-300 hover:border-border-strong">
+        <div
+          className="relative overflow-hidden bg-background-elevated-2"
+          style={{ aspectRatio: product.screenshotAspect ?? "16/10" }}
+        >
+          {product.screenshots?.[0] ? (
+            <motion.div
+              initial={{ scale: 1.08, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={viewport}
+              whileHover={{ scale: 1.06 }}
+              transition={{ duration: 0.7, ease: easeOut }}
+              className="absolute inset-0"
             >
-              Visit →
-            </a>
+              <Image
+                src={product.screenshots[0]}
+                alt={`${product.name} screenshot`}
+                fill
+                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                className="object-cover"
+              />
+            </motion.div>
           ) : (
-            <Link
-              href={`/products/${product.slug}`}
-              className="text-[12.5px] font-semibold text-foreground transition-colors hover:text-teal"
-            >
-              Visit →
-            </Link>
+            <div className="flex h-full w-full items-center justify-center text-sm text-muted-2">
+              Screenshot coming soon
+            </div>
+          )}
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-background-elevated to-transparent" />
+          {product.slug === "crm-suite" && (
+            <span className="absolute left-3 top-3 rounded-full border border-border-strong bg-background/80 px-2.5 py-1 font-mono-label text-[10px] uppercase tracking-wide text-teal backdrop-blur-sm">
+              Flagship
+            </span>
           )}
         </div>
+
+        <div className="flex flex-1 flex-col gap-2.5 p-6">
+          <span className="font-mono-label text-[10.5px] uppercase tracking-wide text-teal">
+            {product.category}
+          </span>
+          <span className="font-display text-[17px] font-bold text-foreground">{product.name}</span>
+          <p className="line-clamp-2 text-[13.5px] leading-relaxed text-muted">{product.description}</p>
+          {product.technology && (
+            <div className="flex flex-wrap gap-1.5 pt-0.5">
+              {product.technology.map((tech) => (
+                <Tag key={tech}>{tech}</Tag>
+              ))}
+            </div>
+          )}
+          <div className="mt-auto flex items-center justify-between gap-2.5 pt-2">
+            <span className="text-xs text-muted-2">Engineered by AI Coders</span>
+            {isExternal ? (
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full border border-border-strong px-3 py-1.5 text-[12px] font-semibold text-foreground transition-colors hover:border-teal/50 hover:text-teal"
+              >
+                Visit ↗
+              </a>
+            ) : (
+              <Link
+                href={href}
+                className="rounded-full border border-border-strong px-3 py-1.5 text-[12px] font-semibold text-foreground transition-colors hover:border-teal/50 hover:text-teal"
+              >
+                Visit →
+              </Link>
+            )}
+          </div>
+        </div>
       </div>
-    </motion.div>
+    </StaggerItem>
   );
 }
 
 export function ProductShowcase() {
-  const flagship = products.find((p) => p.slug === "crm-suite") ?? products[0];
-  const highlights = highlightSlugs
+  const gallery = gallerySlugs
     .map((slug) => products.find((p) => p.slug === slug))
-    .filter((p): p is (typeof products)[number] => Boolean(p));
+    .filter((p): p is Product => Boolean(p));
 
   return (
     <section id="work" className="scroll-mt-20 border-t border-border py-20 sm:py-28">
@@ -104,43 +113,9 @@ export function ProductShowcase() {
           </Link>
         </Reveal>
 
-        <Reveal className="grid overflow-hidden rounded-[22px] border border-border sm:grid-cols-2">
-          <div className="flex flex-col justify-between gap-[22px] bg-background-elevated-2 p-9">
-            <div className="flex flex-col gap-3">
-              <span className="font-mono-label text-[11px] uppercase tracking-wide text-teal">
-                {flagship.category} · Flagship
-              </span>
-              <span className="font-display text-[26px] font-extrabold text-foreground">
-                {flagship.name}
-              </span>
-              <p className="max-w-[380px] text-[14.5px] leading-relaxed text-muted">
-                {flagship.description}
-              </p>
-            </div>
-            {flagship.technology && (
-              <div className="flex flex-wrap gap-2">
-                {flagship.technology.map((tech) => (
-                  <Tag key={tech}>{tech}</Tag>
-                ))}
-              </div>
-            )}
-            <span className="text-[12.5px] text-muted-2">Engineered by AI Coders</span>
-          </div>
-          <div className="flex items-center bg-background-elevated p-5">
-            <ScreenshotFrame
-              src={flagship.screenshots?.[0]}
-              alt={`${flagship.name} screenshot`}
-              label={flagship.name}
-              aspect={flagship.screenshotAspect}
-            />
-          </div>
-        </Reveal>
-
-        <StaggerGroup className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {highlights.map((product) => (
-            <StaggerItem key={product.slug}>
-              <ProjectCard product={product} />
-            </StaggerItem>
+        <StaggerGroup className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {gallery.map((product) => (
+            <GalleryTile key={product.slug} product={product} />
           ))}
         </StaggerGroup>
       </Container>
