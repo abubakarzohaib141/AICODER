@@ -21,11 +21,6 @@
   --dark-foreground: #f7f4f1;
   --dark-muted: #b7c4c2;
   --dark-border: rgba(247, 244, 241, 0.14);
-
-  --gradient-brand: linear-gradient(90deg, #ff8800, #1c98a6, #4f7ff7);
-
-  --selection-bg: rgba(32, 30, 28, 0.12);
-  --selection-fg: var(--foreground);
 }
 
 @theme inline {
@@ -70,9 +65,16 @@ body {
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
+/* The one intentional gradient on the site: a light, brand-toned selection
+   highlight. Kept as a fixed gradient (not theme-scoped) so it reads the
+   same, legible way on both the light interior pages and the dark homepage. */
 ::selection {
-  background: var(--selection-bg);
-  color: var(--selection-fg);
+  /* Solid fallback first: some engines don't paint a gradient background-image
+     on ::selection at all, which would otherwise leave only the dark text
+     color with no visible highlight behind it. */
+  background-color: rgba(56, 156, 189, 0.55);
+  background-image: linear-gradient(120deg, rgba(28, 152, 166, 0.75), rgba(79, 127, 247, 0.7));
+  color: #0b0f14;
 }
 
 :focus-visible {
@@ -98,18 +100,7 @@ body {
   padding: 0 0.05em;
 }
 
-.text-gradient-brand {
-  background-image: var(--gradient-brand);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.bg-gradient-brand {
-  background-image: var(--gradient-brand);
-}
-
-/* Homepage-only dark gradient theme. Overrides the shared color tokens
+/* Homepage-only dark theme. Overrides the shared color tokens
    inside this scope so every existing component (bg-background,
    text-foreground, text-muted, border-border, ...) repaints for dark
    without any component changes. */
@@ -122,14 +113,27 @@ body {
   --muted-2: #7c8590;
   --border: rgba(247, 244, 241, 0.1);
   --border-strong: rgba(247, 244, 241, 0.18);
-  --selection-bg: rgba(247, 244, 241, 0.25);
-  --selection-fg: #07080c;
   display: grid;
   background: var(--background);
 }
 
 .homepage-noir > * {
   grid-area: 1 / 1;
+}
+
+/* Footer is rendered outside .homepage-noir (it's shared across every page),
+   so it gets its own scoped dark override to stay solid black everywhere
+   instead of only on the homepage. Same palette as .homepage-noir. */
+.footer-dark {
+  --background: #07080c;
+  --background-elevated: #10131a;
+  --background-elevated-2: #161a23;
+  --foreground: #f7f4f1;
+  --muted: #aab3bd;
+  --muted-2: #7c8590;
+  --border: rgba(247, 244, 241, 0.1);
+  --border-strong: rgba(247, 244, 241, 0.18);
+  background: var(--background);
 }
 
 .homepage-noir-glow {

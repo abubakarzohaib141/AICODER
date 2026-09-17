@@ -18,7 +18,7 @@ export function WhyAiCoders() {
               key={point.name}
               className="group flex flex-col gap-2.5 border-t-2 border-border pt-5 transition-colors hover:border-teal"
             >
-              <span className="text-gradient-brand font-mono-label text-xs font-bold">
+              <span className="text-teal font-mono-label text-xs font-bold">
                 {point.number}
               </span>
               <span className="font-display text-base font-bold text-foreground">
