@@ -149,12 +149,6 @@ body {
 }
 
 .homepage-noir-glow span:nth-child(1) {
-  top: 4%;
-  left: 12%;
-  background: radial-gradient(circle, rgba(255, 170, 0, 0.22), transparent 70%);
-}
-
-.homepage-noir-glow span:nth-child(2) {
   top: 30%;
   left: 58%;
   width: 820px;
@@ -162,13 +156,13 @@ body {
   background: radial-gradient(circle, rgba(79, 127, 247, 0.2), transparent 70%);
 }
 
-.homepage-noir-glow span:nth-child(3) {
+.homepage-noir-glow span:nth-child(2) {
   top: 60%;
   left: 10%;
   background: radial-gradient(circle, rgba(20, 125, 138, 0.22), transparent 70%);
 }
 
-.homepage-noir-glow span:nth-child(4) {
+.homepage-noir-glow span:nth-child(3) {
   top: 88%;
   left: 68%;
   background: radial-gradient(circle, rgba(79, 127, 247, 0.14), transparent 70%);

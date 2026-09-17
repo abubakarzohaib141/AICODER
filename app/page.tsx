@@ -18,7 +18,6 @@ export default function Home() {
         <span />
         <span />
         <span />
-        <span />
       </div>
       <div className="homepage-noir-content">
         <Hero />

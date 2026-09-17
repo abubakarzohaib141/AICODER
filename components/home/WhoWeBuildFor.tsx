@@ -9,8 +9,14 @@ const accents = ["var(--accent-teal)", "var(--accent-blue)", "var(--accent-orang
 
 export function WhoWeBuildFor() {
   return (
-    <section className="border-t border-border py-20 sm:py-28">
-      <Container className="flex flex-col gap-12">
+    <section className="relative overflow-hidden border-t border-border py-20 sm:py-28">
+      <div className="section-atmosphere-grid" aria-hidden="true" />
+      <div className="section-atmosphere" aria-hidden="true">
+        <span />
+        <span />
+      </div>
+
+      <Container className="relative flex flex-col gap-12">
         <Reveal>
           <SectionHeading
             eyebrow="Who we build for"
@@ -19,38 +25,49 @@ export function WhoWeBuildFor() {
           />
         </Reveal>
 
-        <StaggerGroup className="grid gap-5 sm:grid-cols-2">
-          {industries.map((industry, i) => (
-            <StaggerItem
-              key={industry.name}
-              hover
-              className="flex flex-col gap-4 rounded-2xl border border-border p-7 transition-shadow hover:shadow-[0_20px_40px_-20px_rgba(32,30,28,0.18)]"
-            >
-              <div className="flex items-center gap-2.5">
+        <StaggerGroup className="grid gap-6 sm:grid-cols-2">
+          {industries.map((industry, i) => {
+            const accent = accents[i % accents.length];
+            const number = String(i + 1).padStart(2, "0");
+            return (
+              <StaggerItem
+                key={industry.name}
+                hover
+                className="group relative flex flex-col gap-5 overflow-hidden rounded-2xl border border-border bg-background-elevated p-8 transition-colors duration-300 hover:border-border-strong sm:p-9"
+              >
                 <span
-                  className="h-2 w-2 shrink-0 rounded-full"
-                  style={{ backgroundColor: accents[i % accents.length] }}
-                />
-                <span className="font-display text-lg font-semibold text-foreground">
-                  {industry.name}
-                </span>
-              </div>
-              <p className="text-sm leading-relaxed text-muted">{industry.problem}</p>
-              <div className="flex flex-wrap gap-2">
-                {industry.items.map((item) => (
-                  <Tag key={item}>{item}</Tag>
-                ))}
-              </div>
-              {industry.example && (
-                <Link
-                  href={industry.example.href}
-                  className="mt-auto pt-2 text-sm font-medium text-foreground/80 transition-colors hover:text-teal"
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -right-3 -top-8 select-none font-display text-8xl font-extrabold leading-none text-foreground/5"
                 >
-                  {industry.example.label} →
-                </Link>
-              )}
-            </StaggerItem>
-          ))}
+                  {number}
+                </span>
+
+                <div className="relative flex items-baseline gap-3">
+                  <span className="font-display text-2xl font-bold leading-none" style={{ color: accent }}>
+                    {number}
+                  </span>
+                  <span className="font-display text-lg font-semibold text-foreground">{industry.name}</span>
+                </div>
+
+                <p className="relative max-w-md text-[14.5px] leading-relaxed text-muted">{industry.problem}</p>
+
+                <div className="relative flex flex-wrap gap-2">
+                  {industry.items.map((item) => (
+                    <Tag key={item}>{item}</Tag>
+                  ))}
+                </div>
+
+                {industry.example && (
+                  <Link
+                    href={industry.example.href}
+                    className="relative mt-auto inline-flex w-fit items-center gap-1.5 rounded-full border border-border-strong px-3 py-1.5 text-[12.5px] font-semibold text-foreground transition-colors hover:border-teal/50 hover:text-teal"
+                  >
+                    {industry.example.label} →
+                  </Link>
+                )}
+              </StaggerItem>
+            );
+          })}
         </StaggerGroup>
       </Container>
     </section>
