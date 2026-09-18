@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function ProductsPage() {
   return (
-    <>
+    <div className="dark-scope min-h-screen">
       <PageHero
         eyebrow="Products"
         title="Products We've Built"
@@ -52,6 +52,6 @@ export default function ProductsPage() {
         </StaggerGroup>
         </Container>
       </section>
-    </>
+    </div>
   );
 }

@@ -1,6 +1,8 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 
 const MotionLink = motion.create(Link);
@@ -10,8 +12,31 @@ import { BookCallButton } from "@/components/booking/BookCallButton";
 import { siteConfig } from "@/lib/content/site";
 
 export function SiteHeader() {
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  // Only pages that are dark from the very top (the homepage, and the
+  // now-dark Products pages) can start with a transparent header — white
+  // nav text over a transparent header on a light page would be unreadable.
+  const canBeTransparent = pathname === "/" || pathname.startsWith("/products");
+  const transparent = canBeTransparent && !scrolled;
+
+  useEffect(() => {
+    function onScroll() {
+      setScrolled(window.scrollY > 16);
+    }
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-30 border-b border-white/10 bg-[#07080c]">
+    <header
+      className={`sticky top-0 z-30 border-b transition-[background-color,backdrop-filter,border-color] duration-300 ${
+        transparent
+          ? "border-transparent bg-transparent"
+          : "border-white/10 bg-[#07080c]/75 backdrop-blur-md"
+      }`}
+    >
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-5 sm:px-8">
         <Logo />
 

@@ -7,7 +7,7 @@ import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/Reveal";
 import { viewport } from "@/lib/motion";
 import { process } from "@/lib/content/technologies";
 
-const accents = ["#68fc05", "#4f7ff7", "#2b1bba"];
+const accents = ["#7bc05a", "#4f7ff7", "#2b1bba"];
 
 export function HowWeWork() {
   return (

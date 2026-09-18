@@ -11,8 +11,8 @@
   --border-strong: rgba(32, 30, 28, 0.18);
 
   --accent-orange: #ff8800;
-  --accent-teal: #4ebd04;
-  --accent-teal-bright: #68fc05;
+  --accent-teal: #5b9b3b;
+  --accent-teal-bright: #7bc05a;
   --accent-blue: #4f7ff7;
   --accent-indigo: #2b1bba;
   --accent-neutral: #ddd3d3;
@@ -72,8 +72,8 @@ body {
   /* Solid fallback first: some engines don't paint a gradient background-image
      on ::selection at all, which would otherwise leave only the dark text
      color with no visible highlight behind it. */
-  background-color: rgba(120, 214, 60, 0.5);
-  background-image: linear-gradient(120deg, rgba(104, 252, 5, 0.7), rgba(79, 127, 247, 0.55));
+  background-color: rgba(123, 192, 90, 0.4);
+  background-image: linear-gradient(120deg, rgba(123, 192, 90, 0.55), rgba(79, 127, 247, 0.45));
   color: #0b0f14;
 }
 
@@ -96,7 +96,7 @@ body {
 }
 
 .highlight-mark {
-  background-image: linear-gradient(transparent 62%, rgba(104, 252, 5, 0.18) 62%);
+  background-image: linear-gradient(transparent 62%, rgba(123, 192, 90, 0.16) 62%);
   padding: 0 0.05em;
 }
 
@@ -121,10 +121,12 @@ body {
   grid-area: 1 / 1;
 }
 
-/* Footer is rendered outside .homepage-noir (it's shared across every page),
-   so it gets its own scoped dark override to stay solid black everywhere
-   instead of only on the homepage. Same palette as .homepage-noir. */
-.footer-dark {
+/* Reusable dark scope for anything rendered outside .homepage-noir (the
+   footer, on every page; the Products pages, which otherwise inherit the
+   light theme). Same palette as .homepage-noir so every existing component
+   (bg-background-elevated, text-foreground, text-muted, border-border, ...)
+   repaints for dark with no per-component changes. */
+.dark-scope {
   --background: #07080c;
   --background-elevated: #10131a;
   --background-elevated-2: #161a23;
@@ -163,7 +165,7 @@ body {
 .homepage-noir-glow span:nth-child(2) {
   top: 60%;
   left: 10%;
-  background: radial-gradient(circle, rgba(104, 252, 5, 0.18), transparent 70%);
+  background: radial-gradient(circle, rgba(123, 192, 90, 0.12), transparent 70%);
 }
 
 .homepage-noir-glow span:nth-child(3) {
@@ -207,7 +209,7 @@ body {
   right: -8%;
   width: 460px;
   height: 460px;
-  background: radial-gradient(circle, rgba(104, 252, 5, 0.12), transparent 70%);
+  background: radial-gradient(circle, rgba(123, 192, 90, 0.1), transparent 70%);
 }
 
 /* Reusable soft ambient light, not a visible shape: heavy blur + low opacity.

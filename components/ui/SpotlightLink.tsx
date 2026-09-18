@@ -6,7 +6,7 @@ import { ReactNode } from "react";
 export function SpotlightLink({
   href,
   className = "",
-  spotlightColor = "rgba(104,252,5,0.12)",
+  spotlightColor = "rgba(123,192,90,0.1)",
   children,
 }: {
   href: string;
