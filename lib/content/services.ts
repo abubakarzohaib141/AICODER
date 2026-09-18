@@ -57,22 +57,8 @@ export const services: Service[] = [
     ],
   },
   {
-    slug: "agent-ticketing",
-    number: "04",
-    name: "Agent Ticketing Systems",
-    summary: "AI agents that triage, route and resolve support and internal tickets.",
-    description:
-      "We build agent-based ticketing systems that read incoming requests, categorize and prioritize them, resolve the routine ones directly, and hand anything sensitive to the right person.",
-    bullets: [
-      "Ticket triage and categorization",
-      "Automated first response",
-      "Priority and SLA routing",
-      "Human escalation",
-    ],
-  },
-  {
     slug: "ai-product-development",
-    number: "05",
+    number: "04",
     name: "AI Product Development",
     summary: "Turn an AI idea into a working product.",
     description:

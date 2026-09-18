@@ -16,7 +16,7 @@ const variants: Record<Variant, string> = {
     "border border-border-strong text-foreground hover:border-blue hover:bg-background-elevated",
   ghost: "text-foreground/80 hover:text-foreground",
   inverse: "bg-dark-foreground text-dark-background hover:opacity-90",
-  accent: "bg-teal-bright text-white hover:bg-teal",
+  accent: "bg-teal-bright text-[#07080c] hover:bg-teal",
 };
 
 export function BookCallButton({

@@ -140,7 +140,7 @@ export function ContactForm() {
         disabled={status === "submitting"}
         whileHover={{ y: -2 }}
         whileTap={tapScale}
-        className="mt-2 inline-flex items-center justify-center rounded-full bg-teal-bright px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-teal disabled:opacity-60"
+        className="mt-2 inline-flex items-center justify-center rounded-full bg-teal-bright px-6 py-3.5 text-sm font-medium text-[#07080c] transition-colors hover:bg-teal disabled:opacity-60"
       >
         {status === "submitting" ? "Sending…" : "Send Project Inquiry"}
       </motion.button>

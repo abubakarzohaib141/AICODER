@@ -15,7 +15,7 @@ const variants: Record<Variant, string> = {
   secondary:
     "border border-border-strong text-foreground hover:border-blue hover:bg-background-elevated",
   ghost: "text-foreground/80 hover:text-foreground",
-  gradient: "bg-teal-bright text-white hover:opacity-90",
+  gradient: "bg-teal-bright text-[#07080c] hover:opacity-90",
 };
 
 const MotionLink = motion.create(Link);
