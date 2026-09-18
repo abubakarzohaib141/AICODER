@@ -17,7 +17,7 @@ import { stagger, fadeUp } from "@/lib/motion";
 import { services, type Service } from "@/lib/content/services";
 
 const cardColors: Record<string, string> = {
-  "ai-agents": "#68fc05",
+  "ai-agents": "#7bc05a",
   "ai-automation": "#2b1bba",
   automation: "#4f7ff7",
   "ai-product-development": "#ff8800",
@@ -159,7 +159,7 @@ function ScrollStory() {
     setActiveIndex((prev) => (prev === idx ? prev : idx));
   });
 
-  const activeColor = cardColors[services[activeIndex].slug] ?? "#68fc05";
+  const activeColor = cardColors[services[activeIndex].slug] ?? "#7bc05a";
 
   return (
     <div ref={containerRef} style={{ height: `${total * 80}vh` }}>
@@ -177,7 +177,7 @@ function ScrollStory() {
               index={i}
               total={total}
               service={service}
-              color={cardColors[service.slug] ?? "#68fc05"}
+              color={cardColors[service.slug] ?? "#7bc05a"}
             />
           ))}
         </div>
@@ -229,7 +229,7 @@ export function WhatWeBuild() {
           <StaggerGroup className="flex flex-col gap-6">
             {services.map((service) => (
               <StaggerItem key={service.slug} className="flex justify-center">
-                <BigCard service={service} color={cardColors[service.slug] ?? "#68fc05"} animated={false} />
+                <BigCard service={service} color={cardColors[service.slug] ?? "#7bc05a"} animated={false} />
               </StaggerItem>
             ))}
           </StaggerGroup>
