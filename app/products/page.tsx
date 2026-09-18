@@ -25,8 +25,8 @@ export default function ProductsPage() {
             <StaggerItem key={product.slug} hover>
               <SpotlightLink
                 href={`/products/${product.slug}`}
-                spotlightColor="rgba(197,224,184,0.12)"
-                className="flex h-full flex-col justify-between gap-10 rounded-2xl border border-border bg-background-elevated/40 p-8 hover:border-green-light/50 hover:shadow-[0_20px_40px_-18px_rgba(197,224,184,0.2)]"
+                spotlightColor="rgba(190,242,209,0.12)"
+                className="flex h-full flex-col justify-between gap-10 rounded-2xl border border-border bg-background-elevated/40 p-8 hover:border-green-light/50 hover:shadow-[0_20px_40px_-18px_rgba(190,242,209,0.2)]"
               >
                 <div className="flex flex-col gap-4">
                   <div className="flex items-center justify-between">
