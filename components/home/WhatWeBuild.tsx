@@ -189,7 +189,7 @@ function ScrollStory() {
               className="h-1.5 rounded-full transition-all duration-300"
               style={{
                 width: i === activeIndex ? "22px" : "6px",
-                backgroundColor: i === activeIndex ? activeColor : "var(--dark-border)",
+                backgroundColor: i === activeIndex ? activeColor : "rgba(197,224,184,0.18)",
               }}
             />
           ))}
