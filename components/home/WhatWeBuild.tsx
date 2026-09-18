@@ -17,10 +17,9 @@ import { stagger, fadeUp } from "@/lib/motion";
 import { services, type Service } from "@/lib/content/services";
 
 const cardColors: Record<string, string> = {
-  "ai-agents": "#1c98a6",
+  "ai-agents": "#68fc05",
   "ai-automation": "#2b1bba",
   automation: "#4f7ff7",
-  "agent-ticketing": "#147d8a",
   "ai-product-development": "#ff8800",
 };
 
@@ -44,15 +43,7 @@ function ServiceIcon({ slug }: { slug: string }) {
   if (slug === "automation") {
     return <span className="block h-[18px] w-[18px] rounded-full border-[2.5px] border-white" />;
   }
-  if (slug === "ai-product-development") {
-    return <span className="font-mono-label text-[15px] font-bold text-white">{"</>"}</span>;
-  }
-  return (
-    <span className="relative block h-4 w-[18px]">
-      <span className="absolute left-0 top-0 h-[13px] w-[13px] rounded-[4px] bg-white/55" />
-      <span className="absolute bottom-0 right-0 h-[13px] w-[13px] rounded-[4px] bg-white" />
-    </span>
-  );
+  return <span className="font-mono-label text-[15px] font-bold text-white">{"</>"}</span>;
 }
 
 function BigCard({ service, color, animated = true }: { service: Service; color: string; animated?: boolean }) {
@@ -168,7 +159,7 @@ function ScrollStory() {
     setActiveIndex((prev) => (prev === idx ? prev : idx));
   });
 
-  const activeColor = cardColors[services[activeIndex].slug] ?? "#147d8a";
+  const activeColor = cardColors[services[activeIndex].slug] ?? "#68fc05";
 
   return (
     <div ref={containerRef} style={{ height: `${total * 80}vh` }}>
@@ -186,7 +177,7 @@ function ScrollStory() {
               index={i}
               total={total}
               service={service}
-              color={cardColors[service.slug] ?? "#147d8a"}
+              color={cardColors[service.slug] ?? "#68fc05"}
             />
           ))}
         </div>
@@ -212,8 +203,17 @@ export function WhatWeBuild() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="border-t border-border py-20 sm:py-28">
-      <Container className="flex flex-col gap-12">
+    <section className="relative border-t border-border py-20 sm:py-28">
+      {/* Clipped in its own layer, not on the section itself: overflow-hidden
+          on an ancestor of the scroll-story's sticky element would break
+          position:sticky (it can no longer stick relative to the viewport). */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        <span
+          className="ambient-orange"
+          style={{ width: 520, height: 520, bottom: "-12%", left: "-8%" }}
+        />
+      </div>
+      <Container className="relative flex flex-col gap-12">
         <Reveal>
           <SectionHeading
             eyebrow="What we build"
@@ -229,7 +229,7 @@ export function WhatWeBuild() {
           <StaggerGroup className="flex flex-col gap-6">
             {services.map((service) => (
               <StaggerItem key={service.slug} className="flex justify-center">
-                <BigCard service={service} color={cardColors[service.slug] ?? "#147d8a"} animated={false} />
+                <BigCard service={service} color={cardColors[service.slug] ?? "#68fc05"} animated={false} />
               </StaggerItem>
             ))}
           </StaggerGroup>

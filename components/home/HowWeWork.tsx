@@ -7,7 +7,7 @@ import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/Reveal";
 import { viewport } from "@/lib/motion";
 import { process } from "@/lib/content/technologies";
 
-const accents = ["#147d8a", "#4f7ff7", "#2b1bba"];
+const accents = ["#68fc05", "#4f7ff7", "#2b1bba"];
 
 export function HowWeWork() {
   return (
@@ -17,6 +17,11 @@ export function HowWeWork() {
         <span />
         <span />
       </div>
+      <span
+        aria-hidden="true"
+        className="ambient-orange"
+        style={{ width: 480, height: 480, bottom: "-14%", right: "-6%" }}
+      />
       <Container className="relative flex flex-col gap-16">
         <Reveal>
           <SectionHeading eyebrow="How we work" title="From Problem to Production" />

@@ -33,12 +33,17 @@ export function Hero() {
       />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-border" />
       <div className="pointer-events-none absolute left-1/2 top-24 hidden h-64 w-px -translate-x-1/2 bg-gradient-to-b from-border to-transparent sm:block" />
+      <span
+        aria-hidden="true"
+        className="ambient-orange"
+        style={{ width: 620, height: 620, top: "-14%", right: "8%" }}
+      />
 
       <motion.div initial="hidden" animate="show" variants={staggerFast}>
         <Container className="relative flex flex-col items-center gap-8 pb-16 text-center sm:pb-20">
           <motion.span
             variants={fadeUpFast}
-            className="font-mono-label rounded-full border border-teal/30 bg-teal/[0.06] px-3.5 py-1.5 text-[11px] uppercase tracking-wide text-teal shadow-[0_0_24px_-6px_rgba(28,152,166,0.55)]"
+            className="font-mono-label rounded-full border border-teal/30 bg-teal/[0.06] px-3.5 py-1.5 text-[11px] uppercase tracking-wide text-teal shadow-[0_0_24px_-6px_rgba(104,252,5,0.45)]"
           >
             AI Engineering Studio
           </motion.span>
@@ -78,7 +83,7 @@ export function Hero() {
               className="pointer-events-none absolute -inset-10 -z-10 opacity-70 blur-3xl"
               style={{
                 background:
-                  "radial-gradient(60% 60% at 30% 20%, rgba(28,152,166,0.28), transparent 70%), radial-gradient(50% 50% at 80% 80%, rgba(79,127,247,0.22), transparent 70%)",
+                  "radial-gradient(60% 60% at 30% 20%, rgba(104,252,5,0.22), transparent 70%), radial-gradient(50% 50% at 80% 80%, rgba(79,127,247,0.22), transparent 70%)",
               }}
             />
             <div className="absolute -left-1.5 -top-4 z-10 flex items-center gap-2 rounded-xl border border-border bg-background-elevated px-3.5 py-2 text-xs font-semibold shadow-[0_20px_44px_-10px_rgba(32,30,28,0.2)]">
@@ -99,10 +104,10 @@ export function Hero() {
             </div>
             <div className="-rotate-1 overflow-hidden rounded-[20px] border border-border shadow-[0_40px_70px_-24px_rgba(32,30,28,0.28)]">
               <Image
-                src="/projects/crm-suite.jpg"
-                alt="Custom CRM dashboard built by AI Coders"
-                width={1200}
-                height={750}
+                src="/projects/tresolv.png"
+                alt="tResolv AI support employee built by AI Coders"
+                width={1920}
+                height={827}
                 sizes="(min-width: 672px) 672px, 100vw"
                 className="block w-full"
                 priority
