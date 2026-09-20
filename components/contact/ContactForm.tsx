@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { tapScale } from "@/lib/motion";
 
 const STAGES = [
@@ -61,89 +61,114 @@ export function ContactForm() {
     }
   }
 
-  if (status === "success") {
-    return (
-      <div className="flex flex-col gap-3 rounded-2xl border border-teal-bright/30 bg-background-elevated/40 p-8">
-        <span className="font-mono-label text-xs uppercase tracking-wide text-teal-bright">
-          Inquiry sent
-        </span>
-        <p className="font-display text-xl font-semibold text-foreground">
-          Thanks. We&apos;ll be in touch shortly.
-        </p>
-        <p className="text-sm text-muted">
-          We review every project inquiry and typically respond within a few business days.
-        </p>
-      </div>
-    );
-  }
-
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-      <input
-        type="checkbox"
-        name="botcheck"
-        tabIndex={-1}
-        autoComplete="off"
-        aria-hidden="true"
-        className="absolute left-[-9999px] h-0 w-0 opacity-0"
-      />
-      <div className="grid gap-5 sm:grid-cols-2">
-        <label className="flex flex-col gap-2 text-sm text-muted">
-          Name
-          <input required name="name" type="text" className={inputClasses} autoComplete="name" />
-        </label>
-        <label className="flex flex-col gap-2 text-sm text-muted">
-          Company
-          <input name="company" type="text" className={inputClasses} autoComplete="organization" />
-        </label>
-      </div>
+    <AnimatePresence mode="wait">
+      {status === "success" ? (
+        <motion.div
+          key="success"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col gap-3 rounded-2xl border border-teal/30 bg-background-elevated p-8"
+        >
+          <span className="font-mono-label text-xs uppercase tracking-wide text-teal">
+            Inquiry sent
+          </span>
+          <p className="font-display text-xl font-semibold text-foreground">
+            Thanks. We&apos;ll be in touch shortly.
+          </p>
+          <p className="text-sm text-muted">
+            We review every project inquiry and typically respond within a few business days.
+          </p>
+        </motion.div>
+      ) : (
+        <motion.form
+          key="form"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.25 }}
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-5"
+        >
+          <input
+            type="checkbox"
+            name="botcheck"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            className="absolute left-[-9999px] h-0 w-0 opacity-0"
+          />
+          <div className="grid gap-5 sm:grid-cols-2">
+            <label className="flex flex-col gap-2 text-sm text-muted">
+              Name
+              <input required name="name" type="text" className={inputClasses} autoComplete="name" />
+            </label>
+            <label className="flex flex-col gap-2 text-sm text-muted">
+              Company
+              <input name="company" type="text" className={inputClasses} autoComplete="organization" />
+            </label>
+          </div>
 
-      <label className="flex flex-col gap-2 text-sm text-muted">
-        Work Email
-        <input
-          required
-          name="workEmail"
-          type="email"
-          className={inputClasses}
-          autoComplete="email"
-        />
-      </label>
+          <label className="flex flex-col gap-2 text-sm text-muted">
+            Work Email
+            <input
+              required
+              name="workEmail"
+              type="email"
+              className={inputClasses}
+              autoComplete="email"
+            />
+          </label>
 
-      <label className="flex flex-col gap-2 text-sm text-muted">
-        What are you looking to build?
-        <input required name="lookingToBuild" type="text" className={inputClasses} />
-      </label>
+          <label className="flex flex-col gap-2 text-sm text-muted">
+            What are you looking to build?
+            <input required name="lookingToBuild" type="text" className={inputClasses} />
+          </label>
 
-      <label className="flex flex-col gap-2 text-sm text-muted">
-        Tell us about the workflow or problem
-        <textarea name="workflow" rows={5} className={`${inputClasses} resize-none`} />
-      </label>
+          <label className="flex flex-col gap-2 text-sm text-muted">
+            Tell us about the workflow or problem
+            <textarea name="workflow" rows={5} className={`${inputClasses} resize-none`} />
+          </label>
 
-      <label className="flex flex-col gap-2 text-sm text-muted">
-        Project stage
-        <select name="stage" defaultValue="" className={inputClasses}>
-          <option value="" disabled>
-            Select a stage
-          </option>
-          {STAGES.map((stage) => (
-            <option key={stage} value={stage}>
-              {stage}
-            </option>
-          ))}
-        </select>
-      </label>
+          <label className="flex flex-col gap-2 text-sm text-muted">
+            Project stage
+            <select name="stage" defaultValue="" className={inputClasses}>
+              <option value="" disabled>
+                Select a stage
+              </option>
+              {STAGES.map((stage) => (
+                <option key={stage} value={stage}>
+                  {stage}
+                </option>
+              ))}
+            </select>
+          </label>
 
-      {error && <p className="text-sm text-orange">{error}</p>}
+          <AnimatePresence>
+            {error && (
+              <motion.p
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                className="text-sm text-orange"
+              >
+                {error}
+              </motion.p>
+            )}
+          </AnimatePresence>
 
-      <motion.button
-        type="submit"
-        disabled={status === "submitting"}
-        whileHover={{ y: -2 }}
-        whileTap={tapScale}
-        className="mt-2 inline-flex items-center justify-center rounded-full bg-teal-bright px-6 py-3.5 text-sm font-medium text-[#07080c] transition-colors hover:bg-teal disabled:opacity-60"
-      >
-        {status === "submitting" ? "Sending…" : "Send Project Inquiry"}
-      </motion.button>
-    </form>
+          <motion.button
+            type="submit"
+            disabled={status === "submitting"}
+            whileHover={{ y: -2 }}
+            whileTap={tapScale}
+            className="mt-2 inline-flex items-center justify-center rounded-full bg-orange px-6 py-3.5 text-sm font-medium text-white transition-colors hover:opacity-90 disabled:opacity-60"
+          >
+            {status === "submitting" ? "Sending…" : "Send Project Inquiry"}
+          </motion.button>
+        </motion.form>
+      )}
+    </AnimatePresence>
   );
 }

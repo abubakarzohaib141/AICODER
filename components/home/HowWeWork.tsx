@@ -7,21 +7,11 @@ import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/Reveal";
 import { viewport } from "@/lib/motion";
 import { process } from "@/lib/content/technologies";
 
-const accents = ["#25d366", "#4f7ff7", "#2b1bba"];
+const accents = ["#147d8a", "#4f7ff7", "#2b1bba"];
 
 export function HowWeWork() {
   return (
     <section className="relative overflow-hidden border-t border-border py-20 sm:py-28">
-      <div className="section-atmosphere-grid" aria-hidden="true" />
-      <div className="section-atmosphere" aria-hidden="true">
-        <span />
-        <span />
-      </div>
-      <span
-        aria-hidden="true"
-        className="ambient-orange"
-        style={{ width: 480, height: 480, bottom: "-14%", right: "-6%" }}
-      />
       <Container className="relative flex flex-col gap-16">
         <Reveal>
           <SectionHeading eyebrow="How we work" title="From Problem to Production" />

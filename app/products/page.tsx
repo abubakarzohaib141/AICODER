@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
-import { SpotlightLink } from "@/components/ui/SpotlightLink";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Reveal";
 import { products } from "@/lib/content/products";
 
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function ProductsPage() {
   return (
-    <div className="dark-scope min-h-screen">
+    <>
       <PageHero
         eyebrow="Products"
         title="Products We've Built"
@@ -23,10 +23,9 @@ export default function ProductsPage() {
         <StaggerGroup className="grid gap-6 sm:grid-cols-2">
           {products.map((product) => (
             <StaggerItem key={product.slug} hover>
-              <SpotlightLink
+              <Link
                 href={`/products/${product.slug}`}
-                spotlightColor="rgba(190,242,209,0.12)"
-                className="flex h-full flex-col justify-between gap-10 rounded-2xl border border-border bg-background-elevated/40 p-8 hover:border-green-light/50 hover:shadow-[0_20px_40px_-18px_rgba(190,242,209,0.2)]"
+                className="flex h-full flex-col justify-between gap-10 rounded-2xl border border-border bg-background-elevated p-8 transition-colors hover:border-teal/50 hover:shadow-[0_20px_40px_-18px_rgba(20,125,138,0.2)]"
               >
                 <div className="flex flex-col gap-4">
                   <div className="flex items-center justify-between">
@@ -46,12 +45,12 @@ export default function ProductsPage() {
                     →
                   </span>
                 </div>
-              </SpotlightLink>
+              </Link>
             </StaggerItem>
           ))}
         </StaggerGroup>
         </Container>
       </section>
-    </div>
+    </>
   );
 }

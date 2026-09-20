@@ -9,13 +9,7 @@ const accents = ["var(--accent-teal)", "var(--accent-blue)", "var(--accent-orang
 
 export function WhoWeBuildFor() {
   return (
-    <section className="relative overflow-hidden border-t border-border py-20 sm:py-28">
-      <div className="section-atmosphere-grid" aria-hidden="true" />
-      <div className="section-atmosphere" aria-hidden="true">
-        <span />
-        <span />
-      </div>
-
+    <section className="relative border-t border-border py-20 sm:py-28">
       <Container className="relative flex flex-col gap-12">
         <Reveal>
           <SectionHeading

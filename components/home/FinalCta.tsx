@@ -16,7 +16,7 @@ export function FinalCta() {
             agents, automation or custom engineering create real value.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-            <BookCallButton variant="accent" className="!px-7 !py-3.5 text-sm">
+            <BookCallButton variant="orange" className="!px-7 !py-3.5 text-sm">
               Book a Call
             </BookCallButton>
             <Link

@@ -28,7 +28,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   if (!product) notFound();
 
   return (
-    <div className="dark-scope min-h-screen">
+    <>
       <section className="border-b border-border pb-14 pt-20 sm:pt-28">
         <Container className="flex flex-col gap-5">
           <Link href="/products" className="text-sm text-muted transition-colors hover:text-foreground">
@@ -93,6 +93,6 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           )}
         </Container>
       </section>
-    </div>
+    </>
   );
 }

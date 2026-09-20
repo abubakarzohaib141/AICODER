@@ -101,12 +101,7 @@ export function ProductShowcase() {
     .filter((p): p is Product => Boolean(p));
 
   return (
-    <section id="work" className="relative scroll-mt-20 overflow-hidden border-t border-border py-20 sm:py-28">
-      <span
-        aria-hidden="true"
-        className="ambient-orange"
-        style={{ width: 500, height: 500, top: "-16%", left: "55%" }}
-      />
+    <section id="work" className="relative scroll-mt-20 border-t border-border py-20 sm:py-28">
       <Container className="relative flex flex-col gap-9">
         <Reveal className="flex flex-wrap items-end justify-between gap-5">
           <SectionHeading eyebrow="Selected work" title="What We've Built" />

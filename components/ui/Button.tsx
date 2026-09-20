@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { ReactNode } from "react";
 import { tapScale } from "@/lib/motion";
 
-type Variant = "primary" | "secondary" | "ghost" | "gradient";
+type Variant = "primary" | "secondary" | "ghost" | "orange" | "teal";
 
 const base =
   "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-colors duration-150 whitespace-nowrap";
@@ -15,7 +15,8 @@ const variants: Record<Variant, string> = {
   secondary:
     "border border-border-strong text-foreground hover:border-blue hover:bg-background-elevated",
   ghost: "text-foreground/80 hover:text-foreground",
-  gradient: "bg-teal-bright text-[#07080c] hover:opacity-90",
+  orange: "bg-orange text-white hover:opacity-90",
+  teal: "bg-teal text-white hover:opacity-90",
 };
 
 const MotionLink = motion.create(Link);
