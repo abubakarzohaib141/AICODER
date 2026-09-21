@@ -10,7 +10,6 @@ export const siteConfig = {
     { label: "Solutions", href: "/solutions" },
     { label: "Products", href: "/products" },
     { label: "Case Studies", href: "/case-studies" },
-    { label: "Team", href: "/team" },
     { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },
   ],
@@ -19,6 +18,6 @@ export const siteConfig = {
     { label: "Terms of Service", href: "/terms" },
   ],
   socials: [] as { label: string; href: string }[],
-  /** Calendly scheduling link (e.g. "https://calendly.com/your-name/30min"). Empty until provided. */
-  calendlyUrl: "https://calendly.com/aicoders123/30min",
+  /** Calendly scheduling link — "AI Discovery Call", 30 min. */
+  calendlyUrl: "https://calendly.com/aicoders123/discovery-call",
 };

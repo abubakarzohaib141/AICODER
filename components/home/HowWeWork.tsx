@@ -7,7 +7,7 @@ import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/Reveal";
 import { viewport } from "@/lib/motion";
 import { process } from "@/lib/content/technologies";
 
-const accents = ["#147d8a", "#4f7ff7", "#2b1bba"];
+const accents = ["#147d8a", "#c2660b", "#16213e"];
 
 export function HowWeWork() {
   return (
@@ -30,7 +30,7 @@ export function HowWeWork() {
             <StaggerItem key={step.number} className="relative flex flex-col gap-4">
               <motion.span
                 className="font-display text-4xl font-bold leading-none"
-                initial={{ color: "#928a84" }}
+                initial={{ color: "#8890a0" }}
                 whileInView={{ color: accents[i % accents.length] }}
                 viewport={viewport}
                 transition={{ duration: 0.4, delay: i * 0.08 }}

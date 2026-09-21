@@ -18,8 +18,8 @@ import { services, type Service } from "@/lib/content/services";
 
 const cardColors: Record<string, string> = {
   "ai-agents": "#147d8a",
-  "ai-automation": "#2b1bba",
-  automation: "#4f7ff7",
+  "ai-automation": "#16213e",
+  automation: "#c2660b",
   "ai-product-development": "#ff8800",
 };
 
@@ -195,7 +195,7 @@ export function WhatWeBuild() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="relative border-t border-border py-20 sm:py-28">
+    <section className="relative border-t border-border bg-background-elevated-2 py-20 sm:py-28">
       <Container className="relative flex flex-col gap-12">
         <Reveal>
           <SectionHeading

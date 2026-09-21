@@ -1,28 +1,32 @@
 @import "tailwindcss";
 
 :root {
-  --background: #faf7f5;
+  /* Warm pale-cream background + deep navy text — matches the sending.ac
+     reference site rather than a neutral gray/white theme. */
+  --background: #fffbf0;
   --background-elevated: #ffffff;
-  --background-elevated-2: #f1ebe7;
-  --foreground: #201e1c;
-  --muted: #6b6560;
-  --muted-2: #928a84;
-  --border: rgba(32, 30, 28, 0.1);
-  --border-strong: rgba(32, 30, 28, 0.18);
+  --background-elevated-2: #fdf3d9;
+  --foreground: #16213e;
+  --muted: #5b6478;
+  --muted-2: #8890a0;
+  --border: rgba(22, 33, 62, 0.12);
+  --border-strong: rgba(22, 33, 62, 0.2);
 
   --accent-orange: #ff8800;
+  --accent-gold: #f5c242;
   --accent-teal: #147d8a;
   --accent-teal-bright: #1c98a6;
-  --accent-blue: #4f7ff7;
-  --accent-indigo: #2b1bba;
+  /* Restrained secondary accent — links and small interactive states only,
+     never a button fill or a badge/background color. */
+  --accent-blue: #3a5fd9;
   --accent-neutral: #ddd3d3;
 
-  /* Always-dark surface — used for the footer and final-CTA band, the one
-     place the site is intentionally dark (matches the sending.ac reference). */
-  --dark-background: #14201f;
-  --dark-foreground: #f7f4f1;
-  --dark-muted: #b7c4c2;
-  --dark-border: rgba(247, 244, 241, 0.14);
+  /* Deep navy — footer, final-CTA band, and other intentionally dark
+     sections. Same family as --foreground, just darker. */
+  --dark-background: #0f1830;
+  --dark-foreground: #f6f7fb;
+  --dark-muted: #a7aec2;
+  --dark-border: rgba(246, 247, 251, 0.14);
 }
 
 @theme inline {
@@ -36,10 +40,10 @@
   --color-border-strong: var(--border-strong);
 
   --color-orange: var(--accent-orange);
+  --color-gold: var(--accent-gold);
   --color-teal: var(--accent-teal);
   --color-teal-bright: var(--accent-teal-bright);
   --color-blue: var(--accent-blue);
-  --color-indigo: var(--accent-indigo);
   --color-neutral: var(--accent-neutral);
 
   --color-dark-background: var(--dark-background);
@@ -47,7 +51,12 @@
   --color-dark-muted: var(--dark-muted);
   --color-dark-border: var(--dark-border);
 
-  --font-display: var(--font-manrope);
+  /* sending.ac's headline font, per its own computed styles, is Inter
+     Display at weight 600 — not a separate heavier display face. We
+     already load Inter for body copy, so headings now share it too,
+     matching their single-font-family system instead of a two-font
+     pairing. */
+  --font-display: var(--font-inter);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
 }
@@ -68,12 +77,12 @@ body {
 }
 
 ::selection {
-  background-color: rgba(20, 125, 138, 0.22);
+  background-color: rgba(245, 194, 66, 0.45);
   color: var(--foreground);
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent-blue);
+  outline: 2px solid var(--accent-teal);
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -86,13 +95,61 @@ body {
   font-family: var(--font-mono), ui-monospace, monospace;
 }
 
+/* Typography scale — controlled hierarchy rather than "big for the sake of
+   big". Applied via these classes on headings/labels site-wide. */
+.text-display {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+}
+
+.text-hero {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+
+.text-section {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.text-eyebrow {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
 .highlight-teal {
   color: var(--accent-teal);
 }
 
+/* Sending.ac's exact word-highlight technique (verified via computed styles
+   on the live site): a hard-stop two-color gradient — transparent for the
+   top 16% of the line box, then solid-ish color for the rest — not a plain
+   background-color (which fills the *whole* line-height box, including the
+   font's reserved ascender/descender space, and looks like a clumsy slab)
+   and not a thin underline. */
 .highlight-mark {
-  background-image: linear-gradient(transparent 62%, rgba(255, 136, 0, 0.22) 62%);
-  padding: 0 0.05em;
+  background-image: linear-gradient(rgba(245, 194, 66, 0) 16%, rgba(245, 194, 66, 0.9) 16%);
+  padding: 0 0.15em;
+  border-radius: 3px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.highlight-mark-teal {
+  background-image: linear-gradient(rgba(20, 125, 138, 0) 16%, rgba(20, 125, 138, 0.92) 16%);
+  color: #fff;
+  padding: 0 0.15em;
+  border-radius: 3px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 
 /* Reusable dark scope for content that should always render on the dark
@@ -100,13 +157,13 @@ body {
    the site's light background. */
 .dark-scope {
   --background: var(--dark-background);
-  --background-elevated: #1a2625;
-  --background-elevated-2: #1f2d2c;
+  --background-elevated: #182242;
+  --background-elevated-2: #1c2a4e;
   --foreground: var(--dark-foreground);
   --muted: var(--dark-muted);
-  --muted-2: #8a9694;
+  --muted-2: #8891ab;
   --border: var(--dark-border);
-  --border-strong: rgba(247, 244, 241, 0.22);
+  --border-strong: rgba(246, 247, 251, 0.22);
   background: var(--background);
   color: var(--foreground);
 }

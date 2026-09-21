@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
@@ -9,10 +9,19 @@ import { testimonials } from "@/lib/content/testimonials";
 
 export function Testimonials() {
   const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
   const featured = testimonials[index];
 
+  useEffect(() => {
+    if (paused || testimonials.length < 2) return;
+    const id = setInterval(() => {
+      setIndex((i) => (i + 1) % testimonials.length);
+    }, 5000);
+    return () => clearInterval(id);
+  }, [paused]);
+
   return (
-    <section className="border-t border-border py-20 sm:py-28">
+    <section className="border-t border-border bg-background-elevated-2 py-20 sm:py-28">
       <Container className="flex flex-col gap-9">
         <Reveal className="flex flex-col gap-2.5">
           <span className="font-mono-label text-[11px] uppercase tracking-wide text-muted-2">
@@ -27,7 +36,11 @@ export function Testimonials() {
         </Reveal>
 
         <Reveal className="grid gap-7 lg:grid-cols-[1.3fr_1fr]">
-          <div className="relative flex flex-col justify-between gap-6 overflow-hidden rounded-[22px] border border-border bg-background-elevated-2 p-10">
+          <div
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+            className="relative flex flex-col justify-between gap-6 overflow-hidden rounded-[22px] border border-border bg-background-elevated p-10"
+          >
             <AnimatePresence mode="wait">
               <motion.div
                 key={featured.slug}

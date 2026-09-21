@@ -46,7 +46,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
           <div className="flex flex-wrap items-center gap-3 pt-2">
             {product.links.map((link) => (
-              <Button key={link.href} href={link.href} external>
+              <Button key={link.href} href={link.href} variant="primary" external>
                 {link.label}
               </Button>
             ))}

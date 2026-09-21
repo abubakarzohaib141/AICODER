@@ -3,8 +3,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-
-const MotionLink = motion.create(Link);
 import { Logo } from "@/components/ui/Logo";
 import { MobileNav } from "@/components/layout/MobileNav";
 import { BookCallButton } from "@/components/booking/BookCallButton";
@@ -12,6 +10,7 @@ import { siteConfig } from "@/lib/content/site";
 
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
+  const [hovered, setHovered] = useState<string | null>(null);
 
   useEffect(() => {
     function onScroll() {
@@ -31,22 +30,23 @@ export function SiteHeader() {
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-5 sm:px-8">
         <Logo />
 
-        <nav className="hidden items-center gap-8 lg:flex">
+        <nav className="hidden items-center gap-8 lg:flex" onMouseLeave={() => setHovered(null)}>
           {siteConfig.nav.map((item) => (
-            <MotionLink
+            <Link
               key={item.href}
               href={item.href}
-              className="relative text-sm text-muted transition-colors hover:text-foreground"
-              initial="rest"
-              whileHover="hover"
+              onMouseEnter={() => setHovered(item.href)}
+              className="relative py-1 text-sm text-muted transition-colors hover:text-foreground"
             >
               {item.label}
-              <motion.span
-                className="absolute -bottom-1 left-0 h-px w-full origin-left bg-foreground"
-                variants={{ rest: { scaleX: 0 }, hover: { scaleX: 1 } }}
-                transition={{ duration: 0.2 }}
-              />
-            </MotionLink>
+              {hovered === item.href && (
+                <motion.span
+                  layoutId="nav-hover-dot"
+                  transition={{ type: "spring", stiffness: 500, damping: 32 }}
+                  className="absolute -bottom-1.5 left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-gold"
+                />
+              )}
+            </Link>
           ))}
         </nav>
 

@@ -86,7 +86,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={`${manrope.variable} ${inter.variable} ${jetbrainsMono.variable} h-full`}
     >
-      <body className="flex min-h-full flex-col antialiased">
+      <body className="flex min-h-full flex-col antialiased" suppressHydrationWarning>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}

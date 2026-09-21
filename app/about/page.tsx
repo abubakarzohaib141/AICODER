@@ -43,7 +43,7 @@ export default function AboutPage() {
                 </p>
               </div>
               <div>
-                <span className="font-mono-label text-xs uppercase tracking-wide text-blue">
+                <span className="font-mono-label text-xs uppercase tracking-wide text-teal">
                   Vision
                 </span>
                 <p className="mt-3 font-display text-xl font-semibold text-foreground sm:text-2xl">

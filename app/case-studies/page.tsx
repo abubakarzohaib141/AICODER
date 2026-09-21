@@ -33,7 +33,7 @@ export default function CaseStudiesPage() {
                     {study.category}
                   </span>
                 </div>
-                <h2 className="font-display text-2xl font-semibold text-foreground group-hover:text-blue transition-colors">
+                <h2 className="font-display text-2xl font-semibold text-foreground group-hover:text-teal transition-colors">
                   {study.title}
                 </h2>
                 <p className="max-w-xl text-sm leading-relaxed text-muted">{study.summary}</p>

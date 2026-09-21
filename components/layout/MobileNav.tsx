@@ -77,7 +77,7 @@ export function MobileNav() {
                   setOpen(false);
                   openBooking();
                 }}
-                className="flex w-full items-center justify-center rounded-full bg-foreground px-6 py-3.5 text-sm font-medium text-background"
+                className="flex w-full items-center justify-center rounded-[10px] bg-foreground px-6 py-3.5 text-sm font-semibold text-background"
               >
                 Book a Call
               </button>

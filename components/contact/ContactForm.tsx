@@ -14,7 +14,7 @@ const STAGES = [
 ];
 
 const inputClasses =
-  "w-full rounded-xl border border-border-strong bg-background-elevated/40 px-4 py-3 text-sm text-foreground placeholder:text-muted-2 outline-none transition-colors focus:border-blue";
+  "w-full rounded-[10px] border border-border-strong bg-background-elevated/40 px-4 py-3 text-sm text-foreground placeholder:text-muted-2 outline-none transition-colors focus:border-teal focus:ring-2 focus:ring-teal/20";
 
 export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
@@ -38,7 +38,7 @@ export function ContactForm() {
           subject: `New project inquiry from ${data.name}`,
           from_name: data.name,
           name: data.name,
-          email: data.workEmail,
+          email: data.email,
           company: data.company || "Not provided",
           "Looking to build": data.lookingToBuild,
           "Workflow / problem": data.workflow || "Not provided",
@@ -75,10 +75,8 @@ export function ContactForm() {
             Inquiry sent
           </span>
           <p className="font-display text-xl font-semibold text-foreground">
-            Thanks. We&apos;ll be in touch shortly.
-          </p>
-          <p className="text-sm text-muted">
-            We review every project inquiry and typically respond within a few business days.
+            Thank you for submitting the form. We will be contacting you in the next few hours, so
+            please check your inbox.
           </p>
         </motion.div>
       ) : (
@@ -112,13 +110,7 @@ export function ContactForm() {
 
           <label className="flex flex-col gap-2 text-sm text-muted">
             Work Email
-            <input
-              required
-              name="workEmail"
-              type="email"
-              className={inputClasses}
-              autoComplete="email"
-            />
+            <input required name="email" type="email" className={inputClasses} autoComplete="email" />
           </label>
 
           <label className="flex flex-col gap-2 text-sm text-muted">
@@ -163,7 +155,7 @@ export function ContactForm() {
             disabled={status === "submitting"}
             whileHover={{ y: -2 }}
             whileTap={tapScale}
-            className="mt-2 inline-flex items-center justify-center rounded-full bg-orange px-6 py-3.5 text-sm font-medium text-white transition-colors hover:opacity-90 disabled:opacity-60"
+            className="mt-2 inline-flex items-center justify-center rounded-[10px] bg-foreground px-6 py-3.5 text-sm font-semibold text-background transition-colors hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {status === "submitting" ? "Sending…" : "Send Project Inquiry"}
           </motion.button>

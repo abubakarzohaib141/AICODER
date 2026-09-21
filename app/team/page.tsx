@@ -14,8 +14,8 @@ export const metadata: Metadata = {
 
 const accents = [
   "var(--accent-teal)",
-  "var(--accent-blue)",
-  "var(--accent-indigo)",
+  "#c2660b",
+  "#16213e",
   "var(--accent-orange)",
 ];
 

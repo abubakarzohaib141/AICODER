@@ -64,7 +64,7 @@ export function BookingModal({ isOpen, onClose }: { isOpen: boolean; onClose: ()
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="text-xl leading-none text-muted transition-colors hover:text-foreground"
+            className="flex h-8 w-8 items-center justify-center rounded-[8px] text-lg leading-none text-muted transition-colors hover:bg-background-elevated-2 hover:text-foreground"
           >
             ×
           </button>
@@ -75,13 +75,13 @@ export function BookingModal({ isOpen, onClose }: { isOpen: boolean; onClose: ()
             <>
               <div
                 className="calendly-inline-widget"
-                data-url={siteConfig.calendlyUrl}
+                data-url={`${siteConfig.calendlyUrl}?hide_event_type_details=1&hide_gdpr_banner=1`}
                 style={{ minWidth: "320px", height: "100%" }}
               />
               <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="lazyOnload" />
             </>
           ) : (
-            <div className="flex flex-col items-center gap-4 px-6 py-14 text-center">
+            <div className="flex h-full flex-col items-center justify-center gap-4 px-6 py-14 text-center">
               <span className="font-mono-label text-xs uppercase tracking-wide text-muted-2">
                 Booking link coming soon
               </span>
@@ -92,7 +92,7 @@ export function BookingModal({ isOpen, onClose }: { isOpen: boolean; onClose: ()
               <Link
                 href="/contact"
                 onClick={onClose}
-                className="mt-2 inline-flex items-center justify-center rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-opacity hover:opacity-85"
+                className="mt-2 inline-flex items-center justify-center rounded-[10px] bg-foreground px-6 py-3 text-sm font-semibold text-background transition-opacity hover:opacity-90"
               >
                 Go to contact form
               </Link>
