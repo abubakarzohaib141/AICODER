@@ -4,6 +4,7 @@ import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
 import { Reveal } from "@/components/motion/Reveal";
 import { caseStudies } from "@/lib/content/case-studies";
+import { FinalCta } from "@/components/home/FinalCta";
 
 export const metadata: Metadata = {
   title: "Case Studies",
@@ -46,6 +47,7 @@ export default function CaseStudiesPage() {
           ))}
         </Container>
       </section>
+      <FinalCta />
     </>
   );
 }

@@ -5,6 +5,8 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Tag } from "@/components/ui/Tag";
 import { ScreenshotFrame } from "@/components/system/ScreenshotFrame";
+import { Reveal } from "@/components/motion/Reveal";
+import { FinalCta } from "@/components/home/FinalCta";
 import { products } from "@/lib/content/products";
 
 export function generateStaticParams() {
@@ -29,12 +31,17 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
   return (
     <>
-      <section className="border-b border-border pb-14 pt-20 sm:pt-28">
-        <Container className="flex flex-col gap-5">
+      <section className="relative overflow-hidden border-b border-border pb-14 pt-20 sm:pt-28">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(245,194,66,0.16),rgba(245,194,66,0)_70%)]"
+        />
+        <Reveal>
+        <Container className="relative flex flex-col gap-5">
           <Link href="/products" className="text-sm text-muted transition-colors hover:text-foreground">
             ← All products
           </Link>
-          <span className="font-mono-label text-xs uppercase tracking-[0.18em] text-orange">
+          <span className="font-mono-label w-fit rounded-full border border-teal/30 bg-teal/[0.06] px-3.5 py-1.5 text-[11px] uppercase tracking-wide text-teal">
             {product.category}
           </span>
           <h1 className="max-w-2xl font-display text-4xl font-semibold leading-tight tracking-tight text-foreground sm:text-5xl">
@@ -53,9 +60,11 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             <span className="text-sm text-muted">Engineered by AI Coders</span>
           </div>
         </Container>
+        </Reveal>
       </section>
 
       <section className="py-14 sm:py-20">
+        <Reveal>
         <Container className="flex flex-col gap-10">
           {product.screenshots && product.screenshots.length > 1 ? (
             <div className="grid gap-6 sm:grid-cols-2">
@@ -92,7 +101,9 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             </div>
           )}
         </Container>
+        </Reveal>
       </section>
+      <FinalCta />
     </>
   );
 }

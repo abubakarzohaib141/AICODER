@@ -5,7 +5,6 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { BookCallButton } from "@/components/booking/BookCallButton";
-import { BuiltWithRow } from "@/components/ui/BuiltWithRow";
 import { ToolLogo } from "@/components/ui/ToolLogo";
 import { fadeUpFast, staggerFast } from "@/lib/motion";
 import { testimonials } from "@/lib/content/testimonials";
@@ -63,10 +62,6 @@ export function Hero() {
                 See Our Work ↓
               </a>
             </motion.div>
-
-            <motion.div variants={fadeUpFast} className="pt-2">
-              <BuiltWithRow label="Used by teams building with" />
-            </motion.div>
           </div>
 
           <motion.div
@@ -87,7 +82,7 @@ export function Hero() {
             <motion.div
               animate={{ y: [0, -7, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -left-6 top-8 z-10 hidden h-12 w-12 items-center justify-center rounded-full border border-border bg-background-elevated p-2.5 shadow-[0_16px_32px_-8px_rgba(22,33,62,0.18)] sm:flex"
+              className="absolute -left-7 top-6 z-10 hidden h-16 w-16 items-center justify-center rounded-full border border-border bg-background-elevated p-3.5 shadow-[0_16px_32px_-8px_rgba(22,33,62,0.18)] sm:flex"
             >
               <ToolLogo tool="n8n" className="h-full w-full" />
             </motion.div>
@@ -95,17 +90,9 @@ export function Hero() {
             <motion.div
               animate={{ y: [0, 7, 0] }}
               transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
-              className="absolute -right-6 top-1/2 z-10 hidden h-9 items-center rounded-full border border-border bg-background-elevated px-3.5 shadow-[0_16px_32px_-8px_rgba(22,33,62,0.18)] sm:flex"
+              className="absolute -right-6 top-1/2 z-10 hidden h-10 items-center rounded-full border border-border bg-background-elevated px-4 shadow-[0_16px_32px_-8px_rgba(22,33,62,0.18)] sm:flex"
             >
-              <ToolLogo tool="openai" className="h-4 w-[56px]" />
-            </motion.div>
-
-            <motion.div
-              animate={{ y: [0, -6, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
-              className="absolute -left-8 bottom-8 z-10 hidden h-9 items-center rounded-full border border-border bg-background-elevated px-3.5 shadow-[0_16px_32px_-8px_rgba(22,33,62,0.18)] sm:flex"
-            >
-              <ToolLogo tool="supabase" className="h-4 w-[64px]" />
+              <ToolLogo tool="openai" className="h-[18px] w-[68px]" />
             </motion.div>
 
             <div className="mb-4 flex items-center justify-between">

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Reveal";
+import { FinalCta } from "@/components/home/FinalCta";
 import { products } from "@/lib/content/products";
 
 export const metadata: Metadata = {
@@ -25,7 +26,7 @@ export default function ProductsPage() {
             <StaggerItem key={product.slug} hover>
               <Link
                 href={`/products/${product.slug}`}
-                className="flex h-full flex-col justify-between gap-10 rounded-2xl border border-border bg-background-elevated p-8 transition-colors hover:border-teal/50 hover:shadow-[0_20px_40px_-18px_rgba(20,125,138,0.2)]"
+                className="group flex h-full flex-col justify-between gap-10 rounded-2xl border border-border bg-background-elevated p-8 transition-colors hover:border-teal/50 hover:shadow-[0_20px_40px_-18px_rgba(20,125,138,0.2)]"
               >
                 <div className="flex flex-col gap-4">
                   <div className="flex items-center justify-between">
@@ -51,6 +52,7 @@ export default function ProductsPage() {
         </StaggerGroup>
         </Container>
       </section>
+      <FinalCta />
     </>
   );
 }

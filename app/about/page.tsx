@@ -5,6 +5,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Accordion } from "@/components/ui/Accordion";
 import { Reveal } from "@/components/motion/Reveal";
 import { faqs } from "@/lib/content/faqs";
+import { FinalCta } from "@/components/home/FinalCta";
 
 export const metadata: Metadata = {
   title: "About",
@@ -78,6 +79,7 @@ export default function AboutPage() {
           </Reveal>
         </Container>
       </section>
+      <FinalCta />
     </>
   );
 }

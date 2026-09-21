@@ -7,6 +7,7 @@ import { technologies } from "@/lib/content/technologies";
 import { Tag } from "@/components/ui/Tag";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/Reveal";
+import { FinalCta } from "@/components/home/FinalCta";
 
 export const metadata: Metadata = {
   title: "Solutions",
@@ -100,6 +101,7 @@ export default function SolutionsPage() {
           </StaggerGroup>
         </Container>
       </section>
+      <FinalCta />
     </>
   );
 }

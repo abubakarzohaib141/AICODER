@@ -6,6 +6,7 @@ import { Tag } from "@/components/ui/Tag";
 import { TeamPhotoFrame } from "@/components/system/TeamPhotoFrame";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Reveal";
 import { team } from "@/lib/content/team";
+import { FinalCta } from "@/components/home/FinalCta";
 
 export const metadata: Metadata = {
   title: "Team",
@@ -55,6 +56,7 @@ export default function TeamPage() {
           </StaggerGroup>
         </Container>
       </section>
+      <FinalCta />
     </>
   );
 }
