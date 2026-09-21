@@ -91,9 +91,9 @@ export function ContactForm() {
               You&apos;re all set.
             </h3>
             <p className="mx-auto max-w-md text-base leading-relaxed text-muted">
-              Thank you for submitting the form. We will be contacting you in the next few hours,
-              so please check your inbox. In the meantime, feel free to have a look at what
-              we&apos;ve already shipped for other teams.
+              Thank you for submitting the form. We will be contacting you shortly. In the
+              meantime, feel free to have a look at what we&apos;ve already shipped for other
+              teams.
             </p>
           </div>
 
