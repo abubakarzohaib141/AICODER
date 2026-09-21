@@ -18,13 +18,14 @@ export function HowWeWork() {
         </Reveal>
 
         <StaggerGroup className="relative grid gap-10 sm:grid-cols-2 lg:grid-cols-6 lg:gap-6">
+          <div className="absolute left-0 right-0 top-6 hidden h-px bg-border-strong lg:block" />
           <motion.div
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={viewport}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
             style={{ transformOrigin: "left" }}
-            className="absolute left-0 right-0 top-6 hidden h-px bg-border lg:block"
+            className="absolute left-0 right-0 top-[23px] hidden h-[2px] bg-[linear-gradient(90deg,#147d8a,#c2660b_50%,#16213e)] lg:block"
           />
           {process.map((step, i) => (
             <StaggerItem key={step.number} className="relative flex flex-col gap-4">

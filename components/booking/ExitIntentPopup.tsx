@@ -67,21 +67,23 @@ export function ExitIntentPopup() {
     }
     document.addEventListener("mouseleave", onMouseLeave);
 
-    // Trigger 2: engaged scroll — reached at least 60% down the page.
+    // Trigger 2: reached (or very near) the bottom of the page.
     function onScroll() {
       const scrolled = window.scrollY + window.innerHeight;
       const total = document.documentElement.scrollHeight;
-      if (total > 0 && scrolled / total > 0.6) reveal();
+      if (total > 0 && scrolled / total > 0.92) reveal();
     }
     window.addEventListener("scroll", onScroll, { passive: true });
 
-    // Trigger 3: fallback — genuinely still reading after 45s.
-    const timer = setTimeout(reveal, 45000);
+    // Trigger 3: guaranteed fallback — shows within 15s no matter what, so
+    // every visitor sees the conversion prompt even if they never scroll
+    // to the bottom or move toward the browser chrome.
+    const fallbackTimer = setTimeout(reveal, 15000);
 
     return () => {
       document.removeEventListener("mouseleave", onMouseLeave);
       window.removeEventListener("scroll", onScroll);
-      clearTimeout(timer);
+      clearTimeout(fallbackTimer);
     };
   }, []);
 

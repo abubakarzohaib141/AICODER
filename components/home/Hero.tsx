@@ -5,7 +5,6 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { BookCallButton } from "@/components/booking/BookCallButton";
-import { ToolLogo } from "@/components/ui/ToolLogo";
 import { fadeUpFast, staggerFast } from "@/lib/motion";
 import { testimonials } from "@/lib/content/testimonials";
 
@@ -33,7 +32,7 @@ export function Hero() {
               variants={fadeUpFast}
               className="font-mono-label rounded-full border border-teal/30 bg-teal/[0.06] px-3.5 py-1.5 text-[11px] uppercase tracking-wide text-teal"
             >
-              AI Engineering Studio
+              AI Automation Agency
             </motion.span>
 
             <motion.h1
@@ -74,34 +73,6 @@ export function Hero() {
               aria-hidden="true"
               className="pointer-events-none absolute -right-10 -top-16 h-64 w-64 rounded-full bg-[radial-gradient(circle,rgba(245,194,66,0.22),rgba(245,194,66,0)_70%)]"
             />
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute -left-16 bottom-0 h-56 w-56 rounded-full border border-dashed border-border"
-            />
-
-            <motion.div
-              animate={{ y: [0, -7, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -left-8 top-4 z-10 hidden h-20 w-20 items-center justify-center rounded-full border border-border bg-background-elevated p-4 shadow-[0_16px_32px_-8px_rgba(22,33,62,0.18)] sm:flex"
-            >
-              <ToolLogo tool="n8n" className="h-full w-full" />
-            </motion.div>
-
-            <motion.div
-              animate={{ y: [0, 7, 0] }}
-              transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
-              className="absolute -right-7 top-1/2 z-10 hidden h-12 items-center rounded-full border border-border bg-background-elevated px-5 shadow-[0_16px_32px_-8px_rgba(22,33,62,0.18)] sm:flex"
-            >
-              <ToolLogo tool="openai" className="h-[22px] w-[84px]" />
-            </motion.div>
-
-            <motion.div
-              animate={{ y: [0, -6, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.1 }}
-              className="absolute -left-9 bottom-6 z-10 hidden h-16 w-16 items-center justify-center rounded-full border border-border bg-background-elevated p-3.5 shadow-[0_16px_32px_-8px_rgba(22,33,62,0.18)] sm:flex"
-            >
-              <ToolLogo tool="supabase" className="h-full w-full" />
-            </motion.div>
 
             <div className="mb-4 flex items-center justify-between">
               <span className="text-eyebrow text-xs text-muted-2">Trusted by founders</span>
@@ -154,9 +125,25 @@ export function Hero() {
               </AnimatePresence>
             </div>
 
-            <div className="absolute -bottom-4 -right-3 z-10 hidden items-center gap-2 rounded-xl border border-border bg-background-elevated px-3.5 py-2 text-xs font-semibold text-foreground shadow-[0_16px_32px_-8px_rgba(22,33,62,0.14)] sm:flex">
-              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-gold animate-pulse-dot" />
-              Engineered by AI Coders
+            <div className="mt-5 flex flex-col gap-3">
+              <div className="flex items-center gap-2 text-xs font-semibold text-foreground">
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-gold animate-pulse-dot" />
+                Engineered by AI Coders
+              </div>
+              <div className="grid grid-cols-3 divide-x divide-border border-t border-border pt-3">
+                {[
+                  ["24/7", "AI-Powered Support"],
+                  ["10×", "Faster Operations"],
+                  ["40+", "Hours Saved / Week"],
+                ].map(([value, label]) => (
+                  <div key={label} className="flex flex-col gap-0.5 px-3 first:pl-0">
+                    <span className="font-display text-lg font-extrabold leading-none text-foreground sm:text-xl">
+                      {value}
+                    </span>
+                    <span className="text-[11px] leading-snug text-muted-2">{label}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </motion.div>
         </Container>
