@@ -5,6 +5,7 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/Reveal";
+import { ToolLogo, toolList } from "@/components/ui/ToolLogo";
 import { testimonials } from "@/lib/content/testimonials";
 
 export function Testimonials() {
@@ -106,6 +107,26 @@ export function Testimonials() {
               </StaggerItem>
             ))}
           </StaggerGroup>
+        </Reveal>
+
+        <Reveal className="flex flex-col items-center gap-5 pt-4 text-center">
+          <span className="text-eyebrow text-[10px] text-muted-2">Built Around With</span>
+          <div className="relative flex flex-wrap items-center justify-center gap-4 py-2">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute left-1/2 top-1/2 hidden h-20 w-[calc(100%+4rem)] max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-border sm:block"
+            />
+            {toolList.map((tool, i) => (
+              <motion.span
+                key={tool}
+                animate={{ y: [0, i % 2 === 0 ? -5 : 5, 0] }}
+                transition={{ duration: 3.5 + i * 0.3, repeat: Infinity, ease: "easeInOut" }}
+                className="relative z-10 flex h-11 items-center rounded-full border border-border bg-background-elevated px-4 shadow-[0_12px_28px_-12px_rgba(22,33,62,0.2)]"
+              >
+                <ToolLogo tool={tool} className="h-5 w-[72px]" />
+              </motion.span>
+            ))}
+          </div>
         </Reveal>
       </Container>
     </section>

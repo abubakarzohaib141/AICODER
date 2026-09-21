@@ -5,6 +5,8 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { BookCallButton } from "@/components/booking/BookCallButton";
+import { BuiltWithRow } from "@/components/ui/BuiltWithRow";
+import { ToolLogo } from "@/components/ui/ToolLogo";
 import { fadeUpFast, staggerFast } from "@/lib/motion";
 import { testimonials } from "@/lib/content/testimonials";
 
@@ -62,19 +64,8 @@ export function Hero() {
               </a>
             </motion.div>
 
-            <motion.div variants={fadeUpFast} className="flex flex-col gap-3 pt-2">
-              <span className="text-eyebrow text-[10px] text-muted-2">Used by teams building with</span>
-              <div className="flex flex-wrap items-center gap-2">
-                {["n8n", "OpenAI", "Gemini", "ElevenLabs", "Supabase"].map((tool) => (
-                  <span
-                    key={tool}
-                    className="flex items-center gap-1.5 rounded-full border border-border bg-background-elevated px-3 py-1.5 text-xs font-semibold text-muted"
-                  >
-                    <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-muted-2" />
-                    {tool}
-                  </span>
-                ))}
-              </div>
+            <motion.div variants={fadeUpFast} className="pt-2">
+              <BuiltWithRow label="Used by teams building with" />
             </motion.div>
           </div>
 
@@ -88,23 +79,33 @@ export function Hero() {
               aria-hidden="true"
               className="pointer-events-none absolute -right-10 -top-16 h-64 w-64 rounded-full bg-[radial-gradient(circle,rgba(245,194,66,0.22),rgba(245,194,66,0)_70%)]"
             />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute -left-16 bottom-0 h-56 w-56 rounded-full border border-dashed border-border"
+            />
 
             <motion.div
               animate={{ y: [0, -7, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -left-5 top-10 z-10 hidden items-center gap-1.5 rounded-xl border border-border bg-background-elevated px-3 py-2 text-xs font-bold text-foreground shadow-[0_16px_32px_-8px_rgba(22,33,62,0.18)] sm:flex"
+              className="absolute -left-6 top-8 z-10 hidden h-12 w-12 items-center justify-center rounded-full border border-border bg-background-elevated p-2.5 shadow-[0_16px_32px_-8px_rgba(22,33,62,0.18)] sm:flex"
             >
-              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-teal-bright" />
-              n8n
+              <ToolLogo tool="n8n" className="h-full w-full" />
             </motion.div>
 
             <motion.div
               animate={{ y: [0, 7, 0] }}
               transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
-              className="absolute -right-4 top-1/2 z-10 hidden items-center gap-1.5 rounded-xl border border-border bg-background-elevated px-3 py-2 text-xs font-bold text-foreground shadow-[0_16px_32px_-8px_rgba(22,33,62,0.18)] sm:flex"
+              className="absolute -right-6 top-1/2 z-10 hidden h-9 items-center rounded-full border border-border bg-background-elevated px-3.5 shadow-[0_16px_32px_-8px_rgba(22,33,62,0.18)] sm:flex"
             >
-              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
-              OpenAI
+              <ToolLogo tool="openai" className="h-4 w-[56px]" />
+            </motion.div>
+
+            <motion.div
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
+              className="absolute -left-8 bottom-8 z-10 hidden h-9 items-center rounded-full border border-border bg-background-elevated px-3.5 shadow-[0_16px_32px_-8px_rgba(22,33,62,0.18)] sm:flex"
+            >
+              <ToolLogo tool="supabase" className="h-4 w-[64px]" />
             </motion.div>
 
             <div className="mb-4 flex items-center justify-between">
