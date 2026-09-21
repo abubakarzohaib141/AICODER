@@ -1,9 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Script from "next/script";
 import { AnimatePresence, motion } from "framer-motion";
-import { easeOut, tapScale } from "@/lib/motion";
+import { easeOut } from "@/lib/motion";
+import { siteConfig } from "@/lib/content/site";
 import { useBooking } from "./BookingProvider";
 
 const SESSION_KEY = "aic-exit-popup-shown";
@@ -11,6 +13,33 @@ const SESSION_KEY = "aic-exit-popup-shown";
 export function ExitIntentPopup() {
   const [visible, setVisible] = useState(false);
   const { open: openBooking } = useBooking();
+  const hasCalendly = siteConfig.calendlyUrl.length > 0;
+  const widgetRef = useRef<HTMLDivElement>(null);
+
+  // The popup mounts long after widget.js has already loaded (it only fires
+  // on exit-intent/scroll/timer), so Calendly's own load-time DOM scan never
+  // sees this div — initialize it manually once it's visible.
+  useEffect(() => {
+    if (!visible || !hasCalendly) return;
+    let cancelled = false;
+    function init() {
+      if (cancelled) return;
+      const Calendly = (window as unknown as { Calendly?: { initInlineWidget: (opts: { url: string; parentElement: HTMLElement }) => void } }).Calendly;
+      if (Calendly && widgetRef.current) {
+        widgetRef.current.innerHTML = "";
+        Calendly.initInlineWidget({
+          url: `${siteConfig.calendlyUrl}?hide_event_type_details=1&hide_gdpr_banner=1`,
+          parentElement: widgetRef.current,
+        });
+      } else {
+        setTimeout(init, 200);
+      }
+    }
+    init();
+    return () => {
+      cancelled = true;
+    };
+  }, [visible, hasCalendly]);
 
   useEffect(() => {
     let shown = false;
@@ -83,13 +112,13 @@ export function ExitIntentPopup() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 24, scale: 0.97 }}
             transition={{ duration: 0.3, ease: easeOut }}
-            className="relative w-full max-w-md overflow-hidden rounded-2xl border border-border bg-background-elevated shadow-2xl"
+            className="relative grid w-full max-w-3xl grid-cols-1 overflow-hidden rounded-2xl border border-border bg-background-elevated shadow-2xl md:max-h-[85vh] md:grid-cols-[1fr_1.15fr]"
           >
             <button
               type="button"
               onClick={dismiss}
               aria-label="Close"
-              className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-[8px] text-lg leading-none text-muted transition-colors hover:bg-background-elevated-2 hover:text-foreground"
+              className="absolute right-3 top-3 z-10 flex h-8 w-8 items-center justify-center rounded-[8px] bg-background-elevated text-lg leading-none text-muted transition-colors hover:bg-background-elevated-2 hover:text-foreground"
             >
               ×
             </button>
@@ -103,29 +132,42 @@ export function ExitIntentPopup() {
               </h3>
               <p className="text-sm leading-relaxed text-muted">
                 Tell us what you&apos;re trying to build and we&apos;ll tell you honestly where AI
-                can actually help — no pitch, just a straight answer.
+                can actually help — no pitch, just a straight answer. Pick a time on the right, or
+                send us a quick brief instead.
               </p>
-              <div className="flex w-full flex-wrap items-center gap-3 pt-1">
-                <motion.button
-                  type="button"
-                  onClick={() => {
-                    dismiss();
-                    openBooking();
-                  }}
-                  whileHover={{ y: -2 }}
-                  whileTap={tapScale}
-                  className="inline-flex items-center justify-center gap-2 rounded-[10px] border border-foreground/25 bg-foreground px-5 py-3 text-sm font-semibold text-background shadow-[0_1px_1px_0_rgba(0,0,0,0.15),0_10px_22px_-10px_rgba(22,33,62,0.5)] transition-[filter] hover:brightness-125"
-                >
-                  Book a Call
-                </motion.button>
-                <Link
-                  href="/contact"
-                  onClick={dismiss}
-                  className="text-sm font-medium text-muted transition-colors hover:text-foreground"
-                >
-                  Send a brief →
-                </Link>
-              </div>
+              <Link
+                href="/contact"
+                onClick={dismiss}
+                className="text-sm font-medium text-muted transition-colors hover:text-foreground"
+              >
+                Send a brief →
+              </Link>
+            </div>
+
+            <div className="border-t border-border md:border-l md:border-t-0">
+              {hasCalendly ? (
+                <>
+                  <div ref={widgetRef} style={{ minWidth: "280px", height: "420px" }} />
+                  <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="lazyOnload" />
+                </>
+              ) : (
+                <div className="flex h-full flex-col items-center justify-center gap-4 px-6 py-14 text-center">
+                  <p className="max-w-sm text-sm leading-relaxed text-muted">
+                    Our calendar isn&apos;t wired up here yet. Book a call and we&apos;ll follow up
+                    to find a time.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      dismiss();
+                      openBooking();
+                    }}
+                    className="inline-flex items-center justify-center gap-2 rounded-[10px] border border-foreground/25 bg-foreground px-5 py-3 text-sm font-semibold text-background shadow-[0_1px_1px_0_rgba(0,0,0,0.15),0_10px_22px_-10px_rgba(22,33,62,0.5)] transition-[filter] hover:brightness-125"
+                  >
+                    Book a Call
+                  </button>
+                </div>
+              )}
             </div>
           </motion.div>
         </div>

@@ -22,11 +22,11 @@ export function Hero() {
   }, [paused]);
 
   return (
-    <section className="relative pt-20 sm:pt-28">
+    <section className="relative flex min-h-[calc(100vh-4rem)] flex-col justify-center">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-border" />
 
       <motion.div initial="hidden" animate="show" variants={staggerFast}>
-        <Container className="relative grid gap-14 pb-16 sm:pb-20 lg:grid-cols-2 lg:items-center lg:gap-16">
+        <Container className="relative grid gap-14 py-16 sm:py-20 lg:grid-cols-2 lg:items-center lg:gap-16">
           <div className="flex flex-col items-start gap-8 text-left">
             <motion.span
               variants={fadeUpFast}
