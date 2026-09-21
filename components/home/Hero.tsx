@@ -56,10 +56,25 @@ export function Hero() {
               </BookCallButton>
               <a
                 href="#work"
-                className="text-sm font-semibold text-muted transition-colors hover:text-foreground"
+                className="text-sm font-semibold text-muted transition-colors hover:text-[#c99a1f]"
               >
                 See Our Work ↓
               </a>
+            </motion.div>
+
+            <motion.div variants={fadeUpFast} className="flex flex-col gap-3 pt-2">
+              <span className="text-eyebrow text-[10px] text-muted-2">Used by teams building with</span>
+              <div className="flex flex-wrap items-center gap-2">
+                {["n8n", "OpenAI", "Gemini", "ElevenLabs", "Supabase"].map((tool) => (
+                  <span
+                    key={tool}
+                    className="flex items-center gap-1.5 rounded-full border border-border bg-background-elevated px-3 py-1.5 text-xs font-semibold text-muted"
+                  >
+                    <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-muted-2" />
+                    {tool}
+                  </span>
+                ))}
+              </div>
             </motion.div>
           </div>
 
@@ -69,6 +84,29 @@ export function Hero() {
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
           >
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute -right-10 -top-16 h-64 w-64 rounded-full bg-[radial-gradient(circle,rgba(245,194,66,0.22),rgba(245,194,66,0)_70%)]"
+            />
+
+            <motion.div
+              animate={{ y: [0, -7, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -left-5 top-10 z-10 hidden items-center gap-1.5 rounded-xl border border-border bg-background-elevated px-3 py-2 text-xs font-bold text-foreground shadow-[0_16px_32px_-8px_rgba(22,33,62,0.18)] sm:flex"
+            >
+              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-teal-bright" />
+              n8n
+            </motion.div>
+
+            <motion.div
+              animate={{ y: [0, 7, 0] }}
+              transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
+              className="absolute -right-4 top-1/2 z-10 hidden items-center gap-1.5 rounded-xl border border-border bg-background-elevated px-3 py-2 text-xs font-bold text-foreground shadow-[0_16px_32px_-8px_rgba(22,33,62,0.18)] sm:flex"
+            >
+              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
+              OpenAI
+            </motion.div>
+
             <div className="mb-4 flex items-center justify-between">
               <span className="text-eyebrow text-xs text-muted-2">Trusted by founders</span>
               <div className="flex -space-x-2.5">

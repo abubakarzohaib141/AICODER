@@ -1,4 +1,5 @@
 import { Hero } from "@/components/home/Hero";
+import { ImpactStats } from "@/components/home/ImpactStats";
 import { WhatWeBuild } from "@/components/home/WhatWeBuild";
 import { WhyAiCoders } from "@/components/home/WhyAiCoders";
 import { WhoWeBuildFor } from "@/components/home/WhoWeBuildFor";
@@ -14,6 +15,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <ImpactStats />
       <WhatWeBuild />
       <WhyAiCoders />
       <WhoWeBuildFor />

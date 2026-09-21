@@ -8,11 +8,11 @@ import { tapScale } from "@/lib/motion";
 type Variant = "primary" | "secondary" | "ghost" | "gold" | "teal";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-[10px] px-5 py-3 text-sm font-semibold transition-colors duration-150 whitespace-nowrap cursor-pointer";
+  "inline-flex items-center justify-center gap-2 rounded-[10px] px-5 py-3 text-sm font-semibold transition-[filter,box-shadow] duration-200 whitespace-nowrap cursor-pointer";
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-foreground text-background border border-foreground/25 shadow-[0_1px_1px_0_rgba(0,0,0,0.15),0_10px_22px_-10px_rgba(22,33,62,0.5)] hover:brightness-125",
+    "bg-foreground bg-[linear-gradient(rgba(255,255,255,0.16),rgba(255,255,255,0))] text-background border border-foreground/25 shadow-[0_1px_1px_0_rgba(0,0,0,0.15),0_10px_22px_-10px_rgba(22,33,62,0.5)] hover:brightness-125 hover:shadow-[0_1px_1px_0_rgba(0,0,0,0.15),0_14px_28px_-8px_rgba(22,33,62,0.55),0_0_0_4px_rgba(247,197,74,0.2)]",
   secondary:
     "border border-border-strong text-foreground hover:border-teal hover:bg-background-elevated",
   ghost: "text-foreground/80 hover:text-foreground",
@@ -36,7 +36,7 @@ export function BookCallButton({
       type="button"
       onClick={open}
       className={`group ${base} ${variants[variant]} ${className}`}
-      whileHover={{ y: -2 }}
+      whileHover={{ y: -2, scale: 1.015 }}
       whileTap={tapScale}
       transition={{ type: "spring", stiffness: 400, damping: 20 }}
     >
