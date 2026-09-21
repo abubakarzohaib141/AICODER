@@ -16,7 +16,7 @@ export function WhoWeBuildFor() {
             eyebrow="Who we build for"
             title={
               <>
-                <span className="highlight-mark-teal">Real Problems</span>, Not Generic Use Cases
+                <span className="highlight-mark">Real Problems</span>, Not Generic Use Cases
               </>
             }
             description="Different industries, the same pattern: repetitive work that quietly consumes a team's time."

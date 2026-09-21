@@ -12,6 +12,7 @@ import {
 } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { TiltTag } from "@/components/ui/TiltTag";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/Reveal";
 import { stagger, fadeUp } from "@/lib/motion";
 import { services, type Service } from "@/lib/content/services";
@@ -75,14 +76,11 @@ function BigCard({ service, color, animated = true }: { service: Service; color:
           {service.description}
         </p>
       </motion.div>
-      <motion.div variants={animated ? fadeUp : undefined} className="flex flex-wrap gap-2">
-        {service.bullets.map((bullet) => (
-          <span
-            key={bullet}
-            className="rounded-full border border-border-strong bg-background-elevated-2 px-3 py-1.5 text-[12.5px] text-foreground"
-          >
+      <motion.div variants={animated ? fadeUp : undefined} className="flex flex-wrap gap-3">
+        {service.bullets.map((bullet, i) => (
+          <TiltTag key={bullet} index={i}>
             {bullet}
-          </span>
+          </TiltTag>
         ))}
       </motion.div>
     </motion.div>
@@ -208,17 +206,31 @@ export function WhatWeBuild() {
           />
         </Reveal>
 
-        {reduceMotion ? (
-          <StaggerGroup className="flex flex-col gap-6">
-            {services.map((service) => (
-              <StaggerItem key={service.slug} className="flex justify-center">
-                <BigCard service={service} color={cardColors[service.slug] ?? "#147d8a"} animated={false} />
-              </StaggerItem>
-            ))}
-          </StaggerGroup>
-        ) : (
-          <ScrollStory />
-        )}
+        {/* The sticky scroll-story effect needs real viewport height headroom
+            to read cleanly; below lg it just collides with the heading and
+            feels broken, so smaller screens always get the plain stacked
+            cards instead. */}
+        <StaggerGroup className="flex flex-col gap-6 lg:hidden">
+          {services.map((service) => (
+            <StaggerItem key={service.slug} className="flex justify-center">
+              <BigCard service={service} color={cardColors[service.slug] ?? "#147d8a"} animated={false} />
+            </StaggerItem>
+          ))}
+        </StaggerGroup>
+
+        <div className="hidden lg:block">
+          {reduceMotion ? (
+            <StaggerGroup className="flex flex-col gap-6">
+              {services.map((service) => (
+                <StaggerItem key={service.slug} className="flex justify-center">
+                  <BigCard service={service} color={cardColors[service.slug] ?? "#147d8a"} animated={false} />
+                </StaggerItem>
+              ))}
+            </StaggerGroup>
+          ) : (
+            <ScrollStory />
+          )}
+        </div>
       </Container>
     </section>
   );

@@ -11,9 +11,9 @@ export function ProductionMindset() {
       <Container className="flex flex-col items-center gap-8 text-center">
         <Reveal>
           <h2 className="max-w-lg font-display text-2xl font-bold leading-snug text-foreground sm:text-3xl">
-            AI is <span className="highlight-mark-teal">easy to demo</span>.
+            AI is easy to demo.
             <br />
-            Making it work is harder.
+            <span className="highlight-mark">Making it work is harder.</span>
           </h2>
         </Reveal>
 

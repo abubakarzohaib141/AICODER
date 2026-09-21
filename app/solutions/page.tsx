@@ -4,7 +4,7 @@ import { PageHero } from "@/components/ui/PageHero";
 import { services } from "@/lib/content/services";
 import { industries } from "@/lib/content/technologies";
 import { technologies } from "@/lib/content/technologies";
-import { Tag } from "@/components/ui/Tag";
+import { TiltTag } from "@/components/ui/TiltTag";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/Reveal";
 import { FinalCta } from "@/components/home/FinalCta";
@@ -13,6 +13,8 @@ export const metadata: Metadata = {
   title: "Solutions",
   description: "AI agents, AI automation, business automation, agent ticketing systems and AI product development.",
 };
+
+const serviceAccents = ["#147d8a", "#16213e", "#c2660b", "#ff8800", "#147d8a"];
 
 export default function SolutionsPage() {
   return (
@@ -25,14 +27,20 @@ export default function SolutionsPage() {
 
       <section className="py-16 sm:py-24">
         <Container className="flex flex-col divide-y divide-border border-t border-border">
-          {services.map((service) => (
+          {services.map((service, i) => (
             <Reveal
               key={service.slug}
               id={service.slug}
+              direction={i % 2 === 0 ? "left" : "right"}
               className="grid gap-6 py-12 lg:grid-cols-[280px_1fr] lg:gap-16"
             >
               <div className="flex items-start gap-4">
-                <span className="font-mono-label text-xs text-orange">{service.number}</span>
+                <span
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[8px] font-mono-label text-xs font-bold text-white"
+                  style={{ backgroundColor: serviceAccents[i % serviceAccents.length] }}
+                >
+                  {service.number}
+                </span>
                 <h2 className="font-display text-2xl font-semibold text-foreground">
                   {service.name}
                 </h2>
@@ -41,9 +49,11 @@ export default function SolutionsPage() {
                 <p className="max-w-2xl text-base leading-relaxed text-muted">
                   {service.description}
                 </p>
-                <div className="flex flex-wrap gap-2">
-                  {service.bullets.map((b) => (
-                    <Tag key={b}>{b}</Tag>
+                <div className="flex flex-wrap gap-3">
+                  {service.bullets.map((b, bi) => (
+                    <TiltTag key={b} index={bi}>
+                      {b}
+                    </TiltTag>
                   ))}
                 </div>
               </div>
@@ -58,11 +68,12 @@ export default function SolutionsPage() {
             <SectionHeading eyebrow="Industries" title="AI Across Business Operations" />
           </Reveal>
           <StaggerGroup className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {industries.map((industry) => (
+            {industries.map((industry, i) => (
               <StaggerItem
                 key={industry.name}
                 hover
-                className="flex flex-col gap-3 rounded-2xl border border-border p-6"
+                direction={i % 2 === 0 ? "left" : "right"}
+                className="flex flex-col gap-3 rounded-2xl border border-border p-6 transition-colors duration-300 hover:border-border-strong"
               >
                 <p className="font-display text-base font-semibold text-foreground">{industry.name}</p>
                 <ul className="flex flex-col gap-2">

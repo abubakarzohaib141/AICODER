@@ -130,7 +130,7 @@ export function ExitIntentPopup() {
                 Before you go
               </span>
               <h3 className="text-section text-2xl text-foreground">
-                Have a Workflow Worth <span className="highlight-mark-teal">Automating?</span>
+                Have a Workflow Worth <span className="highlight-mark">Automating?</span>
               </h3>
               <p className="text-sm leading-relaxed text-muted">
                 Tell us what you&apos;re trying to build and we&apos;ll tell you honestly where AI

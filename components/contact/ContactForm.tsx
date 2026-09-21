@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { tapScale } from "@/lib/motion";
 
@@ -69,15 +70,40 @@ export function ContactForm() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col gap-3 rounded-2xl border border-teal/30 bg-background-elevated p-8"
+          className="flex flex-col items-center gap-5 rounded-2xl border border-teal/30 bg-background-elevated px-8 py-12 text-center"
         >
-          <span className="font-mono-label text-xs uppercase tracking-wide text-teal">
-            Inquiry sent
-          </span>
-          <p className="font-display text-xl font-semibold text-foreground">
-            Thank you for submitting the form. We will be contacting you in the next few hours, so
-            please check your inbox.
-          </p>
+          <motion.span
+            initial={{ scale: 0.6, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.1, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="flex h-14 w-14 items-center justify-center rounded-full bg-teal/10 text-teal"
+          >
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M20 6 9 17l-5-5" />
+            </svg>
+          </motion.span>
+
+          <div className="flex flex-col gap-2">
+            <span className="font-mono-label text-xs uppercase tracking-wide text-teal">
+              Inquiry sent
+            </span>
+            <h3 className="font-display text-2xl font-semibold text-foreground sm:text-[28px]">
+              You&apos;re all set.
+            </h3>
+            <p className="mx-auto max-w-md text-base leading-relaxed text-muted">
+              Thank you for submitting the form. We will be contacting you in the next few hours,
+              so please check your inbox. In the meantime, feel free to have a look at what
+              we&apos;ve already shipped for other teams.
+            </p>
+          </div>
+
+          <Link
+            href="/case-studies"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-foreground transition-colors hover:text-teal"
+          >
+            See our work
+            <span aria-hidden="true">→</span>
+          </Link>
         </motion.div>
       ) : (
         <motion.form

@@ -143,14 +143,6 @@ body {
   -webkit-box-decoration-break: clone;
 }
 
-.highlight-mark-teal {
-  background-image: linear-gradient(rgba(20, 125, 138, 0) 16%, rgba(20, 125, 138, 0.92) 16%);
-  color: #fff;
-  padding: 0 0.15em;
-  border-radius: 3px;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-}
 
 /* Reusable dark scope for content that should always render on the dark
    surface (the footer, the final-CTA band), independent of the rest of

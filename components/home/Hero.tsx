@@ -22,7 +22,7 @@ export function Hero() {
   }, [paused]);
 
   return (
-    <section className="relative flex min-h-[calc(100vh-4rem)] flex-col justify-center">
+    <section className="relative flex flex-col justify-center lg:min-h-[calc(100vh-4rem)]">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-border" />
 
       <motion.div initial="hidden" animate="show" variants={staggerFast}>
