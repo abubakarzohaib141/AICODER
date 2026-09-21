@@ -35,22 +35,39 @@ export default function AboutPage() {
             </p>
 
             <div className="mt-6 flex flex-col gap-8 border-t border-border pt-8">
-              <div>
-                <span className="font-mono-label text-xs uppercase tracking-wide text-orange">
-                  Mission
+              <div className="flex gap-4">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-orange/10 text-orange">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="9" />
+                    <circle cx="12" cy="12" r="4.5" />
+                    <circle cx="12" cy="12" r="0.5" fill="currentColor" />
+                  </svg>
                 </span>
-                <p className="mt-3 font-display text-xl font-semibold text-foreground sm:text-2xl">
-                  Make AI useful, actionable and accessible to businesses.
-                </p>
+                <div>
+                  <span className="font-mono-label text-xs uppercase tracking-wide text-orange">
+                    Mission
+                  </span>
+                  <p className="mt-2 font-display text-xl font-semibold text-foreground sm:text-2xl">
+                    Make AI useful, actionable and accessible to businesses.
+                  </p>
+                </div>
               </div>
-              <div>
-                <span className="font-mono-label text-xs uppercase tracking-wide text-teal">
-                  Vision
+              <div className="flex gap-4">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-teal/10 text-teal">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
                 </span>
-                <p className="mt-3 font-display text-xl font-semibold text-foreground sm:text-2xl">
-                  Build intelligent systems that can work alongside people and take ownership of
-                  meaningful business workflows.
-                </p>
+                <div>
+                  <span className="font-mono-label text-xs uppercase tracking-wide text-teal">
+                    Vision
+                  </span>
+                  <p className="mt-2 font-display text-xl font-semibold text-foreground sm:text-2xl">
+                    Build intelligent systems that can work alongside people and take ownership of
+                    meaningful business workflows.
+                  </p>
+                </div>
               </div>
             </div>
           </div>

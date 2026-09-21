@@ -75,10 +75,10 @@ export function ExitIntentPopup() {
     }
     window.addEventListener("scroll", onScroll, { passive: true });
 
-    // Trigger 3: guaranteed fallback — shows within 15s no matter what, so
+    // Trigger 3: guaranteed fallback — shows within 10s no matter what, so
     // every visitor sees the conversion prompt even if they never scroll
     // to the bottom or move toward the browser chrome.
-    const fallbackTimer = setTimeout(reveal, 15000);
+    const fallbackTimer = setTimeout(reveal, 10000);
 
     return () => {
       document.removeEventListener("mouseleave", onMouseLeave);
@@ -114,8 +114,12 @@ export function ExitIntentPopup() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 24, scale: 0.97 }}
             transition={{ duration: 0.3, ease: easeOut }}
-            className="relative grid w-full max-w-3xl grid-cols-1 overflow-hidden rounded-2xl border border-border bg-background-elevated shadow-2xl md:max-h-[85vh] md:grid-cols-[1fr_1.15fr]"
+            className="relative grid w-full max-w-3xl grid-cols-1 overflow-hidden rounded-2xl border-2 border-gold/40 bg-background-elevated shadow-[0_30px_70px_-20px_rgba(245,194,66,0.35)] md:max-h-[85vh] md:grid-cols-[1fr_1.15fr]"
           >
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute -left-16 -top-16 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(245,194,66,0.28),rgba(245,194,66,0)_70%)]"
+            />
             <button
               type="button"
               onClick={dismiss}
@@ -125,8 +129,9 @@ export function ExitIntentPopup() {
               ×
             </button>
 
-            <div className="flex flex-col items-start gap-4 p-7 sm:p-8">
-              <span className="font-mono-label rounded-full border border-teal/30 bg-teal/[0.06] px-3 py-1 text-[10px] uppercase tracking-wide text-teal">
+            <div className="relative flex flex-col items-start gap-4 p-7 sm:p-8">
+              <span className="font-mono-label flex items-center gap-1.5 rounded-full border border-[#e3b81f] bg-gold px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-foreground">
+                <span className="h-1.5 w-1.5 rounded-full bg-foreground animate-pulse-dot" />
                 Before you go
               </span>
               <h3 className="text-section text-2xl text-foreground">
@@ -137,6 +142,10 @@ export function ExitIntentPopup() {
                 can actually help — no pitch, just a straight answer. Pick a time on the right, or
                 send us a quick brief instead.
               </p>
+              <div className="flex items-center gap-2 rounded-lg border border-gold/30 bg-gold/[0.08] px-3 py-2 text-xs font-semibold text-foreground">
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-teal-bright" />
+                Free discovery call, no pressure, no obligation.
+              </div>
               <Link
                 href="/contact"
                 onClick={dismiss}
