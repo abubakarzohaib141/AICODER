@@ -20,6 +20,8 @@ export function SiteHeader() {
             <MotionLink
               key={item.href}
               href={item.href}
+              target={item.newTab ? "_blank" : undefined}
+              rel={item.newTab ? "noopener noreferrer" : undefined}
               className="relative text-sm text-white/70 transition-colors hover:text-white"
               initial="rest"
               whileHover="hover"

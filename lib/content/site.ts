@@ -10,10 +10,10 @@ export const siteConfig = {
     { label: "Solutions", href: "/solutions" },
     { label: "Products", href: "/products" },
     { label: "Case Studies", href: "/case-studies" },
-    { label: "Team", href: "/team" },
+    { label: "Team", href: "/team", newTab: true },
     { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },
-  ],
+  ] as { label: string; href: string; newTab?: boolean }[],
   footerLegal: [
     { label: "Privacy Policy", href: "/privacy" },
     { label: "Terms of Service", href: "/terms" },
