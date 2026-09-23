@@ -8,6 +8,7 @@ import { Testimonials } from "@/components/home/Testimonials";
 import { HowWeWork } from "@/components/home/HowWeWork";
 import { ProductionMindset } from "@/components/home/ProductionMindset";
 import { CaseStudiesProof } from "@/components/home/CaseStudiesProof";
+import { TeamPreview } from "@/components/home/TeamPreview";
 import { FaqSection } from "@/components/home/FaqSection";
 import { FinalCta } from "@/components/home/FinalCta";
 
@@ -24,6 +25,7 @@ export default function Home() {
       <HowWeWork />
       <ProductionMindset />
       <CaseStudiesProof />
+      <TeamPreview />
       <FaqSection />
       <FinalCta />
     </>

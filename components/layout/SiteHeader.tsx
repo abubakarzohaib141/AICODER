@@ -35,6 +35,8 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
+              target={item.newTab ? "_blank" : undefined}
+              rel={item.newTab ? "noopener noreferrer" : undefined}
               onMouseEnter={() => setHovered(item.href)}
               className="relative py-1 text-sm text-muted transition-colors hover:text-foreground"
             >

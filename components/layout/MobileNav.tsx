@@ -63,6 +63,8 @@ export function MobileNav() {
                 <Link
                   key={item.href}
                   href={item.href}
+                  target={item.newTab ? "_blank" : undefined}
+                  rel={item.newTab ? "noopener noreferrer" : undefined}
                   onClick={() => setOpen(false)}
                   className="border-b border-border py-4 font-display text-2xl font-medium text-foreground"
                 >
