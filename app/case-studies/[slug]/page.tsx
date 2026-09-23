@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Tag } from "@/components/ui/Tag";
+import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/Reveal";
+import { FinalCta } from "@/components/home/FinalCta";
 import { caseStudies } from "@/lib/content/case-studies";
 
 export function generateStaticParams() {
@@ -33,15 +35,20 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 
   return (
     <>
-      <section className="border-b border-border pb-14 pt-20 sm:pt-28">
-        <Container className="flex flex-col gap-5">
+      <section className="relative overflow-hidden border-b border-border pb-14 pt-20 sm:pt-28">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(245,194,66,0.16),rgba(245,194,66,0)_70%)]"
+        />
+        <Reveal>
+        <Container className="relative flex flex-col gap-5">
           <Link
             href="/case-studies"
             className="text-sm text-muted transition-colors hover:text-foreground"
           >
             ← All case studies
           </Link>
-          <span className="font-mono-label text-xs uppercase tracking-[0.18em] text-orange">
+          <span className="font-mono-label w-fit rounded-full border border-teal/30 bg-teal/[0.06] px-3.5 py-1.5 text-[11px] uppercase tracking-wide text-teal">
             {study.category}
           </span>
           <h1 className="max-w-2xl font-display text-4xl font-semibold leading-tight tracking-tight text-foreground sm:text-5xl">
@@ -49,13 +56,14 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           </h1>
           <span className="w-fit text-sm text-muted">Engineered by AI Coders</span>
         </Container>
+        </Reveal>
       </section>
 
       <section className="py-16 sm:py-24">
         <Container className="grid gap-14 lg:grid-cols-[1fr_320px] lg:gap-16">
-          <div className="flex flex-col gap-14">
+          <StaggerGroup className="flex flex-col gap-14">
             {sections.map((section) => (
-              <div key={section.key} className="flex flex-col gap-3">
+              <StaggerItem key={section.key} className="flex flex-col gap-3">
                 <span className="font-mono-label text-xs text-muted-2">{section.number}</span>
                 <h2 className="font-display text-2xl font-semibold text-foreground">
                   {section.label}
@@ -63,10 +71,10 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                 <p className="max-w-2xl text-base leading-relaxed text-muted">
                   {study[section.key]}
                 </p>
-              </div>
+              </StaggerItem>
             ))}
 
-            <div className="flex flex-col gap-3">
+            <StaggerItem className="flex flex-col gap-3">
               <span className="font-mono-label text-xs text-muted-2">04</span>
               <h2 className="font-display text-2xl font-semibold text-foreground">How It Works</h2>
               <div className="flex flex-wrap items-center gap-2 pt-2">
@@ -79,27 +87,30 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                   </span>
                 ))}
               </div>
-            </div>
+            </StaggerItem>
 
-            <div className="flex flex-col gap-3">
+            <StaggerItem className="flex flex-col gap-3">
               <span className="font-mono-label text-xs text-muted-2">06</span>
               <h2 className="font-display text-2xl font-semibold text-foreground">Results</h2>
               <p className="max-w-2xl text-base leading-relaxed text-muted">{study.results}</p>
-            </div>
-          </div>
+            </StaggerItem>
+          </StaggerGroup>
 
-          <aside className="flex h-fit flex-col gap-4 rounded-2xl border border-border bg-background-elevated/40 p-7 lg:sticky lg:top-24">
-            <span className="font-mono-label text-xs uppercase tracking-wide text-muted-2">
-              05. Technology
-            </span>
-            <div className="flex flex-wrap gap-2">
-              {study.technology.map((tech) => (
-                <Tag key={tech}>{tech}</Tag>
-              ))}
-            </div>
-          </aside>
+          <Reveal direction="right">
+            <aside className="flex h-fit flex-col gap-4 rounded-2xl border border-border bg-background-elevated/40 p-7 lg:sticky lg:top-24">
+              <span className="font-mono-label text-xs uppercase tracking-wide text-muted-2">
+                05. Technology
+              </span>
+              <div className="flex flex-wrap gap-2">
+                {study.technology.map((tech) => (
+                  <Tag key={tech}>{tech}</Tag>
+                ))}
+              </div>
+            </aside>
+          </Reveal>
         </Container>
       </section>
+      <FinalCta />
     </>
   );
 }

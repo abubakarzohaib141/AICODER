@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
-import { SpotlightLink } from "@/components/ui/SpotlightLink";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Reveal";
+import { FinalCta } from "@/components/home/FinalCta";
 import { products } from "@/lib/content/products";
 
 export const metadata: Metadata = {
@@ -10,9 +11,11 @@ export const metadata: Metadata = {
   description: "Real AI products built by the AI Coders engineering team.",
 };
 
+const productAccents = ["#147d8a", "#c2660b", "#16213e", "#ff8800"];
+
 export default function ProductsPage() {
   return (
-    <div className="dark-scope min-h-screen">
+    <>
       <PageHero
         eyebrow="Products"
         title="Products We've Built"
@@ -21,13 +24,17 @@ export default function ProductsPage() {
       <section className="py-16 sm:py-24">
         <Container>
         <StaggerGroup className="grid gap-6 sm:grid-cols-2">
-          {products.map((product) => (
-            <StaggerItem key={product.slug} hover>
-              <SpotlightLink
+          {products.map((product, i) => (
+            <StaggerItem key={product.slug} hover direction={i % 2 === 0 ? "left" : "right"}>
+              <Link
                 href={`/products/${product.slug}`}
-                spotlightColor="rgba(190,242,209,0.12)"
-                className="flex h-full flex-col justify-between gap-10 rounded-2xl border border-border bg-background-elevated/40 p-8 hover:border-green-light/50 hover:shadow-[0_20px_40px_-18px_rgba(190,242,209,0.2)]"
+                className="group relative flex h-full flex-col justify-between gap-10 overflow-hidden rounded-2xl border border-border bg-background-elevated p-8 transition-colors hover:border-teal/50 hover:shadow-[0_20px_40px_-18px_rgba(20,125,138,0.2)]"
               >
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-x-0 top-0 h-1"
+                  style={{ backgroundColor: productAccents[i % productAccents.length] }}
+                />
                 <div className="flex flex-col gap-4">
                   <div className="flex items-center justify-between">
                     <span className="font-mono-label text-xs text-muted-2">{product.index}</span>
@@ -46,12 +53,13 @@ export default function ProductsPage() {
                     →
                   </span>
                 </div>
-              </SpotlightLink>
+              </Link>
             </StaggerItem>
           ))}
         </StaggerGroup>
         </Container>
       </section>
-    </div>
+      <FinalCta />
+    </>
   );
 }

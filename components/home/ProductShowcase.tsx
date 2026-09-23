@@ -14,14 +14,20 @@ import { products, type Product } from "@/lib/content/products";
 // products (each with a genuine screenshot) rather than the full catalog.
 const gallerySlugs = ["tresolv", "scope-ai-cv", "lenny-ai", "abz-agent-sdk", "crm-suite", "ai-hiring-agent"];
 
-function GalleryTile({ product }: { product: Product }) {
-  const primaryLink = product.links[0];
-  const isExternal = Boolean(primaryLink) && !primaryLink.href.startsWith("/");
-  const href = primaryLink ? primaryLink.href : `/products/${product.slug}`;
+const cycleDirections = ["left", "up", "right"] as const;
+
+function GalleryTile({ product, index }: { product: Product; index: number }) {
+  // Always the internal AI Coders page — the real product/live-site link
+  // (when one exists) lives on that page instead, so this card never sends
+  // visitors off-site.
+  const href = `/products/${product.slug}`;
 
   return (
-    <StaggerItem hover className="h-full">
-      <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-background-elevated transition-colors duration-300 hover:border-border-strong">
+    <StaggerItem hover direction={cycleDirections[index % cycleDirections.length]} className="h-full">
+      <Link
+        href={href}
+        className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-background-elevated transition-colors duration-300 hover:border-border-strong"
+      >
         <div
           className="relative overflow-hidden bg-background-elevated-2"
           style={{ aspectRatio: product.screenshotAspect ?? "16/10" }}
@@ -71,26 +77,15 @@ function GalleryTile({ product }: { product: Product }) {
           )}
           <div className="mt-auto flex items-center justify-between gap-2.5 pt-2">
             <span className="text-xs text-muted-2">Engineered by AI Coders</span>
-            {isExternal ? (
-              <a
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-full border border-border-strong px-3 py-1.5 text-[12px] font-semibold text-foreground transition-colors hover:border-teal/50 hover:text-teal"
-              >
-                Visit ↗
-              </a>
-            ) : (
-              <Link
-                href={href}
-                className="rounded-full border border-border-strong px-3 py-1.5 text-[12px] font-semibold text-foreground transition-colors hover:border-teal/50 hover:text-teal"
-              >
-                Visit →
-              </Link>
-            )}
+            <span className="inline-flex items-center gap-1 rounded-[8px] border border-border-strong px-3 py-1.5 text-[12px] font-semibold text-foreground transition-colors group-hover:border-teal/50 group-hover:text-teal">
+              View case study
+              <span aria-hidden="true" className="transition-transform duration-150 group-hover:translate-x-0.5">
+                →
+              </span>
+            </span>
           </div>
         </div>
-      </div>
+      </Link>
     </StaggerItem>
   );
 }
@@ -101,12 +96,7 @@ export function ProductShowcase() {
     .filter((p): p is Product => Boolean(p));
 
   return (
-    <section id="work" className="relative scroll-mt-20 overflow-hidden border-t border-border py-20 sm:py-28">
-      <span
-        aria-hidden="true"
-        className="ambient-orange"
-        style={{ width: 500, height: 500, top: "-16%", left: "55%" }}
-      />
+    <section id="work" className="relative scroll-mt-20 border-t border-border py-20 sm:py-28">
       <Container className="relative flex flex-col gap-9">
         <Reveal className="flex flex-wrap items-end justify-between gap-5">
           <SectionHeading eyebrow="Selected work" title="What We've Built" />
@@ -119,8 +109,8 @@ export function ProductShowcase() {
         </Reveal>
 
         <StaggerGroup className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {gallery.map((product) => (
-            <GalleryTile key={product.slug} product={product} />
+          {gallery.map((product, index) => (
+            <GalleryTile key={product.slug} product={product} index={index} />
           ))}
         </StaggerGroup>
       </Container>

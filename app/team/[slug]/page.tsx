@@ -11,8 +11,8 @@ import { caseStudies } from "@/lib/content/case-studies";
 
 const accents = [
   "var(--accent-teal)",
-  "var(--accent-blue)",
-  "var(--accent-indigo)",
+  "#c2660b",
+  "#16213e",
   "var(--accent-orange)",
 ];
 
@@ -70,7 +70,7 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-full border border-border-strong px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-blue"
+                  className="inline-flex items-center justify-center rounded-full border border-border-strong px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-teal"
                 >
                   {link.label}
                 </a>
@@ -112,7 +112,7 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
               <ul className="flex flex-col gap-2.5">
                 {member.selectedWork.map((work) => (
                   <li key={work} className="flex items-center gap-3 text-sm text-foreground/90">
-                    <span className="h-1 w-1 shrink-0 rounded-full bg-blue" />
+                    <span className="h-1 w-1 shrink-0 rounded-full bg-teal" />
                     {work}
                   </li>
                 ))}
@@ -130,7 +130,7 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
                   <Link
                     key={p.slug}
                     href={`/products/${p.slug}`}
-                    className="group flex flex-col gap-4 rounded-2xl border border-border p-6 transition-colors hover:border-blue/60"
+                    className="group flex flex-col gap-4 rounded-2xl border border-border p-6 transition-colors hover:border-teal/60"
                   >
                     <ScreenshotFrame
                       src={p.screenshots?.[0]}
@@ -153,7 +153,7 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
                   <Link
                     key={c.slug}
                     href={`/case-studies/${c.slug}`}
-                    className="rounded-2xl border border-border p-6 transition-colors hover:border-blue/60"
+                    className="rounded-2xl border border-border p-6 transition-colors hover:border-teal/60"
                   >
                     <span className="font-mono-label text-[11px] uppercase tracking-wide text-teal-bright">
                       Case Study

@@ -26,7 +26,7 @@ export function FloatingCta() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 16 }}
           transition={{ duration: 0.3, ease: easeOut }}
-          className="fixed bottom-[22px] left-[22px] right-[22px] z-[60] ml-auto flex max-w-[400px] items-center gap-3 rounded-full border border-white/[0.08] bg-foreground/90 px-4 py-3.5 shadow-[0_20px_40px_-12px_rgba(0,0,0,0.35)] backdrop-blur-md"
+          className="fixed bottom-[22px] left-[22px] right-[22px] z-[60] ml-auto flex max-w-[400px] items-center gap-3 rounded-[14px] border border-white/[0.08] bg-foreground/90 px-4 py-3.5 shadow-[0_20px_40px_-12px_rgba(0,0,0,0.35)] backdrop-blur-md"
         >
           <div className="flex min-w-0 flex-1 flex-col">
             <span className="truncate text-[12.5px] font-semibold text-background">
@@ -37,7 +37,7 @@ export function FloatingCta() {
           <button
             type="button"
             onClick={open}
-            className="shrink-0 whitespace-nowrap rounded-full bg-teal-bright px-4 py-2.5 text-[12.5px] font-bold text-[#07080c] transition-colors hover:bg-teal"
+            className="shrink-0 whitespace-nowrap rounded-[8px] border border-[#e3b81f] bg-gold bg-[linear-gradient(rgba(255,255,255,0.42),rgba(255,255,255,0))] px-4 py-2.5 text-[12.5px] font-bold text-foreground shadow-[0_1px_1px_0_rgba(93,78,19,0.12),0_8px_18px_-10px_rgba(180,130,13,0.5),inset_0_1px_0_0_rgba(255,255,255,0.6)] transition-[filter] hover:brightness-105"
           >
             Book a call →
           </button>

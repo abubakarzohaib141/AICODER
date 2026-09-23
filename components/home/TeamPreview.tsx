@@ -9,14 +9,14 @@ import { team } from "@/lib/content/team";
 
 const accents = [
   "var(--accent-teal)",
-  "var(--accent-blue)",
-  "var(--accent-indigo)",
+  "#c2660b",
+  "#16213e",
   "var(--accent-orange)",
 ];
 
 export function TeamPreview() {
   return (
-    <section className="border-t border-border py-16 sm:py-20">
+    <section className="border-t border-border bg-background-elevated-2 py-16 sm:py-20">
       <Container className="flex flex-col gap-7">
         <Reveal className="flex flex-wrap items-baseline justify-between gap-5">
           <h2 className="font-display text-[22px] font-extrabold tracking-tight text-foreground sm:text-[28px]">

@@ -1,4 +1,5 @@
 import { Hero } from "@/components/home/Hero";
+import { ImpactStats } from "@/components/home/ImpactStats";
 import { WhatWeBuild } from "@/components/home/WhatWeBuild";
 import { WhyAiCoders } from "@/components/home/WhyAiCoders";
 import { WhoWeBuildFor } from "@/components/home/WhoWeBuildFor";
@@ -13,26 +14,20 @@ import { FinalCta } from "@/components/home/FinalCta";
 
 export default function Home() {
   return (
-    <div className="homepage-noir">
-      <div className="homepage-noir-glow" aria-hidden="true">
-        <span />
-        <span />
-        <span />
-      </div>
-      <div className="homepage-noir-content">
-        <Hero />
-        <WhatWeBuild />
-        <WhyAiCoders />
-        <WhoWeBuildFor />
-        <ProductShowcase />
-        <Testimonials />
-        <HowWeWork />
-        <ProductionMindset />
-        <CaseStudiesProof />
-        <TeamPreview />
-        <FaqSection />
-        <FinalCta />
-      </div>
-    </div>
+    <>
+      <Hero />
+      <ImpactStats />
+      <WhatWeBuild />
+      <WhyAiCoders />
+      <WhoWeBuildFor />
+      <ProductShowcase />
+      <Testimonials />
+      <HowWeWork />
+      <ProductionMindset />
+      <CaseStudiesProof />
+      <TeamPreview />
+      <FaqSection />
+      <FinalCta />
+    </>
   );
 }

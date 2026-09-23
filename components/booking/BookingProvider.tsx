@@ -3,6 +3,7 @@
 import { createContext, useCallback, useContext, useMemo, useState, ReactNode } from "react";
 import { BookingModal } from "./BookingModal";
 import { FloatingCta } from "./FloatingCta";
+import { ExitIntentPopup } from "./ExitIntentPopup";
 
 type BookingContextValue = {
   isOpen: boolean;
@@ -25,6 +26,7 @@ export function BookingProvider({ children }: { children: ReactNode }) {
       {children}
       <BookingModal isOpen={isOpen} onClose={close} />
       {!isOpen && <FloatingCta />}
+      {!isOpen && <ExitIntentPopup />}
     </BookingContext.Provider>
   );
 }

@@ -15,8 +15,12 @@ export function PageHero({
   description?: ReactNode;
 }) {
   return (
-    <section className="border-b border-border pb-14 pt-20 sm:pt-28">
-      <Container>
+    <section className="relative overflow-hidden border-b border-border pb-14 pt-20 sm:pt-28">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(245,194,66,0.16),rgba(245,194,66,0)_70%)]"
+      />
+      <Container className="relative">
         <motion.div
           initial="hidden"
           animate="show"
@@ -25,7 +29,7 @@ export function PageHero({
         >
           <motion.span
             variants={fadeUpFast}
-            className="font-mono-label text-xs uppercase tracking-[0.18em] text-orange"
+            className="font-mono-label w-fit rounded-full border border-teal/30 bg-teal/[0.06] px-3.5 py-1.5 text-[11px] uppercase tracking-wide text-teal"
           >
             {eyebrow}
           </motion.span>

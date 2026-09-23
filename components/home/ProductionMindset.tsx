@@ -7,13 +7,13 @@ export function ProductionMindset() {
   const production = productionPoints.slice(0, 4);
 
   return (
-    <section className="border-t border-border py-16 sm:py-20">
+    <section className="border-t border-border bg-background-elevated-2 py-16 sm:py-20">
       <Container className="flex flex-col items-center gap-8 text-center">
         <Reveal>
           <h2 className="max-w-lg font-display text-2xl font-bold leading-snug text-foreground sm:text-3xl">
             AI is easy to demo.
             <br />
-            Making it work is harder.
+            <span className="highlight-mark">Making it work is harder.</span>
           </h2>
         </Reveal>
 

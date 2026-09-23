@@ -4,10 +4,10 @@ import { whyPoints } from "@/lib/content/technologies";
 
 export function WhyAiCoders() {
   return (
-    <section className="border-t border-border py-20 sm:py-28">
+    <section className="dark-scope border-t border-border py-20 sm:py-28">
       <Container className="flex flex-col gap-8">
         <Reveal>
-          <h2 className="max-w-lg font-display text-2xl font-bold leading-snug text-foreground sm:text-3xl">
+          <h2 className="text-section max-w-lg text-2xl text-foreground sm:text-3xl">
             Built around the way your business actually works.
           </h2>
         </Reveal>
@@ -16,9 +16,9 @@ export function WhyAiCoders() {
           {whyPoints.map((point) => (
             <StaggerItem
               key={point.name}
-              className="group flex flex-col gap-2.5 border-t-2 border-border pt-5 transition-colors hover:border-teal"
+              className="group flex flex-col gap-2.5 border-t-2 border-border pt-5 transition-colors hover:border-gold"
             >
-              <span className="text-teal font-mono-label text-xs font-bold">
+              <span className="text-gold font-mono-label text-xs font-bold">
                 {point.number}
               </span>
               <span className="font-display text-base font-bold text-foreground">

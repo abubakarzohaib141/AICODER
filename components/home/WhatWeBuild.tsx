@@ -12,14 +12,15 @@ import {
 } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { TiltTag } from "@/components/ui/TiltTag";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/Reveal";
 import { stagger, fadeUp } from "@/lib/motion";
 import { services, type Service } from "@/lib/content/services";
 
 const cardColors: Record<string, string> = {
-  "ai-agents": "#2ee673",
-  "ai-automation": "#2b1bba",
-  automation: "#4f7ff7",
+  "ai-agents": "#147d8a",
+  "ai-automation": "#16213e",
+  automation: "#c2660b",
   "ai-product-development": "#ff8800",
 };
 
@@ -52,14 +53,11 @@ function BigCard({ service, color, animated = true }: { service: Service; color:
       initial={animated ? "hidden" : undefined}
       animate={animated ? "show" : undefined}
       variants={animated ? stagger : undefined}
-      className="relative flex w-full max-w-3xl flex-col gap-6 overflow-hidden rounded-[24px] border border-border p-8 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.5)] sm:p-12"
-      style={{
-        background: `radial-gradient(120% 140% at 100% 0%, ${color}22, transparent 60%), linear-gradient(160deg, var(--background-elevated), var(--background-elevated-2) 65%)`,
-      }}
+      className="relative flex w-full max-w-3xl flex-col gap-6 overflow-hidden rounded-[24px] border border-border bg-background-elevated p-8 shadow-[0_20px_50px_-25px_rgba(32,30,28,0.25)] sm:p-12"
     >
       <motion.span
         variants={animated ? fadeUp : undefined}
-        className="font-mono-label text-xs uppercase tracking-[0.18em] text-dark-muted"
+        className="font-mono-label text-xs uppercase tracking-[0.18em] text-muted-2"
       >
         {service.number}
       </motion.span>
@@ -71,21 +69,18 @@ function BigCard({ service, color, animated = true }: { service: Service; color:
         <ServiceIcon slug={service.slug} />
       </motion.span>
       <motion.div variants={animated ? fadeUp : undefined} className="flex flex-col gap-3">
-        <span className="font-display text-2xl font-extrabold text-dark-foreground sm:text-[32px]">
+        <span className="font-display text-2xl font-extrabold text-foreground sm:text-[32px]">
           {service.name}
         </span>
-        <p className="max-w-lg text-[15px] leading-relaxed text-dark-muted sm:text-base">
+        <p className="max-w-lg text-[15px] leading-relaxed text-muted sm:text-base">
           {service.description}
         </p>
       </motion.div>
-      <motion.div variants={animated ? fadeUp : undefined} className="flex flex-wrap gap-2">
-        {service.bullets.map((bullet) => (
-          <span
-            key={bullet}
-            className="rounded-full border border-white/[0.18] bg-white/[0.06] px-3 py-1.5 text-[12.5px] text-dark-foreground"
-          >
+      <motion.div variants={animated ? fadeUp : undefined} className="flex flex-wrap gap-3">
+        {service.bullets.map((bullet, i) => (
+          <TiltTag key={bullet} index={i}>
             {bullet}
-          </span>
+          </TiltTag>
         ))}
       </motion.div>
     </motion.div>
@@ -159,17 +154,12 @@ function ScrollStory() {
     setActiveIndex((prev) => (prev === idx ? prev : idx));
   });
 
-  const activeColor = cardColors[services[activeIndex].slug] ?? "#2ee673";
+  const activeColor = cardColors[services[activeIndex].slug] ?? "#147d8a";
 
   return (
     <div ref={containerRef} style={{ height: `${total * 80}vh` }}>
       <div className="sticky top-20 flex h-[75vh] flex-col items-center justify-center gap-8 px-5 py-8">
         <div className="relative grid w-full max-w-3xl place-items-center">
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-8 -z-10 rounded-full blur-[90px] transition-colors duration-700"
-            style={{ backgroundColor: activeColor, opacity: 0.14 }}
-          />
           {services.map((service, i) => (
             <StoryCard
               key={service.slug}
@@ -177,7 +167,7 @@ function ScrollStory() {
               index={i}
               total={total}
               service={service}
-              color={cardColors[service.slug] ?? "#2ee673"}
+              color={cardColors[service.slug] ?? "#147d8a"}
             />
           ))}
         </div>
@@ -189,7 +179,7 @@ function ScrollStory() {
               className="h-1.5 rounded-full transition-all duration-300"
               style={{
                 width: i === activeIndex ? "22px" : "6px",
-                backgroundColor: i === activeIndex ? activeColor : "rgba(190,242,209,0.18)",
+                backgroundColor: i === activeIndex ? activeColor : "var(--border-strong)",
               }}
             />
           ))}
@@ -203,16 +193,7 @@ export function WhatWeBuild() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="relative border-t border-border py-20 sm:py-28">
-      {/* Clipped in its own layer, not on the section itself: overflow-hidden
-          on an ancestor of the scroll-story's sticky element would break
-          position:sticky (it can no longer stick relative to the viewport). */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-        <span
-          className="ambient-orange"
-          style={{ width: 520, height: 520, bottom: "-12%", left: "-8%" }}
-        />
-      </div>
+    <section className="relative border-t border-border bg-background-elevated-2 py-20 sm:py-28">
       <Container className="relative flex flex-col gap-12">
         <Reveal>
           <SectionHeading
@@ -225,17 +206,31 @@ export function WhatWeBuild() {
           />
         </Reveal>
 
-        {reduceMotion ? (
-          <StaggerGroup className="flex flex-col gap-6">
-            {services.map((service) => (
-              <StaggerItem key={service.slug} className="flex justify-center">
-                <BigCard service={service} color={cardColors[service.slug] ?? "#2ee673"} animated={false} />
-              </StaggerItem>
-            ))}
-          </StaggerGroup>
-        ) : (
-          <ScrollStory />
-        )}
+        {/* The sticky scroll-story effect needs real viewport height headroom
+            to read cleanly; below lg it just collides with the heading and
+            feels broken, so smaller screens always get the plain stacked
+            cards instead. */}
+        <StaggerGroup className="flex flex-col gap-6 lg:hidden">
+          {services.map((service) => (
+            <StaggerItem key={service.slug} className="flex justify-center">
+              <BigCard service={service} color={cardColors[service.slug] ?? "#147d8a"} animated={false} />
+            </StaggerItem>
+          ))}
+        </StaggerGroup>
+
+        <div className="hidden lg:block">
+          {reduceMotion ? (
+            <StaggerGroup className="flex flex-col gap-6">
+              {services.map((service) => (
+                <StaggerItem key={service.slug} className="flex justify-center">
+                  <BigCard service={service} color={cardColors[service.slug] ?? "#147d8a"} animated={false} />
+                </StaggerItem>
+              ))}
+            </StaggerGroup>
+          ) : (
+            <ScrollStory />
+          )}
+        </div>
       </Container>
     </section>
   );

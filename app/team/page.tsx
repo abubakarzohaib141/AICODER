@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
 import { Tag } from "@/components/ui/Tag";
 import { TeamPhotoFrame } from "@/components/system/TeamPhotoFrame";
-import { SpotlightLink } from "@/components/ui/SpotlightLink";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Reveal";
 import { team } from "@/lib/content/team";
+import { FinalCta } from "@/components/home/FinalCta";
 
 export const metadata: Metadata = {
   title: "Team",
@@ -14,8 +15,8 @@ export const metadata: Metadata = {
 
 const accents = [
   "var(--accent-teal)",
-  "var(--accent-blue)",
-  "var(--accent-indigo)",
+  "#c2660b",
+  "#16213e",
   "var(--accent-orange)",
 ];
 
@@ -28,10 +29,9 @@ export default function TeamPage() {
           <StaggerGroup className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {team.map((member, i) => (
               <StaggerItem key={member.slug} hover>
-                <SpotlightLink
+                <Link
                   href={`/team/${member.slug}`}
-                  spotlightColor={`color-mix(in srgb, ${accents[i % accents.length]} 12%, transparent)`}
-                  className="flex h-full flex-col gap-6 rounded-2xl border border-border p-8 hover:border-border-strong hover:shadow-[0_20px_40px_-18px_rgba(32,30,28,0.18)]"
+                  className="flex h-full flex-col gap-6 rounded-2xl border border-border p-8 transition-colors hover:border-teal/50 hover:shadow-[0_20px_40px_-18px_rgba(32,30,28,0.18)]"
                 >
                   <TeamPhotoFrame
                     photo={member.photo}
@@ -50,12 +50,13 @@ export default function TeamPage() {
                       <Tag key={f}>{f}</Tag>
                     ))}
                   </div>
-                </SpotlightLink>
+                </Link>
               </StaggerItem>
             ))}
           </StaggerGroup>
         </Container>
       </section>
+      <FinalCta />
     </>
   );
 }

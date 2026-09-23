@@ -38,18 +38,18 @@ export function MobileNav() {
         className="relative z-50 flex h-9 w-9 flex-col items-center justify-center gap-[5px]"
       >
         <span
-          className={`h-px w-5 transition-transform duration-200 ${
-            open ? "translate-y-[3px] rotate-45 bg-foreground" : "bg-white"
+          className={`h-px w-5 bg-foreground transition-transform duration-200 ${
+            open ? "translate-y-[3px] rotate-45" : ""
           }`}
         />
         <span
-          className={`h-px w-5 transition-opacity duration-200 ${
-            open ? "bg-foreground opacity-0" : "bg-white opacity-100"
+          className={`h-px w-5 bg-foreground transition-opacity duration-200 ${
+            open ? "opacity-0" : "opacity-100"
           }`}
         />
         <span
-          className={`h-px w-5 transition-transform duration-200 ${
-            open ? "-translate-y-[3px] -rotate-45 bg-foreground" : "bg-white"
+          className={`h-px w-5 bg-foreground transition-transform duration-200 ${
+            open ? "-translate-y-[3px] -rotate-45" : ""
           }`}
         />
       </button>
@@ -79,7 +79,7 @@ export function MobileNav() {
                   setOpen(false);
                   openBooking();
                 }}
-                className="flex w-full items-center justify-center rounded-full bg-foreground px-6 py-3.5 text-sm font-medium text-background"
+                className="flex w-full items-center justify-center rounded-[10px] bg-foreground px-6 py-3.5 text-sm font-semibold text-background"
               >
                 Book a Call
               </button>
