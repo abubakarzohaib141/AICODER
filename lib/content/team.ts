@@ -59,12 +59,8 @@ export const team: TeamMember[] = [
       "AI Legal Case Intake System",
       "ReActivate",
       "AI WhatsApp Command Center",
+      "sending.ac",
     ],
-    currentWork: {
-      label: "sending.ac",
-      description:
-        "Working across AI automation and operations, developing CRMs and automation systems with n8n and Airtable to make business operations more scalable.",
-    },
     bio: "Muhammad is an AI Automation Engineer and AI automation expert who has worked with international companies and built multiple products and projects. His work spans AI agents and autonomous systems, low-code/no-code automation, n8n and API integrations, voice agents, CRM and lead automation, and coding and integrations across modern AI tooling.",
     extra:
       "He is the founder of AI Coders, where he builds AI powered automation systems and web solutions for businesses. His earlier work includes voice AI, customer support automation, real estate workflows and autonomous AI systems for teams across international markets, backed by training from Anthropic, n8n, IBM, Google Cloud, DeepLearning.AI, LangChain, CrewAI and freeCodeCamp.",
