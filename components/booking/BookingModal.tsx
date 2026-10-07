@@ -2,10 +2,10 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import Script from "next/script";
 import { AnimatePresence, motion } from "framer-motion";
 import { easeOut } from "@/lib/motion";
 import { siteConfig } from "@/lib/content/site";
+import { CalendlyEmbed } from "./CalendlyEmbed";
 
 export function BookingModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const panelRef = useRef<HTMLDivElement>(null);
@@ -72,14 +72,7 @@ export function BookingModal({ isOpen, onClose }: { isOpen: boolean; onClose: ()
 
         <div className="flex-1 overflow-y-auto">
           {hasCalendly ? (
-            <>
-              <div
-                className="calendly-inline-widget"
-                data-url={`${siteConfig.calendlyUrl}?hide_event_type_details=1&hide_gdpr_banner=1`}
-                style={{ minWidth: "320px", height: "100%" }}
-              />
-              <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="lazyOnload" />
-            </>
+            <CalendlyEmbed style={{ minWidth: "320px", height: "100%" }} />
           ) : (
             <div className="flex h-full flex-col items-center justify-center gap-4 px-6 py-14 text-center">
               <span className="font-mono-label text-xs uppercase tracking-wide text-muted-2">
