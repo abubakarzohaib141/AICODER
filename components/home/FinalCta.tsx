@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import Script from "next/script";
 import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
 import { siteConfig } from "@/lib/content/site";
+import { CalendlyEmbed } from "@/components/booking/CalendlyEmbed";
 
 export function FinalCta() {
   const hasCalendly = siteConfig.calendlyUrl.length > 0;
@@ -44,12 +44,7 @@ export function FinalCta() {
           <Reveal direction="right" className="relative">
             {hasCalendly ? (
               <div className="overflow-hidden rounded-2xl border border-white/10 bg-white shadow-[0_30px_60px_-24px_rgba(0,0,0,0.5)]">
-                <div
-                  className="calendly-inline-widget"
-                  data-url={`${siteConfig.calendlyUrl}?hide_event_type_details=1&hide_gdpr_banner=1`}
-                  style={{ minWidth: "320px", height: "640px" }}
-                />
-                <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="lazyOnload" />
+                <CalendlyEmbed style={{ minWidth: "320px", height: "640px" }} />
               </div>
             ) : (
               <div className="flex flex-col items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-14 text-center">

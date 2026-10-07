@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import Script from "next/script";
 import { AnimatePresence, motion } from "framer-motion";
 import { easeOut } from "@/lib/motion";
 import { siteConfig } from "@/lib/content/site";
 import { useBooking } from "./BookingProvider";
+import { CalendlyEmbed } from "./CalendlyEmbed";
 
 const SESSION_KEY = "aic-exit-popup-shown";
 
@@ -14,32 +14,6 @@ export function ExitIntentPopup() {
   const [visible, setVisible] = useState(false);
   const { open: openBooking } = useBooking();
   const hasCalendly = siteConfig.calendlyUrl.length > 0;
-  const widgetRef = useRef<HTMLDivElement>(null);
-
-  // The popup mounts long after widget.js has already loaded (it only fires
-  // on exit-intent/scroll/timer), so Calendly's own load-time DOM scan never
-  // sees this div — initialize it manually once it's visible.
-  useEffect(() => {
-    if (!visible || !hasCalendly) return;
-    let cancelled = false;
-    function init() {
-      if (cancelled) return;
-      const Calendly = (window as unknown as { Calendly?: { initInlineWidget: (opts: { url: string; parentElement: HTMLElement }) => void } }).Calendly;
-      if (Calendly && widgetRef.current) {
-        widgetRef.current.innerHTML = "";
-        Calendly.initInlineWidget({
-          url: `${siteConfig.calendlyUrl}?hide_event_type_details=1&hide_gdpr_banner=1`,
-          parentElement: widgetRef.current,
-        });
-      } else {
-        setTimeout(init, 200);
-      }
-    }
-    init();
-    return () => {
-      cancelled = true;
-    };
-  }, [visible, hasCalendly]);
 
   useEffect(() => {
     let shown = false;
@@ -157,10 +131,7 @@ export function ExitIntentPopup() {
 
             <div className="border-t border-border md:border-l md:border-t-0">
               {hasCalendly ? (
-                <>
-                  <div ref={widgetRef} style={{ minWidth: "280px", height: "420px" }} />
-                  <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="lazyOnload" />
-                </>
+                <CalendlyEmbed style={{ minWidth: "280px", height: "420px" }} />
               ) : (
                 <div className="flex h-full flex-col items-center justify-center gap-4 px-6 py-14 text-center">
                   <p className="max-w-sm text-sm leading-relaxed text-muted">
